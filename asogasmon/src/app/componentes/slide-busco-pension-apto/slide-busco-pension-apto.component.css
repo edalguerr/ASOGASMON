@@ -1,0 +1,145 @@
+.titulo-card{
+    font-size: 1rem;
+    display: block;
+    overflow: hidden;
+    max-height: 2.85rem;/*40px;*/
+}
+
+.ubicacion{
+    font-size: 0.81rem;/* 13px;*/
+    text-align: left;
+    display: block;
+    overflow: hidden;
+    max-height: 2.85rem;/*40px;*/
+}
+ 
+a.btn-me-interesa{
+    background:#8cbf31;
+    color: #fff;
+}
+
+a.btn-me-interesa:hover{
+    background:#8cbf31;
+    color: #fff;
+}
+
+a.btn-ver-mas{
+    color: #fff;
+    background-color: #563d7c;
+    font-family: 'Lucida Sans';
+    font-weight: 600;
+}
+
+a.btn-ver-mas:hover{
+    color: #fff;
+    background-color: #6a499b;/*#563d7c;*/
+}
+
+
+.precio{
+    display: block;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+a.carrusel-control{
+    width: 4%;
+}
+
+a.carrusel-control i{
+    display: block;
+    color: blue;
+}
+
+a.carousel-control-prev{
+    padding-right: 1.5625rem;/*25px;*/
+}
+
+a.carousel-control-next{
+    padding-left: 1.5625rem;/*25px;*/
+}
+
+div.card div.card-img-top{
+   
+   /*background-image: url("../../assets/B7111-BL_BATA_UPC_ml.jpg");*/
+   background-size: cover;
+   background-repeat: no-repeat;
+   height: 5rem;/*80px;*/
+   width: 5rem;/*80px;*/
+   background-position: center;
+   background-color: aliceblue;
+   border-radius: 50%;
+   padding-top: 0.1875rem !important;/*3px*/
+   padding-bottom: 0.125rem;/*2px;*/
+} 
+
+.contenedor-imagen-perfil{
+    background-color: aliceblue;
+}
+
+.contenedor-informacion-busco-inmueble{
+    background-color: aliceblue;
+}
+
+div.card{
+    height: 21.6875rem;/*347px;*/
+}
+
+.titulo-tipo-inmueble{
+    font-size: 1rem;/*16px;*/
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.titulo-tipo-inmueble span{
+    vertical-align: bottom;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    div.card{
+        height: 22.9375rem !important;/*367px*/
+    }   
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px){
+
+    div.card{
+        height: 25rem !important;
+    }  
+
+    div.row div.col-4{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+} 
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (max-width: 575px) {
+    div.card{
+        height: 25rem !important;
+    }  
+
+    div.row div.col-4{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+@media screen and (max-width: 449px) {
+
+    .card-columnas-mobile{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

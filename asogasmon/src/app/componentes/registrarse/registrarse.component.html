@@ -1,0 +1,80 @@
+<!-- Button trigger modal 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarseModal">
+  Launch registrarse
+</button>-->
+
+<!-- Modal Inicio sesion-->
+<form action=""class="need-validate" (ngSubmit)="guardar()" ngNativeValidate>
+
+  <div class="modal " id="registrarseModal" tabindex="-1" role="dialog" aria-labelledby="registrarseModalLabel" aria-hidden="true">
+    <div class="modal-dialog  " role="document">
+      <div class="modal-content">
+
+        <div class="row justify-content-end">
+          <!--Boton cerrar (x)-->
+          <button type="button" class="close col-1 pr-3" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <p class="text-center frase-registrarse">
+              Obten tu cuenta fácil y rapido
+            </p>
+          </div>
+
+          <div class="form-goup">
+            <a href="#" class="btn btn-facebook btn-block">
+              <i class="fa fa-facebook fa-lg mr-1 " aria-hidden="true"></i>
+              Registrate con Facebook
+            </a>
+          </div>
+          
+          <hr>
+
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Correo electronico" name="email" id="email" [pattern]="regExp.email" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nombre" name="Nombre" id="Nombre" [pattern]="regExp.nombre" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos" [pattern]="regExp.apellidos" required>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Crea una contraseña" name="password" id="password" [pattern]="regExp.password" maxlength="20" required>
+          </div>
+          
+
+          <div class="custom-control custom-checkbox form-group">
+            <input type="checkbox" id="chkTerminosCondiciones" class="custom-control-input" required>
+            <label for="chkTerminosCondiciones" class="custom-control-label texto-checkbox">Acepto los <a href="#">terminos y condiciones</a></label>
+          </div>
+
+          <!--<div class="custom-control custom-checkbox form-group">
+            <input type="checkbox" id="chkOfertasEmail" class="custom-control-input" checked>
+            <label for="chkOfertasEmail" class="custom-control-label texto-checkbox" >Recibir novedades y ofertas por email</label>
+          </div>-->
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block font-weight-bold">Registrarse</button>
+          </div>
+
+          <div class="form-group text-center mt-2">
+            <label for="registrarse" class="form-label text-body">¿Ya tienes una cuenta?</label>
+            <a href="#" class="btn btn-link btn-link-sin-efectos text-center" data-dismiss="modal" data-toggle="modal" data-target="#inicioSesionModal">Inicia sesión</a>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</form>
+

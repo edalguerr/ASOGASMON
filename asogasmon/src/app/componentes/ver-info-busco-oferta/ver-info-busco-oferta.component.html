@@ -1,0 +1,95 @@
+<!-- Modal -->
+<div class="modal fade" id="verInfoBuscoOfertaModal" tabindex="-1" role="dialog" aria-labelledby="verInfoBuscoOfertaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <!--Boton cerrar (x)-->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        
+        <div class="text-left row py-3 justify-content-center">
+              
+          <!--Imagen perfil-->
+          <div class="col-4 contenedor-imagen-perfil">
+            <div class="card-img-top ml-auto mr-2" [style.background-image]="'url('+ruta+imagen+')' "></div>  
+          </div>
+
+          
+          <!--Tipo inmueble-->
+          <!--Nombre y ciudad o localidad-->
+          <div class="col-8 contenedor-informacion-busco-inmueble pl-0 pt-2">
+            
+            <h4 class="titulo-nombre">Edwin Alberto Guerrero Acosta</h4>
+
+            <h4 class="titulo-tipo-inmueble">
+              <div style="font-size: 19px; display: inline;">
+                <i class="fa fa-home fa-servicios"></i>
+              </div>
+              <span>Busco {{tipoInmueble}}</span>
+            </h4>
+
+            <div>  
+
+              <span class="ubicacion text-muted">
+                <i class="fa fa-map-marker"></i>
+                av. pedro heredia calle#25b
+              </span>
+              
+            </div> 
+              
+          </div>
+
+          <hr class="w-75">
+
+          <div class="col-11 col-sm-5">
+            <h4 class="titulo-tipo-inmueble">Descripcion</h4>
+            
+          </div>
+
+          <div class="col-11 col-sm-5 text-right titulo-tipo-inmueble">
+                    
+            <span>
+              {{precioTest | currency:undefined:'symbol':'1.0-0'}}/mes
+            </span>
+      
+          </div>
+
+          <div class="col-11 col-sm-10">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit eius illum officiis inventore accusantium, accusamus, culpa totam eum, perspiciatis quod laboriosam? Iure eius minima incidunt veritatis cum beatae, nihil ratione?</p>
+          </div>
+
+          <form action="" class="col-11 col-sm-10" role="form">
+            <div class="row justify-content-between">
+
+              <h4 class="titulo-tipo-inmueble col-10 col-sm-4">Contáctar</h4>
+
+              <div class="col-12 col-sm-6 text-right titulo-tipo-inmueble">
+                      
+                <i class="fa fa-phone"></i>
+                <span>
+                  +57 3106022487
+                </span>
+          
+              </div>
+
+              <div class="input-group form-group col-12">                
+                <input type="tel" class="form-control" placeholder="Ingresa tu telefono de contácto (opcional)">
+              </div>
+            
+              <div class="form-group col-12">
+                <textarea  class="w-100 form-control mensaje-contactar" placeholder="Mensaje" required></textarea>
+              </div>
+            
+              <button type="submit" class="btn btn-success btn-block col-11 mx-auto">Enviar mensaje</button>                            
+            
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

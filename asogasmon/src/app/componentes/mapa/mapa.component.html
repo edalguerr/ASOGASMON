@@ -1,0 +1,8 @@
+
+<agm-map #map [latitude]="ubicacioMapaFiltrosService.lat" [longitude]="ubicacioMapaFiltrosService.lng" (centerChange)="onCenterChange($event)" [zoom]="ubicacioMapaFiltrosService.zoom" [minZoom]="minZoom"  [streetViewControl]="streetView" [style.height.px]="heightMapa">
+  <agm-marker-cluster [styles]="clusterStyles" >
+    <agm-marker *ngFor="let coord of coordenadas " [iconUrl]="markerIconUrl()"  [latitude]="coord.lat" [longitude]="coord.lng" [title]="titleMarker" [label]="labelMarker" [markerDraggable]="draggable"  (dragEnd)="onDragEnd($event)" >
+    </agm-marker>
+  </agm-marker-cluster>
+</agm-map>
+

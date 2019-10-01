@@ -1,0 +1,50 @@
+<!--información contácto-->
+<div class="card mb-2 d-none d-md-block">
+  <div class="card-body contenedor-body-contacto">
+    <h5 class="card-title propietario-detalle">
+      Contácta a Edwin Alberto
+      <!-- <a href="#" class="link-verfil-publicante" title="perfil de usuario"></a>-->
+    </h5>
+
+    <!--<a href="#" class="btn btn-success btn-block">Ver telefono</a>-->
+    <div class="mostrar-telefono">
+      <i class="fa fa-phone"></i>
+      <span>
+        +573106******
+      </span>
+      <a href="#" class="btn btn-link link-mostrar-telefono">
+        Mostrar telefono
+      </a>
+    </div>
+
+    <a href="#" class="btn btn-me-interesa btn-block">Me interesa</a>
+  </div>
+</div>
+
+<!--TO DO: verificar porque no funciona la validacion required-->
+<!--Formulario contáctar-->
+<form action="" class="need-validate d-none d-md-block" role="form" ngNativeValidate>
+
+  <div class="card mb-2">
+    <div class="card-body contenedor-body-contacto">
+
+      <div class="input-group form-group">
+        <input type="tel" class="form-control" placeholder="Telefono de contácto(opcional)"
+        [pattern]="regExp.celular" maxlength="10">
+        <small class="form-text text-muted w-100 text-left">
+          Ingrese su numero celular sin espacios.
+        </small>
+      </div> 
+
+      <div class="form-group">
+        <textarea class="w-100 form-control mensaje-contactar" placeholder="Mensaje" required
+        [maxLength]="maxCaracteresMensaje"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block">Enviar mensaje</button>
+    </div>
+  </div>
+
+</form>
+
+

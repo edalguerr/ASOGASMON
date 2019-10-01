@@ -1,0 +1,89 @@
+.titulo-servicios-modal{
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Helvetica;
+    color: rgb(72, 72, 72) !important;
+}
+
+.item-servicio{
+    font-weight: 400;
+    font-family: Helvetica;
+    color: rgb(72, 72, 72) !important;
+    padding-bottom: 18px;
+    padding-top: 18px;
+}
+
+
+/*iconos*/
+.fa-servicios{
+    width: 18px;
+    height: 19px;
+    color: rgb(72, 72, 72) !important;
+    margin-right: 3px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.fa-warehouse{
+    background-image: url("../../../assets/iconos/warehouse-solid.svg");
+    
+}
+
+.fa-snowflake{
+    background-image: url("../../../assets/iconos/snowflake-regular.svg");
+    
+}
+
+.fa-utensils{
+    background-image: url("../../../assets/iconos/utensils-solid.svg");
+    
+}
+
+.fa-tshirt{
+    background-image: url("../../../assets/iconos/tshirt-solid.svg");
+    
+}
+
+.fa-door-open{
+    background-image: url("../../../assets/iconos/door-open-solid.svg");
+}
+
+.fa-door-open-alt{
+    background-image: url("../../../assets/iconos/open-door-2.png");
+}
+
+.fa-generos{
+    background-image: url("../../../assets/iconos/venus-mars-solid.svg");
+}
+
+.fa-facebook-messenger{
+    background-image: url("../../../assets/iconos/facebook-messenger-brands.svg");
+}
+
+.fa-times{
+    background-image: url("../../../assets/iconos/times-solid.svg");
+}
+
+.fa-expandir{
+    background-image: url("../../../assets/iconos/expand-arrows-alt-solid.svg");
+}
+
+.fa-folder-plus{
+    background-image: url("../../../assets/iconos/folder-plus-solid.svg");
+}
+
+.fa-broom{
+    background-image: url("../../../assets/iconos/broom-solid.svg");
+}
+
+.fa-umbrella-beach{
+    background-image: url("../../../assets/iconos/umbrella-beach-solid.svg");
+}
+
+.fa-user-shield{
+    background-image: url("../../../assets/iconos/user-shield-solid.svg");
+}
+
+.fa-ascensor{
+    background-image: url("../../../assets/iconos/sort-numeric-up-solid.svg");
+}

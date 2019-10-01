@@ -1,0 +1,32 @@
+/*******************************************************************/
+/***********************Bocadillo precio****************************/
+/*******************************************************************/
+.bocadillo-precio{
+    position: absolute;
+    height: 200px;
+    width: 95%;
+    background: white;
+    box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
+    border-radius:5px;
+    top: 70px;
+    left:10px;
+    z-index: 5;
+}
+  
+.bocadillo-precio::before{
+    border: 15px solid #fff;
+    content: '';
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    top: -30px;
+    left: calc(89% - 15px);
+}
+
+.titulo-precio{
+    font-family:Helvetica;
+    color: #515a6b;/*#55637d;*/
+    font-weight: 600;
+    font-size: 1.5rem;
+}

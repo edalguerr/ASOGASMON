@@ -1,0 +1,233 @@
+.titulo-card{
+    font-size: 1rem;
+    display: block;
+    overflow: hidden;
+    max-height: 2.7rem;/*43.2px;*/
+}
+
+.ubicacion{
+    font-size: 0.81rem;/* 13px;*/
+    text-align: left;
+    display: block;
+    overflow: hidden;
+    max-height: 2.85rem;/*40px;*/
+}
+
+a.btn-me-interesa{
+    background:#8cbf31;
+    color: #fff;
+}
+
+a.btn-me-interesa:hover{
+    background:#8cbf31;
+    color: #fff;
+}
+
+a.btn-ver-mas{
+    color: #fff;
+    background-color: #563d7c;
+    font-family: 'Lucida Sans';
+    font-weight: 600;
+}
+
+a.btn-ver-mas:hover{
+    color: #fff;
+    background-color: #6a499b;/*#563d7c;*/
+}
+
+
+.precio{
+    display: block;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+a.carrusel-control{
+    width: 4%;
+}
+
+a.carrusel-control i{
+    display: block;
+    color: blue;
+}
+
+div.card div.card-img-top{
+   
+   /*background-image: url("../../assets/B7111-BL_BATA_UPC_ml.jpg");*/
+   background-size: contain;
+   background-repeat: no-repeat;
+   height: 8.75rem; /*140px;*/
+   background-position: center;
+   background-color: aliceblue;
+   
+} 
+
+
+div.card{
+    height:21.6875rem; /*347px;*/
+}
+
+a.carousel-control-next{
+    padding-left: 0px !important;
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    opacity: 1;
+    top: 8.5rem;
+    box-shadow: 0px 0px 0.3125rem #cbcbcb;
+}
+
+a.carousel-control-prev{
+    padding-right: 0px !important;
+    position: absolute;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    opacity: 1;
+    top: 8.5rem;
+    box-shadow: 0px 0px 0.3125rem #cbcbcb;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    .titulo-card{
+        font-size: 0.9375rem;/*15px;*/
+        max-height: 2.1875rem;/*35px;*/
+    }
+
+    .ubicacion{
+        font-size: 0.8125rem;/*13px;*/
+        max-height: 2.1875rem/*35px;*/
+    }
+
+    .div.card div.card-img-top{
+        height: 6.25rem;/*100px;*/
+    }
+
+    div.card div.card-body{
+        padding: 1.1rem !important;
+    }
+
+    div.card{
+        height: 18.75rem;/*300px;*/
+    }
+
+    a.carousel-control-next{
+        padding-left: 0px !important;
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+    a.carousel-control-prev{
+        padding-right: 0px !important;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    div.card{
+        height: 19rem;/*px;*/
+    }
+
+    .ubicacion{
+        max-height: 2.8rem/*35px;*/
+    }
+
+    a.carousel-control-next{
+        padding-left: 0px !important;
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+    a.carousel-control-prev{
+        padding-right: 0px !important;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+   
+}
+
+
+@media screen and (min-width: 576px) and (max-width: 649px){
+
+    div.row div.col-4{
+        padding-left: 0.5357rem;/*7.5px;/14px*/
+        padding-right: 0.5357rem;/*7.5px;/14px*/
+    }
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para smartphones **********************/
+/****************************************************************************/
+@media screen and (min-width: 360px) and (max-width: 575px) {
+
+    a.carousel-control-next{
+        padding-left: 0px !important;
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+    a.carousel-control-prev{
+        padding-right: 0px !important;
+        position: absolute;
+        border-radius: 50%;
+        height: 2.5rem;
+        width: 2.5rem;
+        opacity: 1;
+        top: 8.5rem;
+        box-shadow: 0px 0px 0.3125rem #cbcbcb;
+    }
+
+    div.row div.col-4{
+        padding-left: 0.5357rem;/*7.5px;/14px*/
+        padding-right: 0.5357rem;/*7.5px;/14px*/
+    } 
+}
+
+@media screen and (max-width: 420px){
+    .mis-anuncios-ofertas{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+

@@ -1,0 +1,273 @@
+.titulo-info-detallada{
+    font-size: 1.625rem; /*26px;*/
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.link-ver-mapa{
+    text-decoration: underline;
+    border-left: 0.0625rem solid #6c757d ;/*1px*/
+    padding-left: 0.625rem;/*10px*/
+    margin-left: 0.5rem;/*8px;*/
+}
+
+.link-ver-mapa:hover{
+    color: #576169 !important;
+}
+
+.direccion-info{
+    font-size: 0.9rem;/*13px;*/
+}
+
+.direccion-info-barrio{
+    font-size: 0.875rem;/*14px;*/
+}
+
+.boton-compartir{
+    float: right;
+}
+
+.linea-divisora-info{
+    border-top-style: groove;
+}
+
+.titulo-info-oferta-detalle{
+    font-size: 1rem; /*16px;*/
+    font-weight: 600;
+    font-family: Helvetica;
+    color: rgb(72, 72, 72) !important;
+}
+
+ul.info-inmueble{
+    list-style: none;
+    padding-left: 1.25rem;/*20px;*/
+}
+
+
+ul.info-inmueble li, span.info-inmueble{
+    display: inline-block;
+    /*margin-right: 24px;*/
+    width: 25%;
+    font-size: 1rem;/*16px;*/
+    font-family: Helvetica;
+    font-weight: 400;
+    color: rgb(72, 72, 72) !important;
+}
+
+span.info-inmueble{
+    padding-left: 1.25rem;/*20px;*/
+}
+
+.descripcion-oferta{
+    font-size: 1rem;/*16px;*/
+    font-family: Helvetica;
+    font-weight: 400;
+    color: rgb(72, 72, 72) !important;
+}
+
+ul.info-servicios{
+    list-style: none;
+    padding: 1.25rem;/*20px;*/
+    margin-bottom: 0px;
+}
+
+ul.info-servicios li{
+    font-weight: 400;
+}
+
+.link-todos-servicios{
+    color: #008489 !important;
+    font-weight: 600;
+}
+
+.btn-abrir-mapa{
+    color: #484848;
+    background-color: #fff;
+    font-family: Helvetica;
+
+}
+
+.info-normas-restricciones{
+    list-style: none;
+    padding: 0px;
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+
+    .titulo-info-detallada{
+        font-size: 1.4375rem;/*23px;*/
+    }
+
+
+    .linea-divisora-info{
+        width: 96% !important;
+    }
+
+    ul.info-inmueble li, span.info-inmueble{
+        width: 50%;
+    }
+
+    .btn-abrir-mapa{
+        position: relative;
+        top: -23.75rem;/*380px;*/
+        left: 15.625rem;/*250px;*/
+    }
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+ 
+    .precio-detalle{
+        color:  rgb(72, 72, 72);
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: Helvetica;
+        margin-bottom: 0.3rem;
+    }
+    
+    .precio-detalle span{
+        font-weight: 400;
+        font-size: 1rem;
+    }
+
+    .factura-detalle{
+        font-weight: 400;
+        color: #888;
+        font-size: 0.8rem;
+        font-weight: 700;
+        /*text-transform: uppercase;*/
+    }
+
+   
+}
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen  and (max-width: 575px) {
+
+    .precio-detalle{
+        color:  rgb(72, 72, 72);
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: Helvetica;
+        margin-bottom: 0.3rem;
+    }
+    
+    .precio-detalle span{
+        font-weight: 400;
+        font-size: 1rem;
+    }
+
+    .factura-detalle{
+        font-weight: 400;
+        color: #888;
+        font-size: 0.9rem;
+        font-weight: 700;
+        /*text-transform: uppercase;*/
+    }
+
+    ul.info-inmueble li, span.info-inmueble{
+        width: 50%;
+    }
+}
+
+@media screen  and (max-width: 420px){
+    .direccion-info{
+        display: block;
+    }
+
+    .boton-compartir{
+        float: left;
+        margin-top: 10px;
+    }
+}
+
+@media screen  and (max-width: 380px){
+    
+}
+
+
+
+
+/*iconos*/
+.fa-servicios{
+    width: 18px;
+    height: 19px;
+    color: rgb(72, 72, 72) !important;
+    margin-right: 3px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.fa-warehouse{
+    background-image: url("../../../assets/iconos/warehouse-solid.svg");
+    
+}
+
+.fa-snowflake{
+    background-image: url("../../../assets/iconos/snowflake-regular.svg");
+    
+}
+
+.fa-utensils{
+    background-image: url("../../../assets/iconos/utensils-solid.svg");
+    
+}
+
+.fa-tshirt{
+    background-image: url("../../../assets/iconos/tshirt-solid.svg");
+    
+}
+
+.fa-door-open{
+    background-image: url("../../../assets/iconos/door-open-solid.svg");
+}
+
+.fa-door-open-alt{
+    background-image: url("../../../assets/iconos/open-door-2.png");
+}
+
+.fa-generos{
+    background-image: url("../../../assets/iconos/venus-mars-solid.svg");
+}
+
+.fa-facebook-messenger{
+    background-image: url("../../../assets/iconos/facebook-messenger-brands.svg");
+}
+
+.fa-times{
+    background-image: url("../../../assets/iconos/times-solid.svg");
+}
+
+.fa-expandir{
+    background-image: url("../../../assets/iconos/expand-arrows-alt-solid.svg");
+}
+
+.fa-folder-plus{
+    background-image: url("../../../assets/iconos/folder-plus-solid.svg");
+}
+
+.fa-broom{
+    background-image: url("../../../assets/iconos/broom-solid.svg");
+}
+
+.fa-umbrella-beach{
+    background-image: url("../../../assets/iconos/umbrella-beach-solid.svg");
+}
+
+.fa-user-shield{
+    background-image: url("../../../assets/iconos/user-shield-solid.svg");
+}
+
+.fa-ascensor{
+    background-image: url("../../../assets/iconos/sort-numeric-up-solid.svg");
+}

@@ -1,0 +1,293 @@
+div.modal.modal-contenedor,div.modal-dialog,div.modal-content{
+    overflow-y: hidden;
+    overflow-x: visible;
+    width: 50rem;/*800px;*/
+    height: 38.75rem;/*620px;*/
+    min-height: 38.75rem;/*620px;*/
+    max-height: 38.75rem;/*620px;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.modal.modal-contenedor{
+    position: fixed;
+    left: 6.5625rem;/*105px;*/
+}
+
+div.modal-content{
+    background-color: transparent;
+    border: 0;
+}
+
+a.carousel-control-next{
+    position: fixed;
+    right: 0px;
+    width: 12%;
+}
+
+a.carousel-control-prev{
+    position: fixed;
+    left: 0px;
+    width: 12%;
+    
+}
+
+a.carousel-control-next i, a.carousel-control-prev i{
+    color: black;
+    font-size: 4rem;
+    margin-bottom: 4rem;
+}
+
+
+a.carousel-control-next i{
+    padding-left: 0.4375rem; /*7px;*/
+}
+
+a.carousel-control-prev i{
+    padding-right: 0.4375rem; /*7px;*/
+}
+
+div.contenedor-icono{
+    opacity: 1;
+    border-radius: 50%;
+    height: 4rem;/*64px;*/
+    width: 4rem;/*64px;*/
+    opacity: 1;
+    background: white;
+    box-shadow: 0px 0px 0.3125rem #cbcbcb;/*5px*/
+}
+
+
+div.carousel.slide{
+    width: 50rem;/*800px;*/
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.fa-close{
+    color: white;
+    text-shadow: 0px 0px 0.3125rem #2e2e2e;/*5px*/
+}
+
+.btn-cerrar{
+    position: fixed;
+    top: 2.5rem;/*40px;*/
+    right: 8.125rem;/*130px;*/
+    cursor: pointer;
+}
+
+.imagen-oferta{
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 38.75rem;/*620px;*/
+    width: 50rem;/*800px; */
+    background-position: center;
+    border-radius: 1.25rem;/*20px;*/
+    /*background-color: rgba(240, 248, 255, 0);*/
+}
+
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 800px) and (max-width: 930px) {
+    a.carousel-control-next{
+        
+        bottom: 45% !important;
+        
+    }
+    
+    a.carousel-control-prev{
+        
+        bottom: 45% !important; 
+           
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 930px) {
+
+    .imagen-oferta{
+        width: 43.75rem;/*700px;*/
+    }
+
+    div.modal.modal-contenedor{
+        left: 0px;
+    }
+
+    div.modal-dialog{
+        max-width: 43.75rem !important; /*700px;*/
+    }
+
+    .btn-cerrar{
+        top: 5.3125rem;/*85px;*/
+        right: 4.375rem;/*70px;*/
+        z-index: 100;
+    }
+
+    a.carousel-control-next{
+        position: fixed;
+        right: 0px;
+        /*top: -600px;*/
+        bottom: 25%;
+        width: 12%;
+    }
+    
+    a.carousel-control-prev{
+        position: fixed;
+        /*top: -600px;*/
+        bottom: 25%; 
+        left: 0px;
+        width: 12%;    
+    }
+
+}
+
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 650px) and (max-width: 767px) {
+    div.modal.modal-contenedor{
+        left: 2.142rem !important;/*30/14px*/
+    }
+
+    .imagen-oferta{
+        width: 42.857rem !important;/*600px;/14px*/
+    }
+
+    div.modal-dialog, div.modal-content, div.carousel.slide, div.modal.modal-contenedor{
+        max-width: 42.857rem !important; /*600px;/14px*/
+        width: 42.857rem !important; /*600px;/14px*/
+    }
+
+    div.modal.modal-contenedor{
+        left: 2.142rem;/*30/14px*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-cerrar{
+        top: 5.3125rem;/*px*/
+        right: 4.375rem;/*px;*/
+        z-index: 100;
+    }
+
+    a.carousel-control-next{
+        position: fixed;
+        right: 0px;
+        bottom: 25%;
+        width: 12%;
+    }
+    
+    a.carousel-control-prev{
+        position: fixed;
+        /*top: -600px;*/
+        bottom: 25%; 
+        left: 0px;
+        width: 12%;    
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 649px) {
+
+    .imagen-oferta{
+        width: 37.142rem;/* 520px;/14px*/
+    }
+
+    div.modal.modal-contenedor{
+        left: 0px;
+    }
+
+    div.modal-dialog, div.modal-content, div.carousel.slide, div.modal.modal-contenedor{
+        max-width: 37.142rem !important; /*520px;/14px*/
+        width: 37.142rem !important; /*520px;/14px*/
+    }
+
+    div.modal.modal-contenedor{
+        left: 2.142rem;/*30/14px*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-cerrar{
+        top: 5.3125rem;/*85px;*/
+        right: 4.375rem;/*70px;*/
+        z-index: 100;
+    }
+
+    a.carousel-control-next{
+        position: fixed;
+        right: 0px;
+        /*top: -600px;*/
+        bottom: 25%;
+        width: 12%;
+    }
+    
+    a.carousel-control-prev{
+        position: fixed;
+        /*top: -600px;*/
+        bottom: 25%; 
+        left: 0px;
+        width: 12%;    
+    }
+
+}
+
+
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen  and (max-width: 575px) {
+
+    .imagen-oferta{
+        width: 100vw !important;
+    }
+
+    div.modal-dialog, div.modal-content, div.carousel.slide, div.modal.modal-contenedor{
+        max-width: 100vw !important; 
+        width: 100vw !important; 
+    }
+
+    div.modal.modal-contenedor{
+        left: 0rem !important;
+    }
+
+    div.modal.modal-contenedor{
+        left: 0rem;/*30/14px*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-cerrar{
+        top: 5.3125rem;/*85px;*/
+        right: 4.375rem;/*70px;*/
+        z-index: 100;
+    }
+
+    a.carousel-control-next{
+        position: fixed;
+        right: 0px;
+        /*top: -600px;*/
+        bottom: 25%;
+        width: 12%;
+    }
+    
+    a.carousel-control-prev{
+        position: fixed;
+        /*top: -600px;*/
+        bottom: 25%; 
+        left: 0px;
+        width: 12%;    
+    }
+}
+
+@media screen  and (max-width: 420px){
+   
+}
+
+@media screen  and (max-width: 380px){
+    
+}

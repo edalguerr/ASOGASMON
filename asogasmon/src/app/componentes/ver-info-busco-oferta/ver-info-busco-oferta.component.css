@@ -1,0 +1,66 @@
+
+div.contenedor-imagen-perfil div.card-img-top{
+   
+    /*background-image: url("../../assets/B7111-BL_BATA_UPC_ml.jpg");*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90px;
+    width: 90px;
+    background-position: center;
+    background-color: aliceblue;
+    border-radius: 50%;
+    padding-top: 3px !important;
+    padding-bottom: 2px;
+} 
+  
+
+.titulo-tipo-inmueble{
+    font-size: 16px;
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+ 
+.titulo-tipo-inmueble span{
+    vertical-align: bottom;
+}
+
+.titulo-nombre{
+    font-family: Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.mensaje-contactar{
+    min-height: 7rem; /*125px;*/
+    max-height: 7rem;/*125px;*/
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen  and (max-width: 575px){
+    .titulo-tipo-inmueble{
+        margin-bottom: 8px;
+    }
+}
+
+@media screen  and (max-width: 439px){
+    .titulo-tipo-inmueble{
+        text-align: left !important;
+    }
+}
+
+@media screen  and (max-width: 380px){
+    div.contenedor-imagen-perfil{
+        padding-left: 0px;
+    }
+
+    div.contenedor-imagen-perfil div.card-img-top{
+        width: 7rem;
+        height: 7rem;
+
+    }
+}

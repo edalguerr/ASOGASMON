@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="contactarOfertaMobile" tabindex="-1" role="dialog"
+  aria-labelledby="contactarOfertaMobileLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title titulo-contactar">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <!--TO DO: verificar porque no funciona la validacion required-->
+        <!--Formulario contáctar-->
+        <form action="" class="need-validate px-4" role="form" ngNativeValidate>
+
+          <div class="input-group form-group">
+            <input type="tel" class="form-control" placeholder="Telefono de contácto(opcional)"
+            [pattern]="regExp.celular" maxlength="10">
+            <small class="form-text text-muted w-100 text-left">
+              Ingrese su numero celular sin puntos ni espacios.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <textarea class="w-100 form-control mensaje-contactar" placeholder="Mensaje" required
+            [maxLength]="maxCaracteresMensaje"></textarea>
+          </div>
+ 
+          <button type="submit" class="btn btn-success btn-block btn-enviar-mensaje">Enviar mensaje</button>
+
+        </form>
+ 
+      </div>
+
+    </div>
+  </div>
+</div>

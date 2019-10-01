@@ -1,0 +1,56 @@
+.card-ofertas{
+    height: 18.75rem;/*300px;*/
+    margin-bottom: 1.875rem;/*30px;*/
+    box-shadow: 0px 0px 0.25rem black;/*4px*/
+    cursor: zoom-in;
+}
+
+.card-texto-imagen{    
+    height: 9.375rem;/*150px;*/
+    position: absolute;
+    top: 10rem;/*160px;*/
+    text-align: center;   
+    text-shadow: 0px 0px 0.0625rem #5e4848;/*1px*/
+}
+
+.card-texto-imagen h5.card-title{
+    font-family: 'Lucida Sans';
+    font-weight: bold;
+    margin-bottom: 0.375rem;/*6px;*/
+    text-shadow: 0px 0px 2px black;
+}
+
+.card-texto-imagen .card-text{
+    font-family: 'Lucida Sans';
+    font-size: 0.875rem;/*14px;*/
+    max-height: 2.8125rem;/*45px;*/
+    overflow: hidden;
+    text-shadow: 0px 0px 2px black;
+}
+
+.precio{
+    font-size: 0.9375rem;/*15px;*/
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.imagen-oferta{
+    background-image: url("../../../assets/1024o.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 18.75rem;/*300px;*/
+    background-position: center;
+    background-color: aliceblue;
+}
+
+/****************************************************************************/
+/***************** Media queries para smartphones ***************************/
+/****************************************************************************/
+@media screen and (max-width:576px){
+
+    .card-texto-imagen .card-text{
+        font-size: 0.95rem;
+    }
+
+}

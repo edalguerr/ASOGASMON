@@ -1,0 +1,18 @@
+.mensaje-contactar{
+    min-height: 7.8125rem; /*px;*/
+    max-height: 7.8125rem;/*px;*/
+}
+
+
+.titulo-contactar{
+    color: #555;
+    font-weight: 600;
+    font-family: Helvetica;
+    text-align: center;
+}
+
+.btn-enviar-mensaje{
+    font-family: Helvetica;
+    font-weight: 600;
+}
+

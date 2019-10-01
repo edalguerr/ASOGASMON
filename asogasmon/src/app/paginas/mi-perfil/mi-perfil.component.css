@@ -1,0 +1,156 @@
+.contenedor-body{
+    background: #ebebeb;
+}
+
+.contenedor-main{
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor-card-img-user{
+    align-self: center;
+}
+
+.card-img-user{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 11.25rem;/*180px;*/
+    width: 11.25rem;/*180px;*/
+    background-position: center;
+    background-color: aliceblue;
+    border-radius: 50%;
+}
+
+.titulo-user{
+    font-size: 1.4375rem;/*23px;*/
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.subtitulo-user{
+    font-size: 1rem;/*16px;*/
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.titulo-buscando{
+    font-size: 1.25rem;/*20px;*/
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.banner-promocional{
+    height: 6.25rem;/*100px;*/
+    width: 43.75rem;/*700px;*/
+    margin: 0px auto;
+    background-color: #cbcbcb;
+    color: black;
+}
+
+.banner-promocional h5, .banner-promocional-grande h5{
+    font-size: medium;
+    text-align: center;
+}
+
+
+.banner-promocional-grande{
+    margin-top: 2rem;
+    height: 12.5rem;/*200px;*/
+    margin: 0px auto;
+    background-color: #cbcbcb;
+    color: black;
+}
+
+.image-upload  input {
+    display: none;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .col-modificar-contrasenia{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+
+    .col-actualizar-datos{
+        padding-right: 0px !important;
+    }
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (max-width: 575px) {
+
+    .contenedor-main{
+        margin-top: 4.2rem;
+    }
+
+    .contenedor-main div.col-12:first-child{
+        padding-top: 8px;
+    } 
+
+    .card-img-user{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .col-modificar-contrasenia{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .col-actualizar-datos{
+        padding-right: 0px !important;
+    }
+
+    .contenedor-btn-mis-mensajes{
+        max-width: 70%;
+    }
+}
+
+@media screen  and (max-width: 450px){
+    .contenedor-btns-opciones div.col-4:first-child{
+        padding-left: 0px;
+        padding-right: 5px;
+    }
+
+    .contenedor-btns-opciones div.col-4:last-child{
+        padding-left: 5px;
+    }
+}
+
+@media screen  and (max-width: 420px){
+    
+    .card-img-user{
+        width: 9rem;
+        height: 9rem;
+    }
+}
+
+@media screen  and (max-width: 380px){
+    
+    .contenedor-card-img-user{
+        padding-left: 5px;
+    }
+
+    .card-img-user{
+        width: 8rem;
+        height: 8rem;
+    }
+} 

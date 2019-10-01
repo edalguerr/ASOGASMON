@@ -1,0 +1,13 @@
+.contenedor-footer{
+    background-color: #00324b;
+}
+
+.contenedor-footer ul li a{
+    color: #ffffff;
+    font-size: 0.875rem; /*14px;*/
+}
+
+.derechos-reservados{
+    color: #fff;
+    
+}

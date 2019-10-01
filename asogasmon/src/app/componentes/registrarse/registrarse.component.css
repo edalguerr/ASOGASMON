@@ -1,0 +1,44 @@
+
+hr{
+    border-top-width: 0.125rem; /* 2px*/
+}
+
+.frase-registrarse{
+    font-family:  Arial;
+    font-size: large;
+}
+
+.btn-link-sin-efectos{
+    padding-left: 0.3rem;
+    padding-bottom: 0.7rem;
+}
+
+.btn-link-sin-efectos:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.btn-facebook{
+    background: #4267b2;
+    color: #ffffff;
+}
+
+.modal-body{
+    padding: 1rem 4rem;
+}
+
+.texto-checkbox{
+    font-size: 0.85rem;
+}
+
+button.close{
+    font-size: 1.85rem !important;
+}
+
+/*     MEDIA QUERY */
+@media screen and (min-width:580px){
+    .modal-normal{
+        width: 400px;
+    }
+    
+}

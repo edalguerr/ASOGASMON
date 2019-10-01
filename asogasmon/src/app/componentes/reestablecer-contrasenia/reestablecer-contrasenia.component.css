@@ -1,0 +1,39 @@
+.modal-body{
+    padding: 1rem 4rem;
+}
+
+.modal-footer{
+    padding: 1rem 4rem;
+}
+
+.titulo-modal{
+    font-family: Arial;
+    font-size: 1.75rem; /*28px*/
+}
+
+.btn-link-sin-efectos:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-group-registrarse{
+    width: 100%;
+}
+
+.modal-footer-registrarse{
+    background: #f3f3f6;
+}
+
+.btn-registrarse{
+    background: #ffffff;
+    color: #000000;
+}
+
+.btn-registrarse:hover{
+    
+    color: #007bff;
+}
+
+button.close{
+    font-size: 1.85rem !important;
+}

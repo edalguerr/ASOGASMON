@@ -1,0 +1,62 @@
+
+.propietario-detalle{
+    color: #555;
+    font-weight: 600;
+    font-family: Helvetica;
+    text-align: center;
+}
+
+.contenedor-body-contacto{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+a.btn-me-interesa{
+    background:#8cbf31;
+    color: #fff;
+}
+
+a.btn-me-interesa:hover{
+    background:#7caa2d;
+    color: #fff;
+} 
+
+.mensaje-contactar{
+    min-height: 7.8125rem; /*125px;*/
+    max-height: 7.8125rem;/*125px;*/
+}
+
+
+.link-mostrar-telefono{
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 0.375rem 0px;/*6px*/
+}
+
+.link-verfil-publicante{
+    color: #555;
+    text-decoration: none;
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+
+    .propietario-detalle{
+        font-size: 1.1rem !important;
+    }
+
+    .mostrar-telefono{
+        font-size: 0.9rem;
+        margin-top: 0.625rem;/*10px;*/
+        margin-bottom: 0.625rem;/*10px;*/
+    }
+
+    .link-mostrar-telefono{
+        font-size: 0.9rem;
+        padding-left: 0.3125rem;/*5px;*/
+    }
+
+}

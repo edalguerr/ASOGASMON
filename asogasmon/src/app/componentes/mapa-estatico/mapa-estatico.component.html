@@ -1,0 +1,5 @@
+<agm-map [latitude]="latitud" [longitude]="longitud" [fullscreenControl]="fullScreenMapa" [streetViewControl]="streetViewControl" [minZoom]="minZoom" [zoom]="ubicacionMapaFiltros.zoom" (centerChange)="onCenterChange($event)" (mapReady)="onMapalisto($event)">
+  <agm-marker  [iconUrl]="markerIconUrl()"  [latitude]="latitud2" [longitude]="longitud" [title]="titleMarker" [label]="labelMarkerAsign()" [markerDraggable]="draggable" (dragEnd)="onDragEnd($event)">
+  </agm-marker>
+</agm-map>
+  

@@ -1,0 +1,61 @@
+<div class="container-fluid contenedor-body">
+  <div class="row">
+    <div class="col ">
+
+      <!--NAVEGACION Y ENCABEZADO-->
+      <div class="row">
+        <header class="col" role="heading">
+          <!--Barra de navegacion-->
+          <app-barra-navegacion></app-barra-navegacion>
+          <!--Slide de imagenes encabezado-->
+          <app-slide-imagenes-principal></app-slide-imagenes-principal>
+        </header>
+      </div>
+  
+      <!--MAIN-->
+      <div class="row mt-4">
+        <main class="col" role="main">
+
+          <!--Categorias-->
+          <app-categorias></app-categorias>
+          
+          <!--Ofertas destacadas-->
+          <h3 class="my-4 text-muted ml-4 titulo-ofertas-destacadas">Ofertas destacadas</h3>
+          <div class="card row card-fondo-ofertas-destacadas">
+          <app-slide-ofertas-destacadas></app-slide-ofertas-destacadas>
+          </div>
+
+          <!--Ofertas iniciales-->
+          <h3 class="my-4 text-muted ml-4 titulo-ofertas-destacadas">Ultimas ofertas</h3>
+          <app-ofertas></app-ofertas>
+
+          
+        </main>
+      </div>
+
+      <!--ASIDE(banner publicitario)-->
+      <div class="row mt-4">
+        <aside class="col text-white text-center">
+          <div class="rounded banner-promocional">
+            <h5>esto es una publicidad</h5>
+          </div>          
+        </aside>
+      </div>
+
+      <!--HAZTE PREMIUM-->
+      <div class="row mt-4">
+        <div class="col">
+          <app-hazte-premium></app-hazte-premium>
+        </div>
+      </div>
+
+      <!--FOOTER-->
+      <div class="row mt-4">
+        <footer class="col" role="">
+          <app-pie-pagina></app-pie-pagina>
+        </footer>
+      </div>
+
+    </div>
+  </div>
+</div>

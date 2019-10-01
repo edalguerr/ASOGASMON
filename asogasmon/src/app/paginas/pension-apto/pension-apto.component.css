@@ -1,0 +1,136 @@
+.contenedor-contenido-principal{
+    margin-top: 4.04rem;
+    height: 36.75rem;/*588px;*/
+    overflow: hidden;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+
+.contenedor-filtros-pension-apto{
+    box-shadow: -0.625rem 0px 2px #f3a7a7;/*-10px*/
+    background-color: #fefefe;
+    border-radius: 0px;    
+    padding-top: 1.5rem;
+}
+
+.contenedor-card-body{
+    padding: 0px 0px;
+
+    background-color: #fef5f5;
+
+}
+
+
+main.row{
+    margin-right: -0.9375rem;/*-15px*/
+    margin-left: -0.9375rem;/*-15px*/
+
+}
+
+.contenedor-mapa{
+    height: 36.75rem;/*588px;*/
+}
+ 
+.contenedor-publicaciones{
+    padding-right: 0px;
+    padding-left: 1.875rem;/*30px;*/
+    padding-top: 1.875rem;/*30px;*/
+    height: 31.625rem;/*506px;*/
+    overflow-y: scroll;
+    scrollbar-width:none;
+}
+
+.banner-promocional{
+    height: 6.25rem;/*100px;*/
+    margin: 0px auto;
+    background-color: #cbcbcb;
+    color: black;
+}
+
+.banner-promocional h5{
+    font-size: medium;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    .contenedor-contenido-principal{
+        height: 100% !important;
+    }
+
+    .contenedor-publicaciones{
+        height: 100% !important;
+       /* margin-top: 9rem;*/
+    }
+
+    /*.contenedor-filtros-pension-apto{
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        top: 64px;
+    }*/
+
+    .banner-promocional-mapa-mobile{
+        height: 6.25rem;/*100px;*/
+        margin: 0px auto;
+        background-color: #cbcbcb;
+        color: black;
+    }
+
+    .banner-promocional-mapa-mobile h5{
+        font-size: medium;
+    }
+    
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .contenedor-contenido-principal{
+        height: 100% !important;
+    }
+
+    .contenedor-publicaciones{
+        height: 100% !important;
+    }
+
+    .banner-promocional-mapa-mobile{
+        height: 6.25rem;/*px;*/
+        margin: 0px auto;
+        background-color: #cbcbcb;
+        color: black;
+    }
+
+    .banner-promocional-mapa-mobile h5{
+        font-size: medium;
+    }
+}
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (max-width: 575px){
+    .contenedor-contenido-principal{
+        height: 100% !important;
+    }
+
+    .contenedor-publicaciones{
+        height: 100% !important;
+    }
+
+    .banner-promocional-mapa-mobile{
+        height: 6.25rem;/*px;*/
+        margin: 0px auto;
+        background-color: #cbcbcb;
+        color: black;
+    }
+
+    .banner-promocional-mapa-mobile h5{
+        font-size: medium;
+    }
+}

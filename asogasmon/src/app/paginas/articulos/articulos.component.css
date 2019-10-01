@@ -1,0 +1,47 @@
+.card-ofertas-recomendadas{
+    height: 13.859375rem;/*221.75px;*/
+}
+
+.contenedor-body{
+    background: #ebebeb;
+}
+
+.contenedor-categorias{
+    margin-top: 5rem; /*80px;*/
+}
+
+.titulo-ofertas-destacadas{
+    font-weight: lighter;
+    font-size: 1.625rem; /*26px*/
+}
+
+div.card-fondo-ofertas-destacadas{
+    border-radius: 0px;
+    padding: 1.5rem px 0px;/*24px 0px*/
+    background-color: floralwhite;
+    box-shadow: 0.9375rem 0px 0.625rem cadetblue;/*15px 0px 10px*/
+}
+
+.banner-promocional{
+    height: 12.5rem;/*200px;*/
+    margin: 0px auto;
+    background-color: #cbcbcb;
+    color: black;
+}
+
+.banner-promocional h5{
+    font-size: medium;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (max-width: 575px) {
+    
+    
+    div.row main.col{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}

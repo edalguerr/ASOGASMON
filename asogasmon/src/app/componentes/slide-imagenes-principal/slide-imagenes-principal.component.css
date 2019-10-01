@@ -1,0 +1,76 @@
+.carrusel-imagenes{
+    height: 18.75rem; /*300px*/
+}
+
+.carrusel-principal{
+    margin-left: -0.9375rem; /*15px*/
+    margin-right: -0.9375rem; /*15px*/
+    margin-top: 2.5rem;/*40px*/
+}
+
+div .carrusel-texto{
+    position: absolute;
+    top: 11.5rem;/*180px;*/
+    font-family: 'Open sans';
+}
+
+div .carrusel-texto h5{
+    font-size: 1.25rem;
+}
+
+
+
+@media screen and (max-width:767px){
+    .carrusel-principal{
+        margin-top: 2.3rem;
+    }
+
+    /* hacer responsive el texto del carrousel y los carousel-indicators*/
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    .carrusel-imagenes{
+        height: 18.125rem; /*290px*/
+    }
+
+    div .carrusel-texto{
+        top: 9.5rem;/*180px;*/
+    }
+
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .carousel{
+        margin-right: -1rem !important;
+        margin-left: -1rem !important;
+    }
+}
+
+/****************************************************************************/
+/***************** Adaptacion para smartphones **********************/
+/****************************************************************************/
+@media screen and (min-width: 360px) and (max-width: 575px) {
+    .carousel{
+        margin-right: -1.25rem !important;
+        margin-left: -1.25rem !important;
+    }
+}
+
+@media screen  and (max-width: 359px) {
+    .carousel{
+        margin-right: -1.25rem !important;
+        margin-left: -1.25rem !important;
+    }
+
+    div .carrusel-texto{
+        top: 7rem;
+    }
+}
+

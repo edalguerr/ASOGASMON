@@ -1,0 +1,246 @@
+.contenedor-body{
+    background: #ebebeb;
+}
+
+.contenedor-main{
+    margin-top: 5rem;
+}
+
+.titulo-publicar{
+    font-size: 1.625rem;/*26px;*/
+    font-family:Helvetica;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+}
+
+.subtitulo-publicar{
+    font-size: 1rem;/*16px;*/
+    color: rgb(72, 72, 72) !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.parrafo-introductorio-publicar{
+    text-align: justify;
+    font-family: Helvetica;
+}
+
+.direccion-info{
+    color: #484848;
+    background-color: #fff;    
+    font-family: Helvetica;
+    position: absolute;
+    top: 5.625rem;/*90px;*/
+    left: 5.625rem;/*90px;*/
+    width: 18.75rem;/*300px;*/
+    text-align: left;
+    font-size: 0.8125rem;/*13px;*/
+}
+
+
+.image-upload label div{
+    width: 8.8125rem; /*141px*/
+    height: 5.875rem;/*94px;*/
+    background-color: #868e96;
+    border: 0.25rem solid white;/*4px*/
+    box-shadow: 0px 0px 0.125rem black;/*2px*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.image-upload label i{
+    position: absolute;
+    cursor: pointer;
+    top: 2.25rem;/*36px;*/
+    left: 4.375rem;/*70px;*/
+    width: 2rem;/*32px;*/
+    height: 2rem;/*32px;*/
+}
+
+
+.img-principal .image-upload label div{
+    width: 14.0625rem;/*225px;*/
+    height: 9.375rem;/*150px;*/
+    background-color: #868e96;
+    border: 0.25rem solid white;/*4px*/
+    box-shadow: 0px 0px 0.125rem black;/*2px*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.image-upload label i.fa-file-imagen{
+    position: absolute;
+    left: 6.875rem;/*110px;*/
+    top: 3.4375rem;/*55px;*/
+    width: 2.5rem;/*40px;*/
+    height: 2.5rem;/*40px;*/
+    cursor: pointer;
+}
+
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+
+ 
+
+input[type=number] {
+
+    -moz-appearance:textfield;
+
+}
+
+.image-upload  input {
+    display: none;
+}
+
+.time-control{
+    padding-left: 1.25rem;/*20px;*/
+}
+
+.horario-item{
+    border-bottom: 0.0625rem solid rgba(0,0,0,.125) !important;/*1px*/
+}
+
+div.servicio-item i{
+    text-align: left !important;
+}
+
+.descripcionPublicar{
+    min-height: 7.8125rem; /*125px;*/
+    max-height: 7.8125rem;/*125px;*/
+}
+
+.btn-publicar{
+    background:#ff9900;
+    color: white;
+    font-family: Helvetica;
+    letter-spacing: 0.0625rem;/*1px;*/
+    font-family: Rounded;
+    font-size: 1.125rem;/*18px;*/
+}
+
+.btn-publicar:hover{
+    box-shadow: 0px 0px 0.4375rem #00324b;/*7px*/
+}
+
+.select-pais-codigo{
+    background-color: #e9ecef;
+    padding-left: 0px !important;
+    padding-right: 0.3125rem !important;/*5px*/
+}
+
+.banner-promocional{
+    height: 6.25rem;/*100px*/
+    margin: 0px auto;
+    background-color: #cbcbcb;
+    color: black;
+}
+
+.banner-promocional h5{
+    font-size: medium;
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    .img-principal .image-upload label div{
+        width: 11.25rem;/*180px;*/
+        height: 7.5rem;/*120px;*/
+    }
+
+    .image-upload label div{
+        width: 6.9375rem;/*111px;*/
+        height: 4.625rem;/*74px;*/
+    }
+
+    .image-upload label i{
+        top: 1.5rem;/*24px;*/
+        left: 3.4375rem;/*55px;*/
+    }
+
+    .image-upload label i.fa-file-imagen{
+        top: 2.8125rem;/*45px;*/
+        left: 5.5rem;/*88px;*/
+    }
+    
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .img-principal .image-upload label div{
+        /*width: 10.5rem;/*147px;*/
+        height: 9rem;/*109.2px;*/
+    }
+
+    .image-upload label div{
+        /*width: 7rem;/*98px;*/
+        height: 6rem;/*70px;*/
+    }
+
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (max-width: 575px){
+
+
+    .card-contenedor-principal{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .card-body-contenedor-principal{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
+
+    
+@media screen and (max-width: 419px){
+    
+    .img-principal .image-upload label div{
+        width: 12rem;
+        height: 8.5rem;
+    }
+
+    .image-upload label div{
+        width: 6rem;
+        height: 5rem;
+    }
+
+    .image-upload label i{
+        top: 2rem;
+        left: 3.5rem;
+    }
+
+    .image-upload label i.fa-file-imagen{
+        /*top: 3.4375rem;/*48.125px;*/
+        left: 6rem;
+    }
+
+}
+
+@media screen and (min-width: 360px) and (max-width: 419px){
+    .image-upload label div{
+        width: 7rem;
+    }
+}
+

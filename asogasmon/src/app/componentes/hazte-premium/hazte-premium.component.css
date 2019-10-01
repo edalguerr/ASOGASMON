@@ -1,0 +1,110 @@
+.contenedor-hazte-premium{
+    background-color: #ffffff;
+    
+}
+
+.contenedor-hazte-premium .card{
+    padding: 0.3125rem;/*5px*/
+}
+
+.titulo-hazte-premium{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+div.contenedor-hazte-premium div .parrafo-hazte-premium{ 
+    font-weight: 600;   
+}
+
+div.contenedor-hazte-premium div .parrafo-beneficios-hazte-premium{ 
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+
+div.contenedor-hazte-premium div a.btn:hover{
+    background-color: #e29726;
+    border-color: #ff9900;
+    box-shadow: 0px 0px 0.375rem #a02095;/*0px 0px 6px*/
+}
+
+/* para que en internet explorer se vea bien*/
+img.imagen-promocional{
+    max-height: 20.625rem;/*330px*/
+}
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+    
+    .titulo-hazte-premium{
+        font-size: 1.35rem;
+    }
+    
+    div.contenedor-hazte-premium div .parrafo-hazte-premium{ 
+        font-size: 0.875rem;/*14px*/
+    }
+    
+    div.contenedor-hazte-premium div .parrafo-beneficios-hazte-premium{ 
+        font-size: 0.875rem;/*14px*/
+    }
+
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    
+    .titulo-hazte-premium{
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    div.contenedor-hazte-premium div .parrafo-hazte-premium{ 
+        font-size: 0.9rem;/*14px*/
+    }
+    
+    div.contenedor-hazte-premium div .parrafo-beneficios-hazte-premium{ 
+        font-size: 0.9rem;/*14px*/
+    }
+}
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen and (min-width: 460px)and (max-width: 575px) {
+
+    .titulo-hazte-premium{
+        font-size: 1.5rem;
+        font-weight: 600;
+        
+    }
+
+    div.contenedor-hazte-premium div.col-6{
+        padding-left: 0px;
+    }
+
+    div.contenedor-hazte-premium div.col-5{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media screen and  (max-width: 459px) {
+
+    .titulo-hazte-premium{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    div.contenedor-hazte-premium div.col-6{
+        padding-left: 0px;
+    }
+
+    div.contenedor-hazte-premium div.col-5{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}

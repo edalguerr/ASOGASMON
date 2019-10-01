@@ -1,0 +1,297 @@
+<div class="container-fluid contenedor-body">
+  <div class="row">
+    <div class="col ">
+
+      <!--NAVEGACION Y ENCABEZADO-->
+      <div class="row">
+        <header class="col" role="heading">
+          <!--Barra de navegacion-->
+          <app-barra-navegacion></app-barra-navegacion>
+        </header>
+      </div>
+
+      <!--MAIN-->
+      <main class="row justify-content-center contenedor-main" role="main">
+
+        <div class="container-fluid h-100">
+          <div class="row justify-content-center h-100">
+
+            <!--Contenedor columna derecha que contiene los mensajes de
+            la conversacion actual-->
+            <div class="col-12 d-md-none mb-3">
+              <!--Card contenedor-->
+              <div class="card">
+
+                <!--Encabezado del chat-->
+                <div class="card-header msg_head">
+
+                  <div class="d-flex">
+
+                    <div class="img_cont">
+                      <img [src]="conversaciones[conversacionActualInd].imagen" class="rounded-circle user_img">
+                    </div>
+
+                    <div class="user_info">
+                      <span>
+                        {{conversaciones[conversacionActualInd].nombre}}
+                      </span>
+                      <p>
+                        {{conversaciones[conversacionActualInd].cantMensajes}} Mensajes
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!--Lista de mensajes-->
+                <div class="card-body msg_card_body">
+
+                  <div *ngFor="let mensajes of conversaciones[conversacionActualInd].mensajes">
+
+                    <div class="d-flex justify-content-start mb-4" *ngIf="mensajes.tipoMsj == tiposMensajes[1]">
+
+                      <div class="img_cont_msg">
+                        <img [src]="miFotoPerfil" class="rounded-circle user_img_msg">
+                      </div>
+
+                      <div class="msg_cotainer">
+                        {{mensajes.mensaje}}
+                        <span class="msg_time">{{mensajes.fechaHora}}</span>
+                      </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-end mb-4" *ngIf="mensajes.tipoMsj == tiposMensajes[0]">
+
+                      <div class="msg_cotainer_send">
+                        {{mensajes.mensaje}}
+                        <span class="msg_time_send">{{mensajes.fechaHora}}</span>
+                      </div>
+
+                      <div class="img_cont_msg">
+                        <img [src]="conversaciones[conversacionActualInd].imagen" class="rounded-circle user_img_msg">
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!--Pie de pagina del chat-->
+                <div class="card-footer">
+
+                  <div class="input-group">
+
+
+                    <div class="input-group-append">
+                      <span class="input-group-text attach_btn">
+                        <!--<i class="fa fa-paperclip"></i>-->
+                      </span>
+                    </div>
+
+                    <textarea name="" class="form-control type_msg" placeholder="Escriba su mensaje..."
+                    [maxLength]="maxCaracteresMensaje"></textarea>
+
+                    <div class="input-group-append">
+                      <span class="input-group-text send_btn">
+                        <i class="fa fa-location-arrow"></i>
+                      </span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!--Contenedor columna izquierda que contiene el listado
+            de conversaciones-->
+            <div class="col-md-4 col-xl-3 chat">
+
+              <!--Card contenedora-->
+              <div class="card mb-sm-3 mb-md-0 contacts_card">
+
+                <!--Buscador en el encabezado del panel de conversaciones-->
+                <div class="card-header">
+
+                  <div class="input-group">
+                    <input type="text" placeholder="Buscar..." name="" class="form-control search">
+
+                    <div class="input-group-prepend">
+                      <span class="input-group-text search_btn"><i class="fa fa-search"></i></span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!--Lista de conversaciones-->
+                <div class="card-body contacts_body">
+                  <ul class="contacts">
+
+                    <li>
+
+                      <!--banner publicitario vertical-->
+                      <div class="banner-publicitario-vertical">
+                        Esto es una publicidad
+                      </div>
+
+                    </li>
+
+                    <li (click)='seleccionarChat(i)' [class]="((i == conversacionActualInd)? 'active':'')"
+                      *ngFor="let conversacion of conversaciones; let i = index">
+
+                      <div class="d-flex ">
+
+                        <div class="img_cont">
+                          <img [src]="conversacion.imagen" class="rounded-circle user_img">
+                        </div>
+
+                        <div class="user_info">
+                          <span>{{conversacion.nombre}}</span>
+                        </div>
+
+                      </div>
+
+                    </li>
+
+                    <li>
+
+                      <!--banner publicitario vertical-->
+                      <div class="banner-publicitario-vertical-mediano">
+                        Esto es una publicidad
+                      </div>
+
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="card-footer">
+                </div>
+
+              </div>
+
+            </div>
+ 
+            <!--Contenedor columna derecha que contiene los mensajes de
+            la conversacion actual-->
+            <div class="d-none d-md-flex col-md-8 col-xl-6 chat">
+              <!--Card contenedor-->
+              <div class="card w-100">
+
+                <!--Encabezado del chat-->
+                <div class="card-header msg_head">
+
+                  <div class="d-flex">
+
+                    <div class="img_cont">
+                      <img [src]="conversaciones[conversacionActualInd].imagen" class="rounded-circle user_img">
+                    </div>
+
+                    <div class="user_info">
+                      <span>
+                        {{conversaciones[conversacionActualInd].nombre}}
+                      </span>
+                      <p>
+                        {{conversaciones[conversacionActualInd].cantMensajes}} Mensajes
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!--Lista de mensajes-->
+                <div class="card-body msg_card_body">
+
+                  <div *ngFor="let mensajes of conversaciones[conversacionActualInd].mensajes">
+
+                    <div class="d-flex justify-content-start mb-4" *ngIf="mensajes.tipoMsj == tiposMensajes[1]">
+
+                      <div class="img_cont_msg">
+                        <img [src]="miFotoPerfil" class="rounded-circle user_img_msg">
+                      </div>
+
+                      <div class="msg_cotainer">
+                        {{mensajes.mensaje}}
+                        <span class="msg_time">{{mensajes.fechaHora}}</span>
+                      </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-end mb-4" *ngIf="mensajes.tipoMsj == tiposMensajes[0]">
+
+                      <div class="msg_cotainer_send">
+                        {{mensajes.mensaje}}
+                        <span class="msg_time_send">{{mensajes.fechaHora}}</span>
+                      </div>
+
+                      <div class="img_cont_msg">
+                        <img [src]="conversaciones[conversacionActualInd].imagen" class="rounded-circle user_img_msg">
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!--Pie de pagina del chat-->
+                <div class="card-footer">
+
+                  <div class="input-group">
+
+
+                    <div class="input-group-append">
+                      <span class="input-group-text attach_btn">
+                        <!--<i class="fa fa-paperclip"></i>-->
+                      </span>
+                    </div>
+
+                    <textarea name="" class="form-control type_msg" placeholder="Escriba su mensaje..."
+                    [maxLength]="maxCaracteresMensaje"></textarea>
+
+                    <div class="input-group-append">
+                      <span class="input-group-text send_btn">
+                        <i class="fa fa-location-arrow"></i>
+                      </span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+
+      <!--ASIDE(banner publicitario)-->
+      <div class="row mt-4">
+        <aside class="col text-white text-center">
+          <div class="rounded banner-promocional">
+            <h5>esto es una publicidad</h5>
+          </div>
+
+          <div class="rounded banner-promocional">
+            <h5>esto es una publicidad</h5>
+          </div>
+        </aside>
+      </div>
+
+      <!--FOOTER-->
+      <div class="row mt-4">
+        <footer class="col" role="">
+          <app-pie-pagina></app-pie-pagina>
+        </footer>
+      </div>
+
+    </div>
+  </div>
+</div>

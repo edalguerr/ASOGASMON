@@ -1,0 +1,211 @@
+.contenedor-contenido-principal{
+    margin-top: 3.5rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 0.2rem;
+    background: #ebebeb;
+
+}
+
+.contenedor-card-body{
+    padding: 0px 0px;
+    background-color: #fef5f5;
+    
+}
+ 
+.imagen-oferta-detallada{
+    height: 30rem;/*480px;*/
+    /*background-image: url("../../../assets/179809-OWKTX6-319.jpg");*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: aliceblue;
+}
+
+.contenedor-informacion-contacto{
+    position: relative;
+    bottom: 15.625rem;/*250px;*/
+}
+
+.precio-detalle{
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Helvetica;
+    margin-bottom: 0.3rem;
+}
+
+.precio-detalle span{
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.factura-detalle{
+    font-weight: 400;
+    color: #888;
+    font-size: 0.75rem;
+    font-weight: 700;
+    /*text-transform: uppercase;*/
+}
+
+.banner-publicitario-vertical-mediano{
+    height: 15.625rem;/*250px;*/
+    background-color: #cbcbcb;
+    text-align: center;
+    margin-bottom: 0.625rem;/*10px;*/
+}
+
+.banner-publicitario-vertical{
+    height: 27.0625rem;/*433px;*/
+    background-color: #cbcbcb;
+    text-align: center;
+}
+
+.banner-publicitario-horizontal{
+    height: 9.375rem;/*150px;*/
+    background-color: #cbcbcb;
+    margin-top: 0.9375rem;/*15px;*/
+    text-align: center;
+}
+
+.btn-fa-expandir{
+    position: absolute;
+    top: 26.5rem;/*424px;*/
+    left: 2.8125rem;/*45px;*/
+    /*box-shadow:  0px 0px 0.125rem aliceblue;2px*/
+    
+}
+
+.btn-fa-eliminar-anuncio{
+    position: absolute;
+    top: 26.5rem;/*424px;*/
+    right: 25rem;
+}
+
+.contenedor-llamar-mensaje{
+    z-index: 90!important;
+}
+
+/****************************************************************************/
+/***************** Adaptacion para tablets mas grandes **********************/
+/****************************************************************************/
+@media screen and (min-width: 768px) and (max-width: 930px) {
+
+    .imagen-oferta-detallada{
+        height: 23rem;/*368px;*/
+    }
+
+    .btn-fa-expandir{
+        top: 19.5rem;/*312px;*/
+        left: 2.1875rem;/*35px;*/
+    }
+
+    .btn-fa-eliminar-anuncio{
+        top: 19.5rem;/*312px;*/
+        right: 20rem;/*35px;*/
+    }
+
+    .contenedor-informacion-contacto{
+        position: relative;
+        bottom: 11.25rem;/*180px;*/
+        padding-right: 0.625rem !important;/*10px*/
+    }
+
+    .precio-detalle{
+        font-size: 1.28rem;
+    }
+    
+    .precio-detalle span{
+        font-size: 0.85rem;
+    }
+
+    .banner-publicitario-vertical{
+        height: 21.875rem;/*350px;*/
+        background-color: #cbcbcb;
+        text-align: center;
+    }
+    
+} 
+
+
+/****************************************************************************/
+/***************** Adaptacion para tablets **********************/
+/****************************************************************************/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    
+    .contenedor-card-body{
+        padding-top: 1rem;
+    }
+    
+    a.carousel-control-prev i{
+        color: black;
+    }
+    
+    a.carousel-control-next i{
+        color: black;
+    }
+
+    .btn-fa-expandir{
+        left: 5rem;
+    }
+
+    .btn-fa-eliminar-anuncio{
+        right: 2rem;
+    }
+   
+}
+
+/****************************************************************************/
+/***************** Adaptacion para Smartphones **********************/
+/****************************************************************************/
+@media screen  and (max-width: 575px) {
+
+    .contenedor-card-body{
+        padding-top: 1rem;
+    }
+    
+    a.carousel-control-prev i{
+        color: black;
+    }
+    
+    a.carousel-control-next i{
+        color: black;
+    }
+
+    .btn-fa-eliminar-anuncio{
+        right: 2rem;
+    }
+   
+   
+}
+
+@media screen  and (max-width: 420px){
+    .imagen-oferta-detallada{
+        height: 25rem;
+    }
+
+    .btn-fa-expandir{
+        top: 22rem;
+    }
+
+    .btn-fa-eliminar-anuncio{
+        top: 22rem;
+    }
+}
+
+@media screen  and (max-width: 380px){
+    .imagen-oferta-detallada{
+        height: 22rem;
+    }
+
+    .btn-fa-expandir{
+        top: 19rem;
+    }
+
+    
+    .btn-fa-eliminar-anuncio{
+        top: 19rem;
+    }
+    
+}

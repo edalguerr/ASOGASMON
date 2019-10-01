@@ -1,0 +1,70 @@
+.btn-facebook{
+    background: #4267b2;
+    color: #ffffff;
+}
+
+button.close{
+    font-size: 1.85rem !important;
+}
+
+.btn-link-sin-efectos{
+    font-size: 0.875em; /*14px*/
+}
+
+.btn-link-sin-efectos:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-group-registrarse{
+    width: 100%;
+}
+
+.modal-footer-registrarse{
+    background: #f3f3f6;
+}
+
+.btn-registrarse{
+    background: #ffffff;
+    color: #000000;
+}
+
+.btn-registrarse:hover{
+    
+    color: #007bff;
+}
+.modal-body{
+    padding: 1rem 4rem;
+}
+
+.modal-footer{
+    padding: 1rem 4rem;
+}
+
+.form-group-recuperar-contraseña{
+    margin-bottom: 0.5rem;
+}
+
+.modal-icono{
+    background: #c6c6f6;
+   
+}
+
+.titulo-modal-icono{
+    font-family: sans-serif;
+    color: #333;
+    font-weight: bold;
+}
+
+hr{
+    border-top-width: 0.125rem; /* 2px*/
+}
+
+
+/*     MEDIA QUERY */
+@media screen and (min-width:580px){
+    .modal-normal{
+        width: 400px;
+    }
+    
+}
