@@ -4,7 +4,7 @@
 </button>-->
 
 <!-- Modal Inicio sesion-->
-<form action=""class="need-validate" (ngSubmit)="guardar()" ngNativeValidate>
+<form action=""class="need-validate" (ngSubmit)="guardar()" ngNativeValidate #formLogin>
 
   <div class="modal " id="inicioSesionModal" tabindex="-1" role="dialog" aria-labelledby="inicioSesionModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
@@ -17,7 +17,7 @@
           </button>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" *ngIf="!sesionIniciada">
 
         
           <div class="form-group">
@@ -38,11 +38,18 @@
           <hr>
 
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Correo electronico" name="email" id="email" [pattern]="regExp.email" required>
+            <input type="email" class="form-control" placeholder="Correo electronico" name="loginEmail" id="loginEmail" [pattern]="regExp.email" required>
           </div>
 
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Contraseña" minlength="6" maxlength="20" name="password" id="password" [pattern]="regExp.password" required>
+            <input type="password" class="form-control" placeholder="Contraseña" minlength="6" maxlength="20" name="loginPassword" id="loginPassword" [pattern]="regExp.password" required>
+          </div>
+
+          <div class="form-group" *ngIf="mostrarMsjDatosIncorrectos">
+            <div class="alert alert-secondary">
+              Por favor revisa tu correo y contraseña.
+              Los campos son sensibles a mayúsculas y minúsculas.
+            </div>
           </div>
 
           <div class="form-group">
@@ -53,7 +60,7 @@
             <a href="#" class="btn btn-link btn-link-sin-efectos text-center" data-dismiss="modal" data-toggle="modal" data-target="#reestablecerContraseniaModal">¿Olvidaste tu contraseña?</a>
           </div>
         </div>
-        <div class="modal-footer modal-footer-registrarse">
+        <div class="modal-footer modal-footer-registrarse" *ngIf="!sesionIniciada">
           <div class="form-group form-group-registrarse text-center">
               <label for="registrarse" class="form-label text-body font-weight-bold btn-link-sin-efectos mb-3">¿Aún no tienes cuenta?</label>
               <a href="#" class="btn btn-outline-primary btn-block font-weight-bold btn-registrarse" id="registrarse"  data-toggle="modal" data-dismiss="modal" data-target="#registrarseModal">
@@ -61,6 +68,24 @@
               </a>
           </div>
         </div>
+
+        <div class="modal-body" *ngIf="sesionIniciada">
+          
+          <div class="form-group">
+            <img src="assets/colibri.png" alt="" class="rounded-circle modal-icono mx-auto d-block">
+            <h2 class="text-center titulo-modal-icono">ASOGASMON</h2>
+          </div>
+
+          <div class="form-group">
+            <div class="alert alert-primary">
+                <p class="text-center">
+                  Bienvenido a ASOGASMON, Encuentra y promociona articulos, apartamentos, habitaciones y pensiones
+                </p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>

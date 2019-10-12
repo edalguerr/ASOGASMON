@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { InicioSesionComponent } from '../inicio-sesion/inicio-sesion.component';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -9,9 +11,10 @@ import { Router } from '@angular/router';
 export class BarraNavegacionComponent implements OnInit {
 
   @ViewChild('nav_responsive') nav_responsive: ElementRef;
+  @ViewChild('inicioSesionComponente') inicioSesionComponent:InicioSesionComponent;
 
   categoriaBuscoPensionApto: string = 'pension';
-  esUsuario = true;
+  esUsuario = false;
   contador = 1;
 
   ruta:string = "assets/"; 
@@ -19,10 +22,18 @@ export class BarraNavegacionComponent implements OnInit {
 
   claseIconBtnMenu = 'fa fa-bars fa-lg';
 
-  constructor(private routerNav:Router) { }
+  constructor(private routerNav:Router, private usuarioService:UsuarioService) { }
 
   ngOnInit() {
     //console.log(this.nav_responsive)
+    this.inicioSesionComponent.emitEventLogin.subscribe((res)=>{
+      this.esUsuario = res;
+      console.log('recibido el mensaje: '+ res)
+    });
+
+    if(this.usuarioService.datos != null){
+      this.esUsuario = true;
+    }
   }
 
   categoriaBusco(categoria) {
@@ -61,7 +72,7 @@ export class BarraNavegacionComponent implements OnInit {
     }
 
   }
-
+ 
   irPerfil(){
     if(this.esUsuario){
       this.routerNav.navigateByUrl('/perfil/usuario');

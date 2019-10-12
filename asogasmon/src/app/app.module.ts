@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
+import {HttpClientModule} from '@angular/common/http';
 
 //folder componentes
 import { InicioSesionComponent } from './componentes/inicio-sesion/inicio-sesion.component';
@@ -35,14 +36,6 @@ import { OfertasPensionAptoComponent } from './componentes/ofertas-pension-apto/
 import { MapaComponent } from './componentes/mapa/mapa.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 
-//folder paginas
-import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
-import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
-import { ArticulosComponent } from './paginas/articulos/articulos.component';
-import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
-
-//providers
-import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
@@ -55,7 +48,15 @@ import { VerInfoBuscoOfertaComponent } from './componentes/ver-info-busco-oferta
 import { MessengerComponent } from './paginas/messenger/messenger.component';
 import { ContactarMobileComponent } from './componentes/contactar-mobile/contactar-mobile.component';
 
+//folder paginas
+import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
+import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
+import { ArticulosComponent } from './paginas/articulos/articulos.component';
+import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
 
+//providers
+import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
+import { UsuarioService } from './servicios/usuario.service';
 
 
 @NgModule({
@@ -100,7 +101,7 @@ import { ContactarMobileComponent } from './componentes/contactar-mobile/contact
     MessengerComponent,
     ContactarMobileComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
     Ng5SliderModule,
@@ -109,9 +110,13 @@ import { ContactarMobileComponent } from './componentes/contactar-mobile/contact
       apiKey: 'AIzaSyAX4J5NJdxvo9Jm5sP_C--t98njBVFP__s',
       libraries: ['places']
     }),
-    AgmJsMarkerClustererModule
+    AgmJsMarkerClustererModule,
+    HttpClientModule
   ],
-  providers: [UbicacioMapaFiltrosService],
+  providers: [
+    UbicacioMapaFiltrosService,
+    UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
