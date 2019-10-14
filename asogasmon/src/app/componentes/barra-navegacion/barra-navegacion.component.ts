@@ -22,18 +22,27 @@ export class BarraNavegacionComponent implements OnInit {
 
   claseIconBtnMenu = 'fa fa-bars fa-lg';
 
-  constructor(private routerNav:Router, private usuarioService:UsuarioService) { }
+  constructor(private routerNav:Router, private usuarioService:UsuarioService) {
+
+    if(this.usuarioService.datos != null){
+      this.esUsuario = true;
+    }
+  }
 
   ngOnInit() {
     //console.log(this.nav_responsive)
+    
     this.inicioSesionComponent.emitEventLogin.subscribe((res)=>{
       this.esUsuario = res;
-      console.log('recibido el mensaje: '+ res)
+      //console.log('recibido el mensaje: '+ res)
     });
 
     if(this.usuarioService.datos != null){
       this.esUsuario = true;
     }
+
+    console.log("es usuario: "+this.esUsuario)
+
   }
 
   categoriaBusco(categoria) {

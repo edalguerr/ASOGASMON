@@ -20,6 +20,12 @@ export class UsuarioService {
    return this.httpClient.post(this.API_URL+"signin",usuario,{headers: headers});
   }
   
+  getDatosToken(token:any) {
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this.httpClient.post(this.API_URL+"signin",{id_token:token},{headers: headers});
+  }
+
 }
 
 

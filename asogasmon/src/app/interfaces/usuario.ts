@@ -5,4 +5,5 @@ export interface Usuario {
     EMAIL:string;
     CONTRASENIA:string;
     FOTO:string;
+    ID_TOKEN:string;
 }
