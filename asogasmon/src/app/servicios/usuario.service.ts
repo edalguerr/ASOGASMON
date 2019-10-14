@@ -17,7 +17,7 @@ export class UsuarioService {
   getDatos(usuario:{email,contrasenia}) {
    let headers = new HttpHeaders().set('Content-Type','application/json');
    
-   return this.httpClient.post(this.API_URL+"signin",usuario,{headers: headers});
+   return this.httpClient.post(this.API_URL+"signin", usuario, {headers: headers});
   }
   
   getDatosToken(token:any) {
@@ -29,7 +29,13 @@ export class UsuarioService {
   registrarUsuario(usuario:{email,contrasenia,nombre,apellidos}){
     let headers = new HttpHeaders().set('Content-Type','application/json');
     
-    return this.httpClient.post(this.API_URL+"login",usuario,{headers: headers});
+    return this.httpClient.post(this.API_URL+"login", usuario, {headers: headers});
+  }
+
+  actualizarDatos(usuario:{email, nombre, apellidos,id}){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this.httpClient.put(this.API_URL+"login/"+usuario.id, usuario, {headers: headers});
   }
 
 }

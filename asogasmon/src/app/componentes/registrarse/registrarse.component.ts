@@ -32,7 +32,7 @@ export class RegistrarseComponent implements OnInit {
 
   //registrarse
   guardar() {
-    console.log(this.formRegistro)
+    //console.log(this.formRegistro)
 
     //obteniendo datos del formulario
     this.usuario.email = this.formRegistro.nativeElement[1].value;
@@ -43,7 +43,7 @@ export class RegistrarseComponent implements OnInit {
     const md5 = new Md5();
     this.usuario.contrasenia = md5.appendStr(this.usuario.contrasenia).end();
 
-    console.log(this.usuario);
+    //console.log(this.usuario);
 
     //realizando peticion post a la API para registrar el usuario e iniciar sesion
     this.usuarioService.registrarUsuario(this.usuario).subscribe((result: { usuario: Usuario }) => {
@@ -51,11 +51,11 @@ export class RegistrarseComponent implements OnInit {
       //console.log(result);
 
       this.usuarioService.datos = result.usuario;
-      console.log(this.usuarioService.datos);
+      //console.log(this.usuarioService.datos);
 
       if (this.usuarioService.datos != null) {
 
-        console.log('bienvenido al sistema, Registro completado');
+        //console.log('bienvenido al sistema, Registro completado');
         this.sesionIniciada = true;
         this.mostrarMsjDatosIncorrectos = false;
         localStorage.setItem('token', this.usuarioService.datos.ID_TOKEN);
@@ -77,4 +77,5 @@ export class RegistrarseComponent implements OnInit {
 
 
   }
+  
 }
