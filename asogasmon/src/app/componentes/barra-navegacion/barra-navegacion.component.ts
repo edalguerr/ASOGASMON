@@ -12,6 +12,7 @@ export class BarraNavegacionComponent implements OnInit {
 
   @ViewChild('nav_responsive') nav_responsive: ElementRef;
   @ViewChild('inicioSesionComponente') inicioSesionComponent:InicioSesionComponent;
+  
 
   categoriaBuscoPensionApto: string = 'pension';
   esUsuario = false;
@@ -84,9 +85,17 @@ export class BarraNavegacionComponent implements OnInit {
  
   irPerfil(){
     if(this.esUsuario){
+      
       this.routerNav.navigateByUrl('/perfil/usuario');
     }
   
+  }
+
+  //metodo para que el usuario cierre la sesion
+  cerrarSesion(){
+   this.esUsuario = false;
+   this.usuarioService.datos = null;
+   localStorage.removeItem('token'); 
   }
 
 }

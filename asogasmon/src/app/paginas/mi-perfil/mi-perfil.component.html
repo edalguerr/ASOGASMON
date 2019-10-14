@@ -25,9 +25,9 @@
 
               <!--Correo electronico y boton de mis conversaciones-->
               <div class="col-8 pl-0">
-                <div class="my-5">
-                  <h2 class="col-12 titulo-user ">Edwin Alberto Guerrero Acosta</h2>
-                  <h3 class="col-12 subtitulo-user ">eguerreroa1@gmail.com</h3>
+                <div class="my-5"> 
+                  <h2 class="col-12 titulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.NOMBRE + " "+usuarioService.datos.APELLIDOS | titlecase}}</h2>
+                  <h3 class="col-12 subtitulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.EMAIL}}</h3>
                   <div class="col-6 text-center contenedor-btn-mis-mensajes">
                     <a routerLink="/perfil/usuario/chat" class="btn btn-secondary btn-block btn-sm">Mis mensajes</a>
                   </div>

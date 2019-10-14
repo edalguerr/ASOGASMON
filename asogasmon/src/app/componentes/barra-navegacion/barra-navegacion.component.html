@@ -103,8 +103,9 @@
 
   <ul class="accordion" id="accordionMenu">
     <li>
-      <a routerLink=""><img src="assets/colibri.png" width="24" height="24"
-      class="d-inline-block align-top mr-3" alt="">Inicio</a></li>
+      <a routerLink=""><img src="assets/colibri.png" width="24" height="24" class="d-inline-block align-top mr-3"
+          alt="">Inicio</a>
+    </li>
 
     <li>
       <a href="#collapsePublicar" data-toggle="collapse" aria-expanded="false" aria-controls="collapsePublicar">
@@ -162,13 +163,17 @@
 
     <li><a routerLink="/perfil/usuario/chat"><i class="fa fa-comments fa-lg mr-4"></i>Mensajes</a></li>
 
-    <li><a href="#buscoPensionAptoModal" data-toggle="modal" (click)="categoriaBusco('pension')"><i
-          class="fa fa-address-card fa-lg mr-4"></i>Busco pension</a></li>
+    <li>
+      <a href="#buscoPensionAptoModal" data-toggle="modal" (click)="categoriaBusco('pension')"><i
+          class="fa fa-address-card fa-lg mr-4"></i>Busco pension</a>
+    </li>
 
-    <li><a href="#buscoPensionAptoModal" data-toggle="modal" (click)="categoriaBusco('apartamento')"><i
-          class="fa fa-id-card fa-lg mr-4"></i>Busco apartamento</a></li>
+    <li>
+      <a href="#buscoPensionAptoModal" data-toggle="modal" (click)="categoriaBusco('apartamento')"><i
+      class="fa fa-id-card fa-lg mr-4"></i>Busco apartamento</a>
+    </li>
 
-    <li *ngIf="esUsuario"><a href="#"><i class="fa fa-sign-out fa-lg mr-4"></i>Cerrar sesión</a></li>
+    <li *ngIf="esUsuario"><a routerLink="/" (click)="cerrarSesion()"><i class="fa fa-sign-out fa-lg mr-4"></i>Cerrar sesión</a></li>
 
   </ul>
 </nav>

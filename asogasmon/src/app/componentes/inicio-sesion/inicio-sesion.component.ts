@@ -3,6 +3,7 @@ import { getMaxListeners } from 'cluster';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { RegistrarseComponent } from '../registrarse/registrarse.component';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -12,6 +13,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
 export class InicioSesionComponent implements OnInit {
 
   @ViewChild('formLogin') formLogin: ElementRef;
+  @ViewChild('registrarseComponente') registrarseComponent:RegistrarseComponent;
   @Output() emitEventLogin: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   regExp = {
@@ -40,12 +42,12 @@ export class InicioSesionComponent implements OnInit {
       this.usuarioService.getDatosToken(this.token).subscribe((result: { usuario: Usuario }) => {
 
         this.usuarioService.datos = result.usuario;
-        console.log(result);
-        console.log(this.usuarioService.datos);
+        //console.log(result);
+        //console.log(this.usuarioService.datos);
 
         //verificando que se hayan obtenido los datos
         if (this.usuarioService.datos != null) {
-          console.log('Inicio de sesion recuperada');
+          //console.log('Inicio de sesion recuperada');
           this.sesionIniciada = true;
           localStorage.setItem('token', this.usuarioService.datos.ID_TOKEN);
           this.emitEventLogin.emit(this.sesionIniciada);
@@ -62,6 +64,11 @@ export class InicioSesionComponent implements OnInit {
 
     }
 
+    this.registrarseComponent.emitEventRegistro.subscribe((res)=>{
+      this.emitEventLogin.emit(res);
+      //console.log('recibido el mensaje: '+ res)
+    });
+    
   }
 
   //inicio de sesion
@@ -70,7 +77,7 @@ export class InicioSesionComponent implements OnInit {
     this.usuario.email = this.formLogin.nativeElement[1].value;
     this.usuario.contrasenia = this.formLogin.nativeElement[2].value;
     const md5 = new Md5();
-    //this.usuario.contrasenia = md5.appendStr(this.usuario.contrasenia ).end();
+    this.usuario.contrasenia = md5.appendStr(this.usuario.contrasenia ).end();
 
     console.log(this.usuario);
 

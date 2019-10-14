@@ -3,10 +3,11 @@
   Launch registrarse
 </button>-->
 
-<!-- Modal Inicio sesion-->
-<form action=""class="need-validate" (ngSubmit)="guardar()" ngNativeValidate>
+<!-- Modal Inicio sesion, Registrarse-->
+<form action="" class="need-validate" (ngSubmit)="guardar()" ngNativeValidate #formRegistro>
 
-  <div class="modal " id="registrarseModal" tabindex="-1" role="dialog" aria-labelledby="registrarseModalLabel" aria-hidden="true">
+  <div class="modal " id="registrarseModal" tabindex="-1" role="dialog" aria-labelledby="registrarseModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog  " role="document">
       <div class="modal-content">
 
@@ -16,9 +17,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        
-        <div class="modal-body">
-          
+
+        <div class="modal-body" *ngIf="!sesionIniciada">
+
           <div class="form-group">
             <p class="text-center frase-registrarse">
               Obten tu cuenta fácil y rapido
@@ -31,29 +32,34 @@
               Registrate con Facebook
             </a>
           </div>
-          
+
           <hr>
 
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="Correo electronico" name="email" id="email" [pattern]="regExp.email" required>
+            <input type="email" class="form-control" placeholder="Correo electronico" name="emailRegistro"
+              id="emailRegistro" [pattern]="regExp.email" required>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombre" name="Nombre" id="Nombre" [pattern]="regExp.nombre" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="nombreRegistro" id="nombreRegistro"
+              [pattern]="regExp.nombre" required>
           </div>
 
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos" [pattern]="regExp.apellidos" required>
+            <input type="text" class="form-control" placeholder="Apellidos" name="apellidosRegistro"
+              id="apellidosRegistro" [pattern]="regExp.apellidos" required>
           </div>
 
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Crea una contraseña" name="password" id="password" [pattern]="regExp.password" maxlength="20" required>
+            <input type="password" class="form-control" placeholder="Crea una contraseña" name="passwordRegistro"
+              id="passwordRegistro" [pattern]="regExp.password" maxlength="20" required>
           </div>
-          
+
 
           <div class="custom-control custom-checkbox form-group">
             <input type="checkbox" id="chkTerminosCondiciones" class="custom-control-input" required>
-            <label for="chkTerminosCondiciones" class="custom-control-label texto-checkbox">Acepto los <a href="#">terminos y condiciones</a></label>
+            <label for="chkTerminosCondiciones" class="custom-control-label texto-checkbox">Acepto los <a
+                href="#">terminos y condiciones</a></label>
           </div>
 
           <!--<div class="custom-control custom-checkbox form-group">
@@ -61,20 +67,43 @@
             <label for="chkOfertasEmail" class="custom-control-label texto-checkbox" >Recibir novedades y ofertas por email</label>
           </div>-->
 
+          <div class="form-group" *ngIf="mostrarMsjDatosIncorrectos">
+            <div class="alert alert-secondary">
+              El email ingresado ya está en uso, asegurese de estar escribiendolo correctamente
+            </div>
+          </div>
+
           <div class="form-group">
             <button type="submit" class="btn btn-success btn-block font-weight-bold">Registrarse</button>
           </div>
 
           <div class="form-group text-center mt-2">
             <label for="registrarse" class="form-label text-body">¿Ya tienes una cuenta?</label>
-            <a href="#" class="btn btn-link btn-link-sin-efectos text-center" data-dismiss="modal" data-toggle="modal" data-target="#inicioSesionModal">Inicia sesión</a>
+            <a href="#" class="btn btn-link btn-link-sin-efectos text-center" data-dismiss="modal" data-toggle="modal"
+              data-target="#inicioSesionModal">Inicia sesión</a>
           </div>
-          
+
         </div>
-        
+
+        <div class="modal-body" *ngIf="sesionIniciada">
+
+          <div class="form-group">
+            <img src="assets/colibri.png" alt="" class="rounded-circle modal-icono mx-auto d-block">
+            <h2 class="text-center titulo-modal-icono">ASOGASMON</h2>
+          </div>
+
+          <div class="form-group">
+            <div class="alert alert-primary">
+              <p class="text-center">
+                Bienvenido a ASOGASMON, Encuentra y promociona articulos, apartamentos, habitaciones y pensiones
+              </p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
 
 </form>
-

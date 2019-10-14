@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -21,8 +22,8 @@ export class MiPerfilComponent implements OnInit {
   width = window.innerWidth; // ancho del navegador
   widthMobileMiniSmartphone = 420;//380 
 
-  constructor() {  
-   
+  constructor(public usuarioService:UsuarioService) {  
+    
     /*Para los celulares mas pequeños(maximo 420 px)*/
     if(this.width <= this.widthMobileMiniSmartphone){
       /*La clase .mis-anuncios-ofertas se encuentra en el compónente 

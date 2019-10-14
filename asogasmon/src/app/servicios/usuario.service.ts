@@ -26,6 +26,12 @@ export class UsuarioService {
     return this.httpClient.post(this.API_URL+"signin",{id_token:token},{headers: headers});
   }
 
+  registrarUsuario(usuario:{email,contrasenia,nombre,apellidos}){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this.httpClient.post(this.API_URL+"login",usuario,{headers: headers});
+  }
+
 }
 
 
