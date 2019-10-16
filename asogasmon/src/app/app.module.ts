@@ -57,6 +57,7 @@ import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-deta
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
+import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import { UsuarioService } from './servicios/usuario.service';
     EditarDatosBasicosComponent,
     VerInfoBuscoOfertaComponent,
     MessengerComponent,
-    ContactarMobileComponent
+    ContactarMobileComponent,
+    ResetPasswordComponent
   ],
   imports: [ 
     BrowserModule,

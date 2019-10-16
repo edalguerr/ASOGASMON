@@ -38,6 +38,20 @@ export class UsuarioService {
     return this.httpClient.put(this.API_URL+"login/"+usuario.id, usuario, {headers: headers});
   }
 
+  reestablecerContraseniaEmail(usuario:{email}){
+
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this.httpClient.post(this.API_URL+"signin/resetPass", usuario, {headers: headers});
+  }
+
+  reestablecerContrasenia(usuario:{email, contrasenia, token}){
+
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this.httpClient.post(this.API_URL+"signin/update", usuario, {headers: headers});
+  }
+
 }
 
 

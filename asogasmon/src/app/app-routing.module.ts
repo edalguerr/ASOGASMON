@@ -12,6 +12,7 @@ import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
 import { PublicarArticuloComponent } from './paginas/publicar-articulo/publicar-articulo.component';
 import { MessengerComponent } from './paginas/messenger/messenger.component';
+import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
  
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'publicarHabitacion', component: PublicarHabitacionComponent },
   {path:'publicarArticulo', component: PublicarArticuloComponent },
   {path:'perfil/:usuario/chat', component: MessengerComponent },
+  {path:'reset/:email/resetPass/:token', component: ResetPasswordComponent },
   {path:'**', redirectTo:'/' }
 ];
 
