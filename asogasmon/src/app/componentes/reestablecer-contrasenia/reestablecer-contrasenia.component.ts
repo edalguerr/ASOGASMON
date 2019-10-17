@@ -24,8 +24,8 @@ export class ReestablecerContraseniaComponent implements OnInit {
   }
 
   reestablecer(){
-    console.log(this.formResetPass)
-    console.log(this.formResetPass.nativeElement[1].value)
+    //console.log(this.formResetPass)
+    //console.log(this.formResetPass.nativeElement[1].value)
     this.usuario.email = this.formResetPass.nativeElement[1].value;
 
     console.log(this.usuario);

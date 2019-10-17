@@ -1,6 +1,6 @@
-
 <!-- Modal -->
-<div class="modal fade" id="modificarContraseniaModal" tabindex="-1" role="dialog" aria-labelledby="modificarContraseniaModalLabel" aria-hidden="true">
+<div class="modal fade" id="modificarContraseniaModal" tabindex="-1" role="dialog"
+  aria-labelledby="modificarContraseniaModalLabel" aria-hidden="true">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,13 +10,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>
-          Te enviaremos un enlace a tu correo electronico <strong>eljunior1999m@gmail.com</strong> para que puedas actualizar tu contraseña
+        <p *ngIf="!enviado">
+          Te enviaremos un enlace a tu correo electronico <strong *ngIf="usuarioService.datos != null">{{usuarioService.datos.EMAIL}}</strong> para que puedas
+          actualizar tu contraseña
         </p>
+
+        <div class="form-group col-12" *ngIf="errorEnviar">
+          <div class="alert alert-secondary" role="alert">
+            <p class="text-center">
+              Error al enviar email, intentalo mas tarde.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group col-12" *ngIf="enviado">
+          <div class="alert alert-primary" role="alert">
+            <p class="text-center font-weight-bold">
+              Revisa tu correo electronico, te hemos enviado un email para que puedas actualizar tu contraseña
+            </p>
+          </div>
+        </div>
+
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" *ngIf="!enviado">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success">Modificar constraseña</button>
+        <button type="submit" class="btn btn-success" (click)="reestablecer()">Modificar constraseña</button>
       </div>
     </div>
   </div>
