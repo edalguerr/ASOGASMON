@@ -11,38 +11,44 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 export class BarraNavegacionComponent implements OnInit {
 
   @ViewChild('nav_responsive') nav_responsive: ElementRef;
-  @ViewChild('inicioSesionComponente') inicioSesionComponent:InicioSesionComponent;
-  
+  @ViewChild('inicioSesionComponente') inicioSesionComponent: InicioSesionComponent;
+
 
   categoriaBuscoPensionApto: string = 'pension';
   esUsuario = false;
   contador = 1;
 
-  ruta:string = "assets/"; 
+  ruta: string = "assets/";
   imagen = 'Mini_Protoboard_170_puntos_1.jpg';
 
   claseIconBtnMenu = 'fa fa-bars fa-lg';
+  API_URL = "http://localhost/asogasmonAPI/public/img/user/";
 
-  constructor(private routerNav:Router, private usuarioService:UsuarioService) {
+  constructor(private routerNav: Router, private usuarioService: UsuarioService) {
 
-    if(this.usuarioService.datos != null){
+    if (this.usuarioService.datos != null) {
       this.esUsuario = true;
     }
   }
 
   ngOnInit() {
     //console.log(this.nav_responsive)
-    
-    this.inicioSesionComponent.emitEventLogin.subscribe((res)=>{
+
+    this.inicioSesionComponent.emitEventLogin.subscribe((res) => {
       this.esUsuario = res;
-      //console.log('recibido el mensaje: '+ res)
+    
+      //inicializando ruta para obtener avatar de usuario
+      this.usuarioService.datos.FOTO = this.API_URL+this.usuarioService.datos.ID 
+      + "/" + this.usuarioService.datos.FOTO;
+
     });
 
-    if(this.usuarioService.datos != null){
+    if (this.usuarioService.datos != null) {
       this.esUsuario = true;
     }
 
-    console.log("es usuario: "+this.esUsuario)
+    //console.log("es usuario: " + this.esUsuario)
+
 
   }
 
@@ -50,6 +56,7 @@ export class BarraNavegacionComponent implements OnInit {
     this.categoriaBuscoPensionApto = categoria;
   }
 
+  //menú de navegacion mobile
   barraNavegacionLateral() {
 
     if (this.contador == 1) {
@@ -82,20 +89,20 @@ export class BarraNavegacionComponent implements OnInit {
     }
 
   }
- 
-  irPerfil(){
-    if(this.esUsuario){
-      
+
+  irPerfil() {
+    if (this.esUsuario) {
+
       this.routerNav.navigateByUrl('/perfil/usuario');
     }
-  
+
   }
 
   //metodo para que el usuario cierre la sesion
-  cerrarSesion(){
-   this.esUsuario = false;
-   this.usuarioService.datos = null;
-   localStorage.removeItem('token'); 
+  cerrarSesion() {
+    this.esUsuario = false;
+    this.usuarioService.datos = null;
+    localStorage.removeItem('token');
   }
 
 }

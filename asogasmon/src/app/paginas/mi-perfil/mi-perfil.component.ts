@@ -16,16 +16,17 @@ export class MiPerfilComponent implements OnInit {
 
   tenemosAnuncios = true;
 
-  ruta:string = "assets/"; 
+  ruta: string = "assets/";
   imagen = 'Mini_Protoboard_170_puntos_1.jpg';
 
   width = window.innerWidth; // ancho del navegador
   widthMobileMiniSmartphone = 420;//380 
+  API_URL = "http://localhost/asogasmonAPI/public/img/user/";
 
-  constructor(public usuarioService:UsuarioService) {  
-    
+  constructor(public usuarioService: UsuarioService) {
+
     /*Para los celulares mas pequeños(maximo 420 px)*/
-    if(this.width <= this.widthMobileMiniSmartphone){
+    if (this.width <= this.widthMobileMiniSmartphone) {
       /*La clase .mis-anuncios-ofertas se encuentra en el compónente 
       slide-ofertas-destacadas, se encarga de reducir el padding para
       smartphones con viewport de maximo 420px*/
@@ -35,7 +36,7 @@ export class MiPerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   onSelectFile(event) {
@@ -44,10 +45,21 @@ export class MiPerfilComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        
-        this.imagen = reader.result.toString();
-        this.ruta ='';
+      reader.onload = (evento) => { // called once readAsDataURL is completed
+
+        this.usuarioService.actualizarFoto({ id: this.usuarioService.datos.ID, foto: event.target.files[0] }).subscribe(
+          (res:{foto}) => {
+            
+            //inicializando ruta para obtener avatar de usuario
+            this.usuarioService.datos.FOTO = this.API_URL + this.usuarioService.datos.ID
+              + "/" + res.foto;
+
+          }, err => {
+            console.log('ERROR')
+            console.log(err)
+          }
+        );
+
       }
     }
   }

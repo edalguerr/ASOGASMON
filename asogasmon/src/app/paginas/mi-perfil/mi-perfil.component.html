@@ -19,8 +19,8 @@
             <!--Foto, datos basicos, boton mis conversaciones-->
             <div class="row">
               <!--Foto de perfil-->
-              <div class="col-4 text-center pr-0 contenedor-card-img-user">
-                <div class="card-img-user ml-auto mr-1" [style.background-image]="'url('+ruta+imagen+')' "></div>  
+              <div class="col-4 text-center pr-0 contenedor-card-img-user" *ngIf="this.usuarioService.datos">
+                <div *ngIf="this.usuarioService.datos.FOTO" class="card-img-user ml-auto mr-1" [style.background-image]="'url('+this.usuarioService.datos.FOTO+')' "></div>  
               </div>
 
               <!--Correo electronico y boton de mis conversaciones-->
