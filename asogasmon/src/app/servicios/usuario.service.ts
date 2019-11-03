@@ -20,6 +20,7 @@ export class UsuarioService {
     return this.httpClient.post(this.API_URL + "signin", usuario, { headers: headers });
   }
 
+  //inicio de sesion activa usando el token
   getDatosToken(token: any) {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 

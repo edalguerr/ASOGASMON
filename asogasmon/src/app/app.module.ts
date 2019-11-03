@@ -58,6 +58,7 @@ import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-deta
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
+import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-articulo.service';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/r
   ],
   providers: [
     UbicacioMapaFiltrosService,
-    UsuarioService
+    UsuarioService,
+    OfertasArticuloService
   ],
   bootstrap: [AppComponent]
 })

@@ -65,24 +65,22 @@
                           <div class="list-group" id="listTabCategorias" role="tablist">
 
                             <!--Listando todas las categorias-->
-                            <a class="list-group-item list-group-item-action"  *ngFor="let categoria of categorias;let i = index" id="listCategoria{{categoria.nombre}}" data-toggle="list" href="#listSubcategoria{{categoria.nombre}}" role="tab"
-                            (click)="asignarCategoria(categoria.nombre)">
-                              <label *ngIf="categoria.nombre != categoriaOtros"><i [class]="categoria.icono"></i> {{categoria.nombre}}</label>
-                              <input *ngIf="categoria.nombre == categoriaOtros" type="text" class="form-control text-center " placeholder="Otra categoria">
+                            <a class="list-group-item list-group-item-action"  *ngFor="let categoria of categoriasA;let i = index" id="listCategoria{{categoria.NOMBRE}}" data-toggle="list" href="#listSubcategoria{{categoria.NOMBRE}}" role="tab"
+                            (click)="asignarCategoria(categoria)">
+                              <label><i [class]="categoria.ICONO + ' ' +clasesBase"></i> {{categoria.NOMBRE | titlecase}}</label>
                             </a>
                             
                           </div>
                         </div>
                         <div class="col-7">
                           <div class="tab-content" id="navTabContentCategorias">
-                            <div class="tab-pane fade show" *ngFor="let categoria of categorias;let i = index" id="listSubcategoria{{categoria.nombre}}" role="tabpanel">
+                            <div class="tab-pane fade show" *ngFor="let categoria of categoriasA;let i = index" id="listSubcategoria{{categoria.NOMBRE}}" role="tabpanel">
                                
                               <div class="list-group list-group-flush">
                                 <!--Listando las subcategorias para cada categoria-->
-                                <button type="button" class="list-group-item list-group-item-action" *ngFor="let subCategoria of categoria.subCategorias; let x = index;" data-toggle="list"
-                                (click)="asignarSubCategoria(subCategoria.nombre)">
-                                  <i [class]="subCategoria.icono"></i>{{subCategoria.nombre}}
-                                  <input *ngIf="subCategoria.nombre == categoriaOtros" type="text" class="form-control text-center w-75 d-inline ml-2" placeholder="Ingrese su categoria">
+                                <button type="button" class="list-group-item list-group-item-action" *ngFor="let subCategoria of categoria.sub_categorias; let x = index;" data-toggle="list"
+                                (click)="asignarSubCategoria(subCategoria)">
+                                  {{subCategoria.NOMBRE | titlecase}}
                                 </button>
                               </div>
 

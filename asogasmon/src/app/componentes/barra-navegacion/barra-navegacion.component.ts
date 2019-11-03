@@ -20,6 +20,7 @@ export class BarraNavegacionComponent implements OnInit {
 
   ruta: string = "assets/";
   imagen = 'Mini_Protoboard_170_puntos_1.jpg';
+  avatarDefault = 'avatar';
 
   claseIconBtnMenu = 'fa fa-bars fa-lg';
   API_URL = "http://localhost/asogasmonAPI/public/img/user/";
@@ -29,17 +30,23 @@ export class BarraNavegacionComponent implements OnInit {
     if (this.usuarioService.datos != null) {
       this.esUsuario = true;
     }
+    
   }
 
   ngOnInit() {
-    //console.log(this.nav_responsive)
+    
 
     this.inicioSesionComponent.emitEventLogin.subscribe((res) => {
       this.esUsuario = res;
-    
-      //inicializando ruta para obtener avatar de usuario
-      this.usuarioService.datos.FOTO = this.API_URL+this.usuarioService.datos.ID 
-      + "/" + this.usuarioService.datos.FOTO;
+
+      if (this.usuarioService.datos.FOTO != this.avatarDefault) {
+        //inicializando ruta para obtener avatar de usuario
+        this.usuarioService.datos.FOTO = this.API_URL + this.usuarioService.datos.ID
+          + "/" + this.usuarioService.datos.FOTO;
+      }
+      else{
+        this.usuarioService.datos.FOTO = this.API_URL + this.avatarDefault + '.png';
+      }
 
     });
 
@@ -47,9 +54,7 @@ export class BarraNavegacionComponent implements OnInit {
       this.esUsuario = true;
     }
 
-    //console.log("es usuario: " + this.esUsuario)
-
-
+    
   }
 
   categoriaBusco(categoria) {
