@@ -4,6 +4,8 @@ import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
 import { OfertasArticuloService } from 'src/app/servicios/ofertasArticulos/ofertas-articulo.service';
+import { Articulo } from 'src/app/interfaces/articulo';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-publicar-articulo',
@@ -15,14 +17,7 @@ export class PublicarArticuloComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
 
-
-  selectedDate;
-
-  direccionActual = 'San josé de los campanos av. principal calle #66c-34b';
-
   geocoder;
-  coordPension: { lat, lng } = { lat: 4.69855158983652, lng: -74.07194335937498 };
-
 
   urlImagenPrincipal = '';
   urlImagenes = ["", "", "", ""];
@@ -30,11 +25,13 @@ export class PublicarArticuloComponent implements OnInit {
   imagenPrincipalAgregada = false;
   direccionAsginada = false;
 
-  categoriaOtros = 'OTRO';
+  categoriaOtros = 'OTROS'; 
   categoriaAsignada = false;
+
+  //clases base para todos los iconos de las categorias
   clasesBase = 'fa fa-servicios';
 
-  categoriasA:Array<{}> = [];
+  categoriasA: Array<{}> = [];
 
   //opciones de autocompletado
   opcionesAutocompletado: google.maps.places.AutocompleteOptions = {
@@ -44,7 +41,7 @@ export class PublicarArticuloComponent implements OnInit {
     }
   };
 
-
+  //caracteres maximos para el titulo y la descripción
   maxCaracteresTitulo = 70;
   maxCaracteresDescripcion = 300;
 
@@ -61,19 +58,35 @@ export class PublicarArticuloComponent implements OnInit {
   titulo;
   descripcion;
 
+  articuloNuevo: Articulo = {
+    DESCRIPCION: '',
+    PRECIO: 0,
+    NUMERO_CELULAR: 0,
+    TITULO_AVISO: '',
+    USUARIO_ID: 0,
+    SUB_CATEGORIA_ID: 0,
+    UBICACION: {
+      PAIS: '',
+      DEPARTAMENTO: '',
+      CIUDAD: '',
+      LOCALIDAD: ''
+    },
+    FOTOS: []
+  };
+
   constructor(public ubicacionMapaFiltros: UbicacioMapaFiltrosService, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private ofertasArticulo: OfertasArticuloService) {
 
-      this.ofertasArticulo.categoriasArticulo().subscribe((res:{categorias:Array<{}>}) => {
-        console.log('categorias obtenidas')
-        console.log(res.categorias)
+    //obteniendo categorias y subcategorias de articulos
+    this.ofertasArticulo.categoriasArticulo().subscribe((res: { categorias: Array<{}> }) => {
 
-        this.categoriasA = res.categorias;
-        
-      }, error => {
-        console.log('error al obtener las categorias')
-        console.log(Error);
-      })
+      this.categoriasA = res.categorias;
+
+    }, error => {
+      console.log('error al obtener las categorias')
+      console.log(Error);
+    })
+
   }
 
   ngOnInit() {
@@ -82,65 +95,67 @@ export class PublicarArticuloComponent implements OnInit {
   }
 
 
+  //autocompletado de ubicación
   inicializarAutocompletado() {
 
-    //verificar que se pueda minimo pais+departamento
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.opcionesAutocompletado);
 
       //inicializando el componente cuando cargue el mapa
       this.geocoder = new google.maps.Geocoder;
 
+      //este metodo se ejecutara cada que se elija una ubicacion del autocompletado
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          
+          //asignamos valores por defecto, cada vez que cambia de ubicacion 
+          //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
+          //tenga menos precision
+          this.articuloNuevo.UBICACION = {
+            PAIS: '',
+            DEPARTAMENTO: '',
+            CIUDAD: '',
+            LOCALIDAD: ''
+          }
 
-
+          //verificamos que se haya elegido una ubicacion del autocompletado
           if (place.geometry === undefined || place.geometry === null) {
             this.direccionAsginada = false;
             return;
           }
+          
+          this.ubicacionMapaFiltros.direccion = place.formatted_address;
 
-          this.ubicacionMapaFiltros.lat = place.geometry.location.lat();
-          this.ubicacionMapaFiltros.lng = place.geometry.location.lng();
-
-          //POR HACER:
-          //LAS SIGUIENTES DOS LINEAS QUE HACE EN ESTE CASO?
-          this.coordPension.lat = this.ubicacionMapaFiltros.lat;
-          this.coordPension.lng = this.ubicacionMapaFiltros.lng;
-
-          this.ubicacionMapaFiltros.zoom = 16;
-          this.ubicacionMapaFiltros.direccion = place.name + ', ' + place.formatted_address;
-
-
-          console.log(place);
-          this.direccionAsginada = true;
-          //cada vez que se busque en caso de ser para publicar se devolvera 
-          //la direccion, si es para buscar actualizara las publicaciones
-
-
-          //obtenemos el codigo postal de la dirección
-          for (var i = 0; i < place.address_components.length; i++) {
-
-            let type = place.address_components[i].types;
-
-            if (type.indexOf("postal_code") != -1) {
-
-              //POR HACER:
-              //Verificar en que parte se obtiene el codigo postal
-
-              //si es para publicar almacenamos el codigo postal
-              //si estamos buscando, usamos el codigo postal para hacer una consulta
-              //a la base de datos y actualizar
-              if (this.ubicacionMapaFiltros.codigoPostal != place.address_components[i].long_name) {
-                //lanzamos peticion a la base de datos y actualizamos las ofertas
-                this.ubicacionMapaFiltros.codigoPostal = place.address_components[i].long_name;
-
-              }
-            }
+          //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
+          let arrayUbicacion = place.formatted_address.split(',');
+          
+          //pasando los datos a la variable que contiene los datos del nuevo articulo
+          //teniendo en cuenta la exactitud de la ubicacion proporcionada
+          let exactitud = arrayUbicacion.length;
+          switch (exactitud) {
+            case 1:
+              this.articuloNuevo.UBICACION.PAIS = arrayUbicacion[0];
+              break;
+            case 2:
+              this.articuloNuevo.UBICACION.DEPARTAMENTO = arrayUbicacion[0];
+              this.articuloNuevo.UBICACION.PAIS = arrayUbicacion[1];
+              break;
+            case 3:
+              this.articuloNuevo.UBICACION.CIUDAD = arrayUbicacion[0];
+              this.articuloNuevo.UBICACION.DEPARTAMENTO = arrayUbicacion[1];
+              this.articuloNuevo.UBICACION.PAIS = arrayUbicacion[2];
+              break;
+            case 4:
+              this.articuloNuevo.UBICACION.LOCALIDAD = arrayUbicacion[0];
+              this.articuloNuevo.UBICACION.CIUDAD = arrayUbicacion[1];
+              this.articuloNuevo.UBICACION.DEPARTAMENTO = arrayUbicacion[2];
+              this.articuloNuevo.UBICACION.PAIS = arrayUbicacion[3];
+              break;
 
           }
 
+          this.direccionAsginada = true;
 
         });
       });
@@ -149,7 +164,6 @@ export class PublicarArticuloComponent implements OnInit {
     );
 
   }
-
 
   //carga de imagen principal
   //esta opcion funciona bien para cargar imagenes
@@ -179,7 +193,23 @@ export class PublicarArticuloComponent implements OnInit {
     }
   }
 
+  //Asigna las categoria Otros, esta no tiene subcategorias
+  asignarCategoria(categoria) {
 
+    if (categoria.NOMBRE == this.categoriaOtros) {
+      this.categoriaAsignada = true;
+
+      //Asigna sub categoria otros; esta sub categoria es solo para la categoria otros
+      this.articuloNuevo.SUB_CATEGORIA_ID = categoria.sub_categorias[0].ID;
+    }
+  }
+
+  //Asigna subcategoria seleccionada, con su respectiva categoria
+  asignarSubCategoria(subcategoria) {
+
+    this.categoriaAsignada = true;
+    this.articuloNuevo.SUB_CATEGORIA_ID = subcategoria.ID;
+  }
 
   guardar() {
 
@@ -193,26 +223,6 @@ export class PublicarArticuloComponent implements OnInit {
       console.log('publicar Articulos submit invalido')
     }
 
-  }
-
-  //Asigna categoria Otro, esta no tiene subcategorias
-  asignarCategoria(categoria) {
-
-    //console.log("categoria: ");
-    //console.log(categoria);
-
-    if (categoria.NOMBRE == this.categoriaOtros) {
-      this.categoriaAsignada = true;
-    }
-  }
-
-  //Asigna subcategoria seleccionada, con su respectiva categoria
-  asignarSubCategoria(subcategoria) {
-
-    //console.log("Subcategoria: ");
-    //console.log(subcategoria);
-
-    this.categoriaAsignada = true;
   }
 
 }
