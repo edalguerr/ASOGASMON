@@ -12,6 +12,6 @@ export interface Articulo {
         CIUDAD:string,
         LOCALIDAD:string
     },
-    FOTOS:Array<{FOTO:string}>
+    FOTOS:Array<File>
 
 }

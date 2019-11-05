@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { getMaxListeners } from 'cluster';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -10,6 +9,7 @@ import { RegistrarseComponent } from '../registrarse/registrarse.component';
   templateUrl: './inicio-sesion.component.html',
   styleUrls: ['./inicio-sesion.component.css']
 })
+
 export class InicioSesionComponent implements OnInit {
 
   @ViewChild('formLogin') formLogin: ElementRef;
@@ -73,7 +73,7 @@ export class InicioSesionComponent implements OnInit {
 
   //inicio de sesion
   guardar() {
-    //console.log("ejecutado")
+    
     this.usuario.email = this.formLogin.nativeElement[1].value;
     this.usuario.contrasenia = this.formLogin.nativeElement[2].value;
     const md5 = new Md5();
@@ -82,9 +82,7 @@ export class InicioSesionComponent implements OnInit {
     console.log(this.usuario);
 
     this.usuarioService.getDatos(this.usuario).subscribe((result: { usuario: Usuario }) => {
-      //console.log('peticion exitosa');
-      //console.log(result);
-
+     
       this.usuarioService.datos = result.usuario;
       console.log(this.usuarioService.datos);
 
@@ -95,7 +93,7 @@ export class InicioSesionComponent implements OnInit {
         this.mostrarMsjDatosIncorrectos = false;
         localStorage.setItem('token', this.usuarioService.datos.ID_TOKEN);
         this.emitEventLogin.emit(this.sesionIniciada);
-        //console.log('evento emitido')
+        
       }
       else {
         this.sesionIniciada = false;
