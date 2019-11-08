@@ -59,6 +59,7 @@ import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.se
 import { UsuarioService } from './servicios/usuario.service';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
 import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-articulo.service';
+import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-art
     VerInfoBuscoOfertaComponent,
     MessengerComponent,
     ContactarMobileComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    MensajePublicacionComponent
   ],
   imports: [ 
     BrowserModule,

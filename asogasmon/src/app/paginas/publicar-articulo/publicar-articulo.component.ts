@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
-import { OfertasArticuloService } from 'src/app/servicios/ofertasArticulos/ofertas-articulo.service';
+import { UbicacioMapaFiltrosService } 
+from 'src/app/servicios/ubicacio-mapa-filtros.service';
+import { OfertasArticuloService } 
+from 'src/app/servicios/ofertasArticulos/ofertas-articulo.service';
 import { Articulo } from 'src/app/interfaces/articulo';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -16,18 +18,24 @@ export class PublicarArticuloComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('formPublicarArticulo') formPublicarArticulo: ElementRef;
-  @ViewChild('btnInicioSesionModal') btnInicioSesionModal:ElementRef;
+  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
   
   geocoder;
 
+  //datos a enviar al componente mensaje muplicacion
+  padreMsjPublicacion = "";
+  padrePublicado = false;
+  padreRutaOferta = "/articulos/1";
+
   urlImagenPrincipal = '';
   urlImagenes = ["", "", "", ""];
-  rutaImagenes = "assets/";
+
   imagenPrincipalAgregada = false;
   direccionAsginada = false;
   datosIncorrectos = false;
 
-  categoriaOtros = 'OTROS'; 
+  categoriaOtros = 'OTROS';
   categoriaAsignada = false;
 
   //clases base para todos los iconos de las categorias
@@ -76,18 +84,25 @@ export class PublicarArticuloComponent implements OnInit {
     FOTOS: new Array()
   };
 
-  constructor(public ubicacionMapaFiltros: UbicacioMapaFiltrosService, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private ofertasArticulo: OfertasArticuloService, private usuarioService:UsuarioService) {
+  constructor(
+    public ubicacionMapaFiltros: UbicacioMapaFiltrosService,
+    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
+    private ofertasArticulo: OfertasArticuloService,
+    private usuarioService: UsuarioService
+  ) {
 
     //obteniendo categorias y subcategorias de articulos
-    this.ofertasArticulo.categoriasArticulo().subscribe((res: { categorias: Array<{}> }) => {
+    this.ofertasArticulo.categoriasArticulo().subscribe(
+      (res: { categorias: Array<{}> }) => {
 
-      this.categoriasA = res.categorias;
+        this.categoriasA = res.categorias;
 
-    }, error => {
-      console.log('error al obtener las categorias')
-      console.log(Error);
-    })
+      },
+      error => {
+        console.log('error al obtener las categorias')
+        console.log(Error);
+      }
+    )
 
   }
 
@@ -111,7 +126,7 @@ export class PublicarArticuloComponent implements OnInit {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          
+
           //asignamos valores por defecto, cada vez que cambia de ubicacion 
           //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
           //tenga menos precision
@@ -127,12 +142,12 @@ export class PublicarArticuloComponent implements OnInit {
             this.direccionAsginada = false;
             return;
           }
-          
+
           this.ubicacionMapaFiltros.direccion = place.formatted_address;
 
           //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
           let arrayUbicacion = place.formatted_address.split(',');
-          
+
           //pasando los datos a la variable que contiene los datos del nuevo articulo
           //teniendo en cuenta la exactitud de la ubicacion proporcionada
           let exactitud = arrayUbicacion.length;
@@ -193,7 +208,7 @@ export class PublicarArticuloComponent implements OnInit {
 
       reader.onload = (evento) => { // called once readAsDataURL is completed
         this.urlImagenes[indImage] = reader.result.toString();
-        this.articuloNuevo.FOTOS["img"+indImage] = event.target.files[0];
+        this.articuloNuevo.FOTOS["img" + indImage] = event.target.files[0];
         this.imagenPrincipalAgregada = true;
       }
     }
@@ -201,7 +216,7 @@ export class PublicarArticuloComponent implements OnInit {
 
   //Asigna las categoria Otros, esta no tiene subcategorias
   asignarCategoria(categoria) {
-    
+
     if (categoria.NOMBRE == this.categoriaOtros) {
       this.categoriaAsignada = true;
 
@@ -219,52 +234,81 @@ export class PublicarArticuloComponent implements OnInit {
 
   guardar() {
 
-    
-    //para protegernos de descripciones o titulos mas largas de lo permitido, verificar que se haya asignado una
-    //ubicacion, una categoria y minimo una imagen del articulo
-    if (this.regExp.descripcion.test(this.descripcion) && this.regExp.titulo.test(this.titulo)
-      && this.imagenPrincipalAgregada && this.direccionAsginada && this.categoriaAsignada) {
-      
-      //POR HACER:
-      //VERIFICAR QUE EL USUARIO HAYA INICIADO SESION, DE LO CONTRARIO INVITARLO A HACERLO PARA PODER CONTINUAR
-      //CON SU PUBLICACION
 
+    //Publicacion de articulo, se han ingresado los datos requeridos
+    if (this.regExp.descripcion.test(this.descripcion)
+      && this.regExp.titulo.test(this.titulo)
+      && this.imagenPrincipalAgregada && this.direccionAsginada
+      && this.categoriaAsignada) {
+
+      //obteniendo los datos
       this.articuloNuevo.TITULO_AVISO = this.titulo;
       this.articuloNuevo.DESCRIPCION = this.descripcion;
       this.articuloNuevo.PRECIO = this.formPublicarArticulo.nativeElement[9].value;
       this.articuloNuevo.NUMERO_CELULAR = this.formPublicarArticulo.nativeElement[10].value;
 
-      //USUARIO CON SESION ACTIVA
-      if(this.usuarioService.datos != null){
+      //Usuario con sesion activa
+      if (this.usuarioService.datos != null) {
         this.articuloNuevo.USUARIO_ID = this.usuarioService.datos.ID;
-        this.ofertasArticulo.publicarArticulo(this.articuloNuevo).subscribe(res => {
-          console.log('Publicación de articulo realizada')
-          console.log(res);
-          //POR HACER:
-          //MODAL DE FELICIDADES POR EL ARTICULO PUBLICADO
-
+        this.ofertasArticulo.publicarArticulo(this.articuloNuevo).subscribe((res: { ofertasArticulo: {ID}}) => {
+                   
+          //Mensaje de felicidades por publicar articulo
+          this.padreRutaOferta = "/articulos/" + res.ofertasArticulo.ID;
+          this.padreMsjPublicacion = "Felicidades, se ha publicado tu articulo."
+          this.padrePublicado = true;
+          this.btnMensajePublicarModal.nativeElement.click();
+          
+          //reseteamos variables
+          this.resetVariables();
+          
         }, err => {
+
           console.log('error, no se ha publicado tu articulo')
           console.log(err);
 
+          //Mensaje de error al publicar articulo
+          this.padreMsjPublicacion = "Estamos presentando inconvenientes para publicar tu articulo en este momento, intentalo nuevamente, si el problema persiste no dudes en contáctarnos";
+
+          this.padrePublicado = false;
+          this.btnMensajePublicarModal.nativeElement.click();
+
         });
 
-      }//NO HA INICIADO SESION
-      else{
-        //Mostrar modal de inicio de sesion
+      }//No ha iniciado sesion
+      else {
+        //invitamos a iniciar sesion o registrarse antes de publicar
         this.btnInicioSesionModal.nativeElement.click();
       }
 
-      
+
       this.datosIncorrectos = false;
-      console.log('publicar Articulos submit')
-      console.log(this.articuloNuevo);
     }
     else {
-      console.log('publicar Articulos submit invalido')
+      
+      //Faltan datos requeridos para publicar el articulo
       this.datosIncorrectos = true;
     }
 
   }
 
+  //variables por defecto para publicar articulo nuevo
+  resetVariables(){
+    this.articuloNuevo = {
+      DESCRIPCION: '',
+      TITULO_AVISO: '',      
+      FOTOS: new Array(),
+      ...this.articuloNuevo
+    };
+
+    this.datosIncorrectos = false;
+    this.imagenPrincipalAgregada = false;
+    this.titulo = "";
+    this.descripcion = "";
+
+    this.urlImagenPrincipal = '';
+    this.urlImagenes = ["", "", "", ""];
+
+  }
+
+  
 }

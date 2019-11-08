@@ -1,0 +1,41 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMensajePublicar" [hidden]="'true'"
+  #btnMensajePublicarModal>
+  Launch iniciar sesion
+</button>
+
+<!-- Modal mensaje felicitacion/error al publicar oferta-->
+
+<div class="modal " id="modalMensajePublicar" tabindex="-1" role="dialog" aria-labelledby="inicioSesionModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+
+      <div class="row justify-content-end">
+        <!--Boton cerrar (x)-->
+        <button type="button" class="close col-1 pr-3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>  
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <div class="alert alert-primary" *ngIf="publicado">
+            <p class="text-center">
+              {{mensaje}} 
+              <a [routerLink]="rutaOferta" target="_blank">ver</a>
+            </p>
+          </div>
+          <div class="alert alert-secondary" *ngIf="!publicado">
+            <p class="text-center">
+              {{mensaje}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
