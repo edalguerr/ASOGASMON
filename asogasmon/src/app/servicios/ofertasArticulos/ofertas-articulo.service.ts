@@ -49,7 +49,7 @@ export class OfertasArticuloService {
     return this.httpClient.post(this.API_URL + "ofertaArticulo", formData);
   }
 
-  //obtiene todas las categorias con sus sun¿bcategorias correspondientes
+  //obtiene todas las categorias con sus subcategorias correspondientes
   categoriasArticulo() {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
