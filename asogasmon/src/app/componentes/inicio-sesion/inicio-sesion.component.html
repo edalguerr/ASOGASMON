@@ -1,7 +1,7 @@
-<!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioSesionModal">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioSesionModal" [hidden]="'true'" #btnInicioSesionModal>
   Launch iniciar sesion
-</button>-->
+</button>
 
 <!-- Modal Inicio sesion-->
 <form action=""class="need-validate" (ngSubmit)="guardar()" ngNativeValidate #formLogin>

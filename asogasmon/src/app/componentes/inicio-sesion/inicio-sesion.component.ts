@@ -14,6 +14,7 @@ export class InicioSesionComponent implements OnInit {
 
   @ViewChild('formLogin') formLogin: ElementRef;
   @ViewChild('registrarseComponente') registrarseComponent:RegistrarseComponent;
+  
   @Output() emitEventLogin: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   regExp = {
@@ -69,6 +70,7 @@ export class InicioSesionComponent implements OnInit {
       //console.log('recibido el mensaje: '+ res)
     });
     
+      
   }
 
   //inicio de sesion

@@ -16,6 +16,7 @@ export class PublicarArticuloComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('formPublicarArticulo') formPublicarArticulo: ElementRef;
+  @ViewChild('btnInicioSesionModal') btnInicioSesionModal:ElementRef;
   
   geocoder;
 
@@ -93,6 +94,7 @@ export class PublicarArticuloComponent implements OnInit {
   ngOnInit() {
 
     this.inicializarAutocompletado();
+    
   }
 
 
@@ -238,6 +240,8 @@ export class PublicarArticuloComponent implements OnInit {
         this.ofertasArticulo.publicarArticulo(this.articuloNuevo).subscribe(res => {
           console.log('Publicación de articulo realizada')
           console.log(res);
+          //POR HACER:
+          //MODAL DE FELICIDADES POR EL ARTICULO PUBLICADO
 
         }, err => {
           console.log('error, no se ha publicado tu articulo')
@@ -247,7 +251,8 @@ export class PublicarArticuloComponent implements OnInit {
 
       }//NO HA INICIADO SESION
       else{
-
+        //Mostrar modal de inicio de sesion
+        this.btnInicioSesionModal.nativeElement.click();
       }
 
       
