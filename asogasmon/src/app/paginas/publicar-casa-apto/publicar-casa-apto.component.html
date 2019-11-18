@@ -70,13 +70,15 @@
 
                 <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5" data-toggle="buttons">
                   <label class="btn btn-outline-info" (click)="onChangeTipoInmueble($event.target)">
-                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleCasa" value="CASA" autocomplete="off">Casa
+                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleCasa" value="CASA"
+                      autocomplete="off">Casa
                   </label>
                   <label class="btn btn-outline-info active" (click)="onChangeTipoInmueble($event.target)">
-                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleApartamento" value="APARTAMENTO"  autocomplete="off">Apartamento
+                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleApartamento" value="APARTAMENTO"
+                      autocomplete="off">Apartamento
                   </label>
                 </div>
-      
+
               </div>
 
               <!--Amoblada o sin amoblar-->
@@ -234,7 +236,8 @@
 
                       <i [class]="servicio.ICONO"></i><br>
                       <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" name="customControl{{i}}" id="customControl{{i}}" [(ngModel)]="servicio.CHECKED">
+                        <input type="checkbox" class="custom-control-input" name="customControl{{i}}"
+                          id="customControl{{i}}" [(ngModel)]="servicio.CHECKED">
                         <label class="custom-control-label"
                           for="customControl{{i}}">{{servicio.SERVICIO | titlecase}}</label>
                       </div>
@@ -259,8 +262,8 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Precio mensual"
-                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required
-                    [(ngModel)]="precio" name="precioMensual">
+                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required [(ngModel)]="precio"
+                    name="precioMensual">
 
                 </div>
                 <small class="form-text text-muted w-100 text-center">
@@ -310,8 +313,7 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Número celular"
-                    [pattern]="regExp.celular" maxlength="10" required
-                    [(ngModel)]="celular" name="numCelular">
+                    [pattern]="regExp.celular" maxlength="10" required [(ngModel)]="celular" name="numCelular">
 
                 </div>
 
@@ -345,6 +347,13 @@
                     required [(ngModel)]="descripcion" name="descripcionPCA" [maxLength]="maxCaracteresDescripcion">
                   </textarea>
                 </div>
+              </div>
+
+              <!--Mensaje de datos incompletos (faltan las fotos)-->
+              <div class="alert alert-secondary" role="alert" *ngIf="datosIncorrectos">
+                <p class="text-center">
+                  Por favor asegurate de ingresar todos los datos requeridos por el formulario.
+                </p>
               </div>
 
               <!--Publicar-->
@@ -383,3 +392,20 @@
     </div>
   </div>
 </div>
+
+
+<!-- Button trigger modal inicio de sesion-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioSesionModal" [hidden]="'true'"
+  #btnInicioSesionModal>
+  Launch iniciar sesion
+</button>
+
+<!--modal mensaje de publicacion/error-->
+<app-mensaje-publicacion [mensaje]="padreMsjPublicacion" [publicado]="padrePublicado" [rutaOferta]="padreRutaOferta">
+</app-mensaje-publicacion>
+
+<!-- Button trigger modal  mensaje de publicacion/error-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMensajePublicar" [hidden]="'true'"
+  #btnMensajePublicarModal>
+  Launch 
+</button>

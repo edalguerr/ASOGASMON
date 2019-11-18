@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:'apartamentos', component: PensionAptoComponent},
   {path:'habitaciones', component: PensionAptoComponent},
   {path:'oferta/:id', component: OfertaDetalladaComponent},
+  {path:'ofertasCasaApto/:id', component: OfertaDetalladaComponent},
   {path:'articulos/:id', component: OfertaDetalladaComponent},
   {path:'perfil/:usuario', component: MiPerfilComponent},
   {path:'publicarPension', component: PublicarPensionComponent},

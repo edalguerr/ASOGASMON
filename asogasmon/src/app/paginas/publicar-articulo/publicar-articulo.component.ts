@@ -136,7 +136,7 @@ export class PublicarArticuloComponent implements OnInit {
             CIUDAD: '',
             LOCALIDAD: ''
           }
-
+ 
           //verificamos que se haya elegido una ubicacion del autocompletado
           if (place.geometry === undefined || place.geometry === null) {
             this.direccionAsginada = false;

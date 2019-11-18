@@ -17,6 +17,8 @@ export class PublicarCasaAptoComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('mapaEstaticoComponent') mapaEstaticoComponent: MapaEstaticoComponent;
+  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
 
   //Ubicacion y configuraciones del mapa
   coordPension = { lat: 4.69855158983652, lng: -74.07194335937498 };
@@ -30,6 +32,11 @@ export class PublicarCasaAptoComponent implements OnInit {
   direccionActual = 'San josé de los campanos av. principal calle #66c-34b';
 
   geocoder;
+
+  //datos a enviar al componente mensaje muplicacion
+  padreMsjPublicacion = "";
+  padrePublicado = false;
+  padreRutaOferta = "/ofertasCasaApto/1";
 
   //variables de control
   habitacionesDisponibles: number = 1;
@@ -62,9 +69,10 @@ export class PublicarCasaAptoComponent implements OnInit {
   rutaImagenes = "assets/";
   imagenPrincipalAgregada = false;
   direccionAsginada = false;
+  datosIncorrectos = false;
   clasesBase = 'fa fa-servicios';
 
-  servicios: Array<{ ICONO: any, SERVICIO: any, ID: any, CHECKED:any }> = [];
+  servicios: Array<{ ICONO: any, SERVICIO: any, ID: any, CHECKED: any }> = [];
 
   titulo;
   descripcion;
@@ -105,17 +113,18 @@ export class PublicarCasaAptoComponent implements OnInit {
     public ubicacionMapaFiltros: UbicacioMapaFiltrosService,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
     private serviciosEspecificos: ServiciosEspecificosService,
-    private usuarioService:UsuarioService
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
-   
+
     this.getLocation();
     this.inicializarAutocompletado();
 
     //recibimos los cambios de direccion del componente mapa
-    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res) => {
-      this.direccionAsginada = res;
+    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res:{dirAsignada, data:any}) => {
+      this.direccionAsginada = res.dirAsignada;
+      this.obtenerDireccion(res.data);
       console.log("Emitido direccion asignada")
     })
 
@@ -129,7 +138,7 @@ export class PublicarCasaAptoComponent implements OnInit {
 
             //agregamos clases css
             element.ICONO += " " + this.clasesBase;
-            this.servicios.push({CHECKED: false, ...element});
+            this.servicios.push({ CHECKED: false, ...element });
           });
 
         },
@@ -174,8 +183,8 @@ export class PublicarCasaAptoComponent implements OnInit {
 
   }
 
-  //para ubicar al momento de publicar la direccion en el mapa, arrastrando
-  //y soltando el marcador, usando latitud y longitud
+  //para ubicar al momento de publicar la direccion en el mapa
+  //Usando latitud y longitud
   obtenerDireccion(data) {
 
     this.coordPension.lat = data.coords.lat;
@@ -193,12 +202,24 @@ export class PublicarCasaAptoComponent implements OnInit {
 
           // si encontró algún resultado.
           if (results[1]) {
-
-            let codigoPostalPublicar;
-            this.direccionAsginada = true;
-
+            //asignamos valores por defecto, cada vez que cambia de ubicacion 
+            //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
+            //tenga menos precision
+            this.resetUbicacion();
 
             this.ubicacionMapaFiltros.direccion = results[1].formatted_address;
+            console.log(results[1])
+
+            this.ofertaNueva.UBICACION.DIRECCION = results[1].formatted_address;
+
+            //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
+            let arrayUbicacion = results[1].formatted_address.split(',');
+            arrayUbicacion = arrayUbicacion.reverse();
+            console.log(arrayUbicacion)
+
+            this.asignarUbicacionArray(arrayUbicacion);
+
+            this.direccionAsginada = true;
 
             //obtenemos el codigo postal de la pension u apartamento
             for (var i = 0; i < results[1].address_components.length; i++) {
@@ -207,11 +228,12 @@ export class PublicarCasaAptoComponent implements OnInit {
 
               if (type.indexOf("postal_code") != -1) {
 
-                codigoPostalPublicar = results[1].address_components[i].long_name;
-
+                this.ofertaNueva.UBICACION.CODIGO_POSTAL = results[1].address_components[i].long_name;
                 //console.log('Codigo Postal: ' + codigoPostalPublicar);
               }
             }
+
+            console.log(this.ofertaNueva.UBICACION)
 
           }
 
@@ -247,13 +269,27 @@ export class PublicarCasaAptoComponent implements OnInit {
           this.coordPension.lng = this.ubicacionMapaFiltros.lng;
 
           this.ubicacionMapaFiltros.zoom = 16;
-          this.ubicacionMapaFiltros.direccion = place.name + ', ' + place.formatted_address;
+          this.ubicacionMapaFiltros.direccion = place.formatted_address;
+          this.obtenerDireccion({coords:{lat: this.coordPension.lat, lng: this.coordPension.lng}})
+          /*
+          //asignamos valores por defecto, cada vez que cambia de ubicacion 
+          //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
+          //tenga menos precision
+          this.resetUbicacion();
+
+          this.ofertaNueva.UBICACION.DIRECCION = place.formatted_address;
+
+          //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
+          let arrayUbicacion = place.formatted_address.split(',');
+          arrayUbicacion = arrayUbicacion.reverse();
+          console.log(arrayUbicacion)
+
+          this.asignarUbicacionArray(arrayUbicacion);
 
           this.direccionAsginada = true;
           console.log(place);
           //cada vez que se busque en caso de ser para publicar se devolvera 
           //la direccion, si es para buscar actualizara las publicaciones
-
 
           //obtenemos el codigo postal de la dirección
           for (var i = 0; i < place.address_components.length; i++) {
@@ -263,20 +299,23 @@ export class PublicarCasaAptoComponent implements OnInit {
             if (type.indexOf("postal_code") != -1) {
 
               //si es para publicar almacenamos el codigo postal
+              this.ofertaNueva.UBICACION.CODIGO_POSTAL = place.address_components[i].long_name;
+
               //si estamos buscando, usamos el codigo postal para hacer una consulta
               //a la base de datos y actualizar
 
               //en caso que sea busqueda, se verifica que le codigo postal correspondiente a la nueva ubicacion sea diferente a la actual
-              if (this.ubicacionMapaFiltros.codigoPostal
+              /*if (this.ubicacionMapaFiltros.codigoPostal
                 != place.address_components[i].long_name) {
                 //lanzamos peticion a la base de datos y actualizamos las ofertas
                 this.ubicacionMapaFiltros.codigoPostal = place.address_components[i].long_name;
-              }
-
+              }*/
+              /*
             }
 
           }
 
+          console.log(this.ofertaNueva.UBICACION)*/
 
         });
       });
@@ -284,6 +323,52 @@ export class PublicarCasaAptoComponent implements OnInit {
     }
     );
 
+  }
+
+  asignarUbicacionArray(arrayUbicacion: Array<any>) {
+
+    //pasando los datos a la variable que contiene los datos de la nueva oferta
+    //teniendo en cuenta la exactitud de la ubicacion proporcionada
+    let exactitud = arrayUbicacion.length;
+    switch (exactitud) {
+      case 1:
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      case 2:
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        break;
+      case 3:
+        this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      case 4:
+        this.ofertaNueva.UBICACION.LOCALIDAD = arrayUbicacion[3].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      default:
+        if (exactitud > 4) {
+          this.ofertaNueva.UBICACION.LOCALIDAD = arrayUbicacion[3].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        }
+        break;
+    }
+  }
+
+  resetUbicacion() {
+    this.ofertaNueva.UBICACION = {
+      PAIS: "",
+      DEPARTAMENTO: "",
+      CIUDAD: "",
+      LOCALIDAD: "",
+      DIRECCION: "",
+      CODIGO_POSTAL: ""
+    }
   }
 
   //validamos que el tamaño de las casaApto tenga un area minimo establecida
@@ -326,28 +411,28 @@ export class PublicarCasaAptoComponent implements OnInit {
   }
 
   //almacenando datos de los radio buttons
-  onChangeTipoInmueble(obj:any){
-    
+  onChangeTipoInmueble(obj: any) {
+
     this.radioTipoInmueble = obj.children[0].value;
   }
 
-  onChangeAmoblada(obj:any){
-    
+  onChangeAmoblada(obj: any) {
+
     this.radioAmoblada = obj.children[0].value;
   }
 
   //obtener servicios especificos
-  serviciosEspecificosSeleccionados(){
-    
+  serviciosEspecificosSeleccionados() {
+
     let serviciosEspecificos = this.servicios.filter(element => {
       return element.CHECKED == true;
     });
 
     let serviciosEspecificosId = [];
-    serviciosEspecificos.forEach( element => {
+    serviciosEspecificos.forEach(element => {
       serviciosEspecificosId.push(element.ID);
     });
-    
+
     return serviciosEspecificosId;
   }
 
@@ -389,35 +474,38 @@ export class PublicarCasaAptoComponent implements OnInit {
       && this.regExp.titulo.test(this.titulo)
       && this.imagenPrincipalAgregada && this.direccionAsginada) {
       console.log('publicar Apto submit')
-      
+
       //obteniendo los datos de la oferta
       this.ofertaNueva.TIPO_INMUEBLE = this.radioTipoInmueble;
       this.ofertaNueva.NUM_HABITACIONES = this.habitacionesDisponibles;
       this.ofertaNueva.NUM_BANIOS = this.numeroBanio;
       this.ofertaNueva.AREA_INMUEBLE = this.dimensionInmueble;
       this.ofertaNueva.ESTANCIA_MINIMA = this.estanciaMinima;
-      this.ofertaNueva.SERVICIOS_PRINCIPALES = ((this.radioServiciosPrincipales == 'si')? 1:0);
-      this.ofertaNueva.AMOBLADA =  ((this.radioAmoblada == 'NOAMOBLADA')? 0:1);
+      this.ofertaNueva.SERVICIOS_PRINCIPALES = ((this.radioServiciosPrincipales == 'si') ? 1 : 0);
+      this.ofertaNueva.AMOBLADA = ((this.radioAmoblada == 'NOAMOBLADA') ? 0 : 1);
       this.ofertaNueva.PRECIO_MENSUAL = this.precio;
       this.ofertaNueva.NUMERO_CELULAR = this.celular;
       this.ofertaNueva.DESCRIPCION = this.descripcion;
       this.ofertaNueva.TITULO_AVISO = this.titulo;
       this.ofertaNueva.SERVICIOS_ESPECIFICOS = this.serviciosEspecificosSeleccionados();
-      
+
       //POR HACER: MENSAJES DE ERROR, PUBLICACION EXITOSA, DE INICIO DE SESION EN CASO DE NO HABER INICIADO SESION
       //Usuario con sesion activa
-      if(this.usuarioService.datos != null){
+      if (this.usuarioService.datos != null) {
         this.ofertaNueva.USUARIO_ID = this.usuarioService.datos.ID;
       }//No ha iniciado sesion
-      else{
-
+      else {
+        //invitamos a iniciar sesion o registrarse antes de publicar
+        this.btnInicioSesionModal.nativeElement.click();
       }
 
       console.log(this.ofertaNueva);
-
+      this.datosIncorrectos = false;
     }
     else {
       console.log('publicar Apto submit invalido')
+       //Faltan datos requeridos para publicar el articulo
+       this.datosIncorrectos = true;
     }
   }
 

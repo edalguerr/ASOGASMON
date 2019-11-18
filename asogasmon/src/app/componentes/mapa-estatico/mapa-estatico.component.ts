@@ -25,7 +25,7 @@ export class MapaEstaticoComponent implements OnInit {
 
   @ViewChild(AgmMap) public agmMap: AgmMap
  
-  @Output() emitEventDragEndHouse:EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Output() emitEventDragEndHouse:EventEmitter<{dirAsignada:Boolean, data:any}> = new EventEmitter<{dirAsignada:Boolean, data:any}>();
 
 
   labelMarker = {
@@ -89,11 +89,14 @@ export class MapaEstaticoComponent implements OnInit {
 
             console.log(results[1].formatted_address); 
             this.ubicacionMapaFiltros.direccion = results[1].formatted_address;
-            console.log(results[1]); 
-
-            //para avisar que se seleccionó una hubicacion arrastrando la casita
-            this.emitEventDragEndHouse.emit(true);
+            
+            //para avisar que se seleccionó una ubicacion arrastrando la casita
+            //para publicar, emitimos la longitud y latitud
+            let coords = {lat: results[1].geometry.location.lat(), lng: results[1].geometry.location.lng()}
+            data.coords = coords;            
+            this.emitEventDragEndHouse.emit({dirAsignada:true, data:data});
             console.log("emitiod por el hijo")
+            
             //obtenemos el codigo postal de la pension u apartamento
             for (var i = 0; i < results[1].address_components.length; i++){
 
