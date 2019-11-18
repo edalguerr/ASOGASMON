@@ -23,7 +23,7 @@ export class PublicarArticuloComponent implements OnInit {
   
   geocoder;
 
-  //datos a enviar al componente mensaje muplicacion
+  //datos a enviar al componente mensaje publicacion
   padreMsjPublicacion = "";
   padrePublicado = false;
   padreRutaOferta = "/articulos/1";
@@ -34,7 +34,7 @@ export class PublicarArticuloComponent implements OnInit {
   imagenPrincipalAgregada = false;
   direccionAsginada = false;
   datosIncorrectos = false;
-
+ 
   categoriaOtros = 'OTROS';
   categoriaAsignada = false;
 

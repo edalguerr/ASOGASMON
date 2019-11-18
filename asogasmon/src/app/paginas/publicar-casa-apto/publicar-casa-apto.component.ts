@@ -7,6 +7,7 @@ import { MapaEstaticoComponent } from 'src/app/componentes/mapa-estatico/mapa-es
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
 import { CasaApto } from 'src/app/interfaces/casa-apto';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/oferta-casa-apto.service';
 
 @Component({
   selector: 'app-publicar-casa-apto',
@@ -113,7 +114,8 @@ export class PublicarCasaAptoComponent implements OnInit {
     public ubicacionMapaFiltros: UbicacioMapaFiltrosService,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
     private serviciosEspecificos: ServiciosEspecificosService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private ofertasCasaAptoService: OfertaCasaAptoService
   ) { }
 
   ngOnInit() {
@@ -122,7 +124,7 @@ export class PublicarCasaAptoComponent implements OnInit {
     this.inicializarAutocompletado();
 
     //recibimos los cambios de direccion del componente mapa
-    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res:{dirAsignada, data:any}) => {
+    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res: { dirAsignada, data: any }) => {
       this.direccionAsginada = res.dirAsignada;
       this.obtenerDireccion(res.data);
       console.log("Emitido direccion asignada")
@@ -270,7 +272,7 @@ export class PublicarCasaAptoComponent implements OnInit {
 
           this.ubicacionMapaFiltros.zoom = 16;
           this.ubicacionMapaFiltros.direccion = place.formatted_address;
-          this.obtenerDireccion({coords:{lat: this.coordPension.lat, lng: this.coordPension.lng}})
+          this.obtenerDireccion({ coords: { lat: this.coordPension.lat, lng: this.coordPension.lng } })
           /*
           //asignamos valores por defecto, cada vez que cambia de ubicacion 
           //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
@@ -310,12 +312,12 @@ export class PublicarCasaAptoComponent implements OnInit {
                 //lanzamos peticion a la base de datos y actualizamos las ofertas
                 this.ubicacionMapaFiltros.codigoPostal = place.address_components[i].long_name;
               }*/
-              /*
-            }
+          /*
+        }
 
-          }
+      }
 
-          console.log(this.ofertaNueva.UBICACION)*/
+      console.log(this.ofertaNueva.UBICACION)*/
 
         });
       });
@@ -489,10 +491,34 @@ export class PublicarCasaAptoComponent implements OnInit {
       this.ofertaNueva.TITULO_AVISO = this.titulo;
       this.ofertaNueva.SERVICIOS_ESPECIFICOS = this.serviciosEspecificosSeleccionados();
 
-      //POR HACER: MENSAJES DE ERROR, PUBLICACION EXITOSA, DE INICIO DE SESION EN CASO DE NO HABER INICIADO SESION
+
       //Usuario con sesion activa
       if (this.usuarioService.datos != null) {
         this.ofertaNueva.USUARIO_ID = this.usuarioService.datos.ID;
+        this.ofertasCasaAptoService.publicarCasaApto(this.ofertaNueva).subscribe((res: { ofertasCasaApto: { ID } }) => {
+
+          //Mensaje de felicidades por publicar articulo
+          this.padreRutaOferta = "/ofertasCasaApto/" + res.ofertasCasaApto.ID;
+          this.padreMsjPublicacion = "Felicidades, se ha publicado tu oferta."
+          this.padrePublicado = true;
+          this.btnMensajePublicarModal.nativeElement.click();
+
+          //reseteamos variables
+          this.resetVariables();
+
+        }, err => {
+
+          console.log('error, no se ha publicado tu oferta')
+          console.log(err);
+
+          //Mensaje de error al publicar oferta
+          this.padreMsjPublicacion = "Estamos presentando inconvenientes para publicar tu oferta en este momento, intentalo nuevamente, si el problema persiste no dudes en contáctarnos";
+
+          this.padrePublicado = false;
+          this.btnMensajePublicarModal.nativeElement.click();
+
+        });
+
       }//No ha iniciado sesion
       else {
         //invitamos a iniciar sesion o registrarse antes de publicar
@@ -504,10 +530,30 @@ export class PublicarCasaAptoComponent implements OnInit {
     }
     else {
       console.log('publicar Apto submit invalido')
-       //Faltan datos requeridos para publicar el articulo
-       this.datosIncorrectos = true;
+      //Faltan datos requeridos para publicar el articulo
+      this.datosIncorrectos = true;
     }
   }
 
+  //variables por defecto para publicar articulo nuevo
+  resetVariables() {
+    this.ofertaNueva = {
+      PRECIO_MENSUAL: 0,
+      DESCRIPCION: "",
+      TITULO_AVISO: "",
+      FOTOS: [],
+      ...this.ofertaNueva
+    }
+
+    this.datosIncorrectos = false;
+    this.imagenPrincipalAgregada = false;
+    this.titulo = "";
+    this.descripcion = "";
+    this.precio = "";
+
+    this.urlImagenPrincipal = '';
+    this.urlImagenes = ["", "", "", "", "", ""];
+
+  }
 
 }
