@@ -60,6 +60,8 @@ import { UsuarioService } from './servicios/usuario.service';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
 import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-articulo.service';
 import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
+import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
+import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
 
 
 @NgModule({
@@ -121,7 +123,9 @@ import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/m
   providers: [
     UbicacioMapaFiltrosService,
     UsuarioService,
-    OfertasArticuloService
+    OfertasArticuloService,
+    OfertaCasaAptoService,
+    ServiciosEspecificosService
   ],
   bootstrap: [AppComponent]
 })

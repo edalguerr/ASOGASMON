@@ -29,8 +29,8 @@
 
             <hr class="w-100">
 
-            <!--Formulario de publicar casa o apartamento--> 
-            <form action="" class="col-12 mt-4 mb-3" (ngSubmit)="guardar()" ngNativeValidate>
+            <!--Formulario de publicar casa o apartamento-->
+            <form action="" class="col-12 mt-4 mb-3" (ngSubmit)="guardar()" ngNativeValidate #formPublicarCasaApto>
 
               <!--Dirección-->
               <div class="form-row justify-content-center">
@@ -55,9 +55,10 @@
                   [longitud]="coordPension.lng" [latitud2]="coordPension.lat" [longitud2]="coordPension.lng"
                   #mapaEstaticoComponent>
                 </app-mapa-estatico>
- 
+
                 <div class="btn direccion-info">
-                  <strong>Dirección:</strong> {{ubicacionMapaFiltros.direccion}}
+                  <strong>Dirección:</strong>
+                  {{ubicacionMapaFiltros.direccion}}
                 </div>
 
               </div>
@@ -68,25 +69,25 @@
                 <h3 class="subtitulo-publicar col-10">Tipo inmueble</h3>
 
                 <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5" data-toggle="buttons">
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="optionsTipoInmueble" id="casa" autocomplete="off">Casa
+                  <label class="btn btn-outline-info" (click)="onChangeTipoInmueble($event.target)">
+                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleCasa" value="CASA" autocomplete="off">Casa
                   </label>
-                  <label class="btn btn-outline-info active" checked>
-                    <input type="radio" name="optionsTipoInmueble" id="apartamento" autocomplete="off">Apartamento
+                  <label class="btn btn-outline-info active" (click)="onChangeTipoInmueble($event.target)">
+                    <input type="radio" name="optionsTipoInmueble" id="tipoInmuebleApartamento" value="APARTAMENTO"  autocomplete="off">Apartamento
                   </label>
                 </div>
-
+      
               </div>
 
               <!--Amoblada o sin amoblar-->
               <div class="row justify-content-center mt-4">
 
                 <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5" data-toggle="buttons">
-                  <label class="btn btn-outline-info ">
-                    <input type="radio" name="optionsAmoblada" autocomplete="off">Amoblada
+                  <label class="btn btn-outline-info " (click)="onChangeAmoblada($event.target)">
+                    <input type="radio" name="optionsAmoblada" value="AMOBLADA" autocomplete="off">Amoblada
                   </label>
-                  <label class="btn btn-outline-info active" checked>
-                    <input type="radio" name="optionsAmoblada" autocomplete="off">Sin amoblar
+                  <label class="btn btn-outline-info active" (click)="onChangeAmoblada($event.target)" checked>
+                    <input type="radio" name="optionsAmoblada" value="NOAMOBLADA" autocomplete="off">Sin amoblar
                   </label>
                 </div>
 
@@ -99,7 +100,7 @@
 
                 <div class="input-group col-6 col-sm-5 col-lg-4">
                   <div class="input-group-prepend">
-                    <button type="button"  class="btn btn-secondary" (click)="aumentarHabitaciones()">
+                    <button type="button" class="btn btn-secondary" (click)="aumentarHabitaciones()">
                       <i class="fa fa-plus"></i>
                     </button>
                   </div>
@@ -150,7 +151,7 @@
 
                   <input type="number" class="form-control text-center" [(ngModel)]="dimensionInmueble"
                     (change)="onChangeDimensionInmueble()" aria-label="Area del inmueble" [min]="minDimensionInmueble"
-                    step="50" name="dimensionInmueble" max="9999999999" [pattern]="regExp.tamInmueble">
+                    step="5" name="dimensionInmueble" max="9999999999" [pattern]="regExp.tamInmueble">
                   <div class="input-group-append">
                     <button type="button" class="btn btn-info">
                       m<sup>2</sup>
@@ -167,7 +168,7 @@
                 <h3 class="subtitulo-publicar col-10">Estancia minima requerida</h3>
 
                 <div class="col-6 col-sm-5 col-md-4">
-                  <select class="custom-select mr-2" name="estanciaMinima">
+                  <select class="custom-select mr-2" name="estanciaMinima" [(ngModel)]="estanciaMinima">
                     <option value="0" selected>Ninguna</option>
                     <option value="1">1 Mes</option>
                     <option value="3">3 Meses</option>
@@ -188,7 +189,8 @@
 
                   <div class="image-upload">
                     <label for="file-input">
-                      <div class="img-thumbnail " [style.background-image]="'url('+urlImagenPrincipal+')'"></div>
+                      <div class="img-thumbnail " [ngStyle]="{'background-image':'url('+urlImagenPrincipal+')'}">
+                      </div>
                       <i class="fa fa-folder-plus fa-file-imagen"></i>
                     </label>
 
@@ -203,7 +205,8 @@
 
                     <div class="image-upload col-4" *ngFor="let urlImagen of urlImagenes; let i = index">
                       <label for="file-input{{i}}">
-                        <div class="img-thumbnail" [style.background-image]="'url('+urlImagen+')' "></div>
+                        <div class="img-thumbnail" [ngStyle]="{'background-image':'url('+urlImagen+')'}">
+                        </div>
                         <i class="fa fa-folder-plus"></i>
                       </label>
 
@@ -220,17 +223,20 @@
               <!--Servicios de la pension-->
               <div class="row justify-content-center mt-5">
 
-                <h3 class="subtitulo-publicar col-10 mb-4">Servicios especificos</h3>
+                <h3 class="subtitulo-publicar col-10 mb-4">
+                  Servicios especificos
+                </h3>
 
                 <div class="col-10">
                   <div class="row">
 
                     <div class="servicio-item col-4 mb-3 " *ngFor="let servicio of servicios;let i = index">
 
-                      <i [class]="servicio.icono"></i><br>
+                      <i [class]="servicio.ICONO"></i><br>
                       <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="customControl{{i}}">
-                        <label class="custom-control-label" for="customControl{{i}}">{{servicio.nombre}}</label>
+                        <input type="checkbox" class="custom-control-input" name="customControl{{i}}" id="customControl{{i}}" [(ngModel)]="servicio.CHECKED">
+                        <label class="custom-control-label"
+                          for="customControl{{i}}">{{servicio.SERVICIO | titlecase}}</label>
                       </div>
 
                     </div>
@@ -253,7 +259,8 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Precio mensual"
-                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required>
+                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required
+                    [(ngModel)]="precio" name="precioMensual">
 
                 </div>
                 <small class="form-text text-muted w-100 text-center">
@@ -272,12 +279,12 @@
 
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="radioServiciosIncluidosSi"
-                      name="serviciosIncluidos" value="si" required>
+                      name="serviciosIncluidos" value="si" [(ngModel)]="radioServiciosPrincipales" required>
                     <label class="custom-control-label" for="radioServiciosIncluidosSi">Si</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="radioServiciosIncluidosNo"
-                      name="serviciosIncluidos" value="no" required>
+                      name="serviciosIncluidos" value="no" [(ngModel)]="radioServiciosPrincipales" required>
                     <label class="custom-control-label" for="radioServiciosIncluidosNo">No</label>
                   </div>
 
@@ -303,7 +310,8 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Número celular"
-                    [pattern]="regExp.celular" maxlength="10" required>
+                    [pattern]="regExp.celular" maxlength="10" required
+                    [(ngModel)]="celular" name="numCelular">
 
                 </div>
 

@@ -19,8 +19,8 @@ export interface CasaApto {
         LOCALIDAD: string,
         DIRECCION: string,
         CODIGO_POSTAL: string
-    },
-    FOTOS: Array<File>,
-    SERVICIOS_ESPECIFICOS: Array<number>
+    };
+    FOTOS: Array<File>;
+    SERVICIOS_ESPECIFICOS: Array<number>;
 
 }
