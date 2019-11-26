@@ -34,7 +34,7 @@ export class PublicarCasaAptoComponent implements OnInit {
 
   geocoder;
 
-  //datos a enviar al componente mensaje muplicacion
+  //datos a enviar al componente mensaje publicacion
   padreMsjPublicacion = "";
   padrePublicado = false;
   padreRutaOferta = "/ofertasCasaApto/1";
@@ -131,16 +131,25 @@ export class PublicarCasaAptoComponent implements OnInit {
     })
 
     //Cargando servicios especificos
+    this.getServiciosEspecificos();
+
+  }
+
+  getServiciosEspecificos() {
+    //Cargando servicios especificos
     if (this.serviciosEspecificos.serviciosEspecificos == null) {
 
       this.serviciosEspecificos.getServiciosEspecificos().subscribe(
         (res: { serviciosEspecificos: Array<{}> }) => {
 
+          console.log(res);
+          this.serviciosEspecificos.serviciosEspecificos = [];
           res.serviciosEspecificos.forEach((element: { ID, ICONO, SERVICIO }) => {
 
             //agregamos clases css
             element.ICONO += " " + this.clasesBase;
             this.servicios.push({ CHECKED: false, ...element });
+            this.serviciosEspecificos.serviciosEspecificos.push(element);
           });
 
         },
@@ -151,7 +160,12 @@ export class PublicarCasaAptoComponent implements OnInit {
       )
 
     }
-
+    else {
+      this.serviciosEspecificos.serviciosEspecificos.forEach(element => {
+        element.ICONO += " " + this.clasesBase;
+        this.servicios.push({ CHECKED: false, ...element });
+      })
+    }
   }
 
   //obtener ubicacion actual

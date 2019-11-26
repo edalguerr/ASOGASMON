@@ -62,6 +62,7 @@ import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-art
 import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
 import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
+import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
 
 
 @NgModule({
@@ -125,7 +126,8 @@ import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/se
     UsuarioService,
     OfertasArticuloService,
     OfertaCasaAptoService,
-    ServiciosEspecificosService
+    ServiciosEspecificosService,
+    NormasCasaService
   ],
   bootstrap: [AppComponent]
 })
