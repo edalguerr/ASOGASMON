@@ -1,19 +1,18 @@
-
 <div class="container-fluid contenedor-body">
   <div class="row">
     <div class="col ">
-  
+
       <!--NAVEGACION Y ENCABEZADO-->
       <div class="row">
-          <header class="col" role="heading">
+        <header class="col" role="heading">
           <!--Barra de navegacion-->
           <app-barra-navegacion></app-barra-navegacion>
-          </header>
+        </header>
       </div>
-  
+
       <!--MAIN-->
-      <main class="row justify-content-center contenedor-main"  role="main">
-       
+      <main class="row justify-content-center contenedor-main" role="main">
+
         <div class="col-11 col-lg-10 card card-contenedor-principal">
           <div class="card-body card-body-contenedor-principal">
 
@@ -21,9 +20,9 @@
             <header class="col-12 mb-4">
               <h2 class="titulo-publicar text-center">Publica tu pension</h2>
               <p class="parrafo-introductorio-publicar">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Amet, iure! Consectetur, eaque eius, maiores nulla ducimus, 
-                temporibus sunt ipsam doloremque amet nihil corporis repellendus? 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Amet, iure! Consectetur, eaque eius, maiores nulla ducimus,
+                temporibus sunt ipsam doloremque amet nihil corporis repellendus?
                 Quo ullam dolore ipsa culpa quia.
               </p>
             </header>
@@ -32,14 +31,16 @@
 
             <!--Formulario de publicar pension-->
             <form action="" class="col-12 mt-4 mb-3" (ngSubmit)="guardar()" ngNativeValidate>
-              
+
               <!--Dirección-->
               <div class="form-row justify-content-center">
 
-                <h3 class="subtitulo-publicar col-12 col-sm-10 ">Ingresa la dirección de tu pension o ubicala en el mapa</h3>
+                <h3 class="subtitulo-publicar col-12 col-sm-10 ">Ingresa la dirección de tu pension o ubicala en el mapa
+                </h3>
 
                 <div class="input-group form-group col-12 col-sm-11 col-md-10">
-                  <input type="text" class="form-control" placeholder="Ingrese la direccion" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+                  <input type="text" class="form-control" placeholder="Ingrese la direccion" autocorrect="off"
+                    autocapitalize="off" spellcheck="off" #search>
                   <div class="input-group-append">
                     <a class="btn btn-primary text-white">
                       <i class="fa fa-map-marker"></i>
@@ -47,8 +48,11 @@
                   </div>
                 </div>
 
-                <app-mapa-estatico class="col-12 col-sm-11 col-md-10" [textPrecio]="textPrecio" [iconoPrecio]="iconoPrecio" [minZoom]="minZoom" [streetViewControl]="streetViewControl" [draggable]="draggable" [fullScreenMapa]="fullScreenMapa" [latitud]="coordPension.lat" [longitud]="coordPension.lng" [latitud2]="coordPension.lat" [longitud2]="coordPension.lng" 
-                #mapaEstaticoComponent>
+                <app-mapa-estatico class="col-12 col-sm-11 col-md-10" [textPrecio]="textPrecio"
+                  [iconoPrecio]="iconoPrecio" [minZoom]="minZoom" [streetViewControl]="streetViewControl"
+                  [draggable]="draggable" [fullScreenMapa]="fullScreenMapa" [latitud]="coordPension.lat"
+                  [longitud]="coordPension.lng" [latitud2]="coordPension.lat" [longitud2]="coordPension.lng"
+                  #mapaEstaticoComponent>
                 </app-mapa-estatico>
 
                 <div class="btn direccion-info">
@@ -56,7 +60,7 @@
                 </div>
 
               </div>
-              
+
               <!--Habitaciones disponibles-->
               <div class="row justify-content-center mt-5">
 
@@ -68,7 +72,8 @@
                       <i class="fa fa-plus"></i>
                     </button>
                   </div>
-                  <input type="number" class="form-control text-center" [(ngModel)]="habitacionesDisponibles" aria-label="Habitaciones disponibles" min="1" max="10" name="habitacionesDisponibles">
+                  <input type="number" class="form-control text-center" [(ngModel)]="habitacionesDisponibles"
+                    aria-label="Habitaciones disponibles" min="1" max="10" name="habitacionesDisponibles">
                   <div class="input-group-append">
                     <button class="btn btn-secondary" type="button" (click)="disminuirHabitaciones()">
                       <i class="fa fa-minus"></i>
@@ -77,23 +82,24 @@
                 </div>
 
               </div>
- 
+
               <!--Habitacion(es) individual(es) o compartida(s)-->
               <div class="row justify-content-center mt-4">
 
                 <!--una habitacion-->
-                <div *ngIf="habitacionesDisponibles == 1" class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-4" data-toggle="buttons">
-                  <label class="btn btn-outline-info active">
-                    <input type="radio" name="optionsIndividualCompartida" id="individual" autocomplete="off" checked>Individual
+                <div *ngIf="habitacionesDisponibles == 1"
+                  class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-4" data-toggle="buttons">
+                  <label class="btn btn-outline-info active" (click)="onChangeTipoHabitacion($event.target)">
+                    <input type="radio" name="optionIndividualCompartida" value="INDIVIDUAL" checked>Individual
                   </label>
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="optionsIndividualCompartida" id="compartida" autocomplete="off">Compartida
-                  </label>      
+                  <label class="btn btn-outline-info" (click)="onChangeTipoHabitacion($event.target)">
+                    <input type="radio" name="optionIndividualCompartida" value="COMPARTIDA">Compartida
+                  </label>
                 </div>
 
                 <!--varias habitaciones-->
                 <div *ngIf="habitacionesDisponibles > 1" class="col-12">
-                    
+
                   <!--Titulos-->
                   <div class="row justify-content-around">
                     <h3 class="subtitulo-publicar col-5 font-weight-normal">Habitaciones individuales</h3>
@@ -102,7 +108,7 @@
 
                   <!--cantidad de habitaciones-->
                   <div class="row justify-content-around ">
-                    
+
                     <!--individuales-->
                     <div class="input-group col-6 col-sm-5 col-lg-4">
                       <div class="input-group-prepend">
@@ -111,15 +117,17 @@
                         </button>
                       </div>
 
-                      <input type="number" class="form-control text-center" [(ngModel)]="cantIndividuales" aria-label="Habitaciones individuales" min="0" [max]="habitacionesDisponibles" name="cantIndividuales">
-                      
+                      <input type="number" class="form-control text-center" [(ngModel)]="cantIndividuales"
+                        aria-label="Habitaciones individuales" min="0" [max]="habitacionesDisponibles"
+                        name="cantIndividuales">
+
                       <div class="input-group-append">
                         <button class="btn btn-info" type="button" (click)="disminuirCantIndividuales()">
                           <i class="fa fa-minus"></i>
                         </button>
                       </div>
                     </div>
-                    
+
                     <!--compartidas-->
                     <div class="input-group col-6 col-sm-5 col-lg-4">
                       <div class="input-group-prepend">
@@ -128,8 +136,10 @@
                         </button>
                       </div>
 
-                      <input type="number" class="form-control text-center" [(ngModel)]="cantCompartidas" aria-label="Habitaciones compartidas" min="0" [max]="habitacionesDisponibles" name="cantCompartidas">
-                      
+                      <input type="number" class="form-control text-center" [(ngModel)]="cantCompartidas"
+                        aria-label="Habitaciones compartidas" min="0" [max]="habitacionesDisponibles"
+                        name="cantCompartidas">
+
                       <div class="input-group-append">
                         <button class="btn btn-info" type="button" (click)="disminuirCantCompartidas()">
                           <i class="fa fa-minus"></i>
@@ -138,9 +148,9 @@
                     </div>
 
                   </div>
-                  
+
                 </div>
-  
+
               </div>
 
               <!--Habitaciones con baño interno-->
@@ -155,8 +165,10 @@
                     </button>
                   </div>
 
-                  <input type="number" class="form-control text-center" [(ngModel)]="habitacioneBanioInterno" aria-label="Habitaciones con baño interno" min="0" [max]="habitacionesDisponibles" name="habitacioneBanioInterno">
-                  
+                  <input type="number" class="form-control text-center" [(ngModel)]="habitacioneBanioInterno"
+                    aria-label="Habitaciones con baño interno" min="0" [max]="habitacionesDisponibles"
+                    name="habitacioneBanioInterno">
+
                   <div class="input-group-append">
                     <button class="btn btn-info" type="button" (click)="disminuirHabitacioneBanioInterno()">
                       <i class="fa fa-minus"></i>
@@ -165,22 +177,25 @@
                 </div>
 
               </div>
-              
+
               <!--Generos admitidos-->
               <div class="row justify-content-center mt-5">
 
-                <h3 class="subtitulo-publicar col-10">Generos admitidos</h3>
+                <h3 class="subtitulo-publicar col-10">Genero admitido</h3>
 
                 <div class="btn-group btn-group-toggle col-9 col-md-8 col-lg-6" data-toggle="buttons">
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="optionsGenerosAdmitidos" id="hombres" autocomplete="off" value="hombres" required>Hombres
+                  <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                    <input type="radio" name="optionsGenerosAdmitidos" id="hombres" autocomplete="off" value="HOMBRES"
+                      required>Hombre
                   </label>
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="optionsGenerosAdmitidos" id="mujeres" autocomplete="off" value="mujeres" required>Mujeres
-                  </label>     
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="optionsGenerosAdmitidos" id="todos" autocomplete="off" value="todos" required>Todos
-                  </label>    
+                  <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                    <input type="radio" name="optionsGenerosAdmitidos" id="mujeres" autocomplete="off" value="MUJERES"
+                      required>Mujer
+                  </label>
+                  <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                    <input type="radio" name="optionsGenerosAdmitidos" id="todos" autocomplete="off" value="TODOS"
+                      required>Todos
+                  </label>
                 </div>
 
               </div>
@@ -191,12 +206,12 @@
                 <h3 class="subtitulo-publicar col-10">Alimentacion incluida</h3>
 
                 <div class="btn-group btn-group-toggle col-6 col-md-5 col-lg-4" data-toggle="buttons">
-                  <label class="btn btn-outline-info active">
-                    <input type="radio" name="opitionsAlimentacion" id="si" autocomplete="off" checked>Si
+                  <label class="btn btn-outline-info active" (click)="onChangeAlimentacionIncluida($event.target)">
+                    <input type="radio" name="opitionsAlimentacion" value="SI" autocomplete="off" checked>Si
                   </label>
-                  <label class="btn btn-outline-info">
-                    <input type="radio" name="opitionsAlimentacion" id="no" autocomplete="off">No
-                  </label>                   
+                  <label class="btn btn-outline-info" (click)="onChangeAlimentacionIncluida($event.target)">
+                    <input type="radio" name="opitionsAlimentacion" value="NO" autocomplete="off">No
+                  </label>
                 </div>
 
               </div>
@@ -207,31 +222,32 @@
                 <h3 class="subtitulo-publicar col-10 mb-4">Agregue al menos 1 foto de la pension</h3>
 
                 <div class="col-6 col-md-4 img-principal align-self-center">
-                  
+
                   <div class="image-upload">
                     <label for="file-input">
                       <div class="img-thumbnail " [style.background-image]="'url('+urlImagenPrincipal+')'"></div>
                       <i class="fa fa-folder-plus fa-file-imagen"></i>
                     </label>
-                  
-                    
-                    <input id="file-input" type="file" accept="image/*" (change)="onSelectFile($event)"/>
+
+
+                    <input id="file-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
                   </div>
 
-                </div> 
+                </div>
 
                 <div class="col-12 col-sm-10 col-md-8">
                   <div class="row">
-                    
+
                     <div class="image-upload col-4" *ngFor="let urlImagen of urlImagenes; let i = index">
                       <label for="file-input{{i}}">
-                        <div class="img-thumbnail" [style.background-image]="'url('+urlImagen+')' "></div> 
+                        <div class="img-thumbnail" [style.background-image]="'url('+urlImagen+')' "></div>
                         <i class="fa fa-folder-plus"></i>
                       </label>
-                    
-                      <input id="file-input{{i}}" type="file" accept="image/*" (change)="onSelectFileSecond($event, i)"/>
+
+                      <input id="file-input{{i}}" type="file" accept="image/*"
+                        (change)="onSelectFileSecond($event, i)" />
                     </div>
-                  
+
                   </div>
                 </div>
 
@@ -239,7 +255,7 @@
 
               <!--Nro de personas que viven en la pension-->
               <div class="row justify-content-center mt-5">
-                
+
                 <h3 class="subtitulo-publicar col-10 mb-4">¿Cuantas personas viven en la pension?</h3>
 
                 <div class="input-group col-6 col-sm-5 col-lg-4">
@@ -249,32 +265,37 @@
                     </button>
                   </div>
 
-                  <input type="number" class="form-control text-center" [(ngModel)]="nroHabitantes" aria-label="Numero de habitantes" [min]="minHabitantes" [max]="maxHabitantes" name="nroHabitantes">
-                  
+                  <input type="number" class="form-control text-center" [(ngModel)]="nroHabitantes"
+                    aria-label="Numero de habitantes" [min]="minHabitantes" [max]="maxHabitantes" name="nroHabitantes">
+
                   <div class="input-group-append">
                     <button class="btn btn-secondary" type="button" (click)="disminuirHabitantes()">
                       <i class="fa fa-minus"></i>
                     </button>
                   </div>
                 </div>
-              
+
               </div>
 
 
               <!--Servicios de la pension-->
               <div class="row justify-content-center mt-5">
 
-                <h3 class="subtitulo-publicar col-10 mb-4">Servicios especificos</h3>
+                <h3 class="subtitulo-publicar col-10 mb-4">
+                  Servicios especificos
+                </h3>
 
                 <div class="col-10">
                   <div class="row">
 
                     <div class="servicio-item col-4 mb-3 " *ngFor="let servicio of servicios;let i = index">
-                      
-                      <i [class]="servicio.icono"></i><br>
+
+                      <i [class]="servicio.ICONO"></i><br>
                       <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="customControl{{i}}">
-                        <label class="custom-control-label" for="customControl{{i}}">{{servicio.nombre}}</label>
+                        <input type="checkbox" class="custom-control-input" name="customControl{{i}}"
+                          id="customControl{{i}}" [(ngModel)]="servicio.CHECKED">
+                        <label class="custom-control-label"
+                          for="customControl{{i}}">{{servicio.SERVICIO | titlecase}}</label>
                       </div>
 
                     </div>
@@ -290,38 +311,24 @@
                 <h3 class="subtitulo-publicar col-10 mb-4">Reglas de la casa</h3>
 
                 <div class="col-10">
-                  
+
                   <ul class="list-group list-group-flush">
 
                     <li class="list-group-item text-center" *ngFor="let reglaI of reglasCasa">
-                      
-                      <label class="d-block">{{reglaI.regla}}</label>
+
+                      <label class="d-block">{{reglaI.NORMA | lowercase}}</label>
 
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="radio{{reglaI.name | titlecase}}Si" name="{{reglaI.name}}" value="si">
-                        <label class="custom-control-label" for="radio{{reglaI.name | titlecase}}Si">Si</label>
+                        <input type="radio" class="custom-control-input" id="radio{{reglaI.ID}}Si"
+                          name="radio{{reglaI.ID}}" value="SI" [(ngModel)]="reglaI.CHECKED">
+                        <label class="custom-control-label" for="radio{{reglaI.ID}}Si">Si</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="radio{{reglaI.name | titlecase}}No" name="{{reglaI.name}}" value="no">
-                        <label class="custom-control-label" for="radio{{reglaI.name | titlecase}}No">No</label>
+                        <input type="radio" class="custom-control-input" id="radio{{reglaI.ID}}No"
+                          name="radio{{reglaI.ID}}" value="NO" [(ngModel)]="reglaI.CHECKED">
+                        <label class="custom-control-label" for="radio{{reglaI.ID}}No">No</label>
                       </div>
 
-                    </li>
-
-                    <li class="list-group-item text-center">
-                      <div class="form-row justify-content-center text-center">
-                        <label class="col-10">Horario de la pension</label>
-
-                        <div class="col-5 col-sm-4">
-                          <label>Apertura</label>
-                          <input type="time" class="form-control time-control" [value]="horarioApertura">
-                        </div>
-   
-                        <div class="col-5 col-sm-4">
-                          <label>Cierre</label> 
-                          <input type="time" class="form-control time-control" [value]="horarioCierre" >
-                        </div>
-                      </div>
                     </li>
 
                   </ul>
@@ -343,12 +350,15 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Precio mensual"
-                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required>
+                    aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" [(ngModel)]="precio"
+                    name="precioMensual" required>
 
                 </div>
+
                 <small class="form-text text-muted w-100 text-center">
                   Ingrese el precio sin puntos ni simbolos.
                 </small>
+
               </div>
 
               <!--Nro. Celular-->
@@ -369,7 +379,7 @@
                   </div>
 
                   <input type="tel" class="form-control text-center" placeholder="Número celular"
-                    [pattern]="regExp.celular" maxlength="10" required>
+                    [pattern]="regExp.celular" maxlength="10" [(ngModel)]="celular" name="numCelular" required>
 
                 </div>
 
@@ -405,40 +415,52 @@
                 </div>
               </div>
 
+              <!--Mensaje de datos incompletos (faltan las fotos)-->
+              <div class="alert alert-secondary" role="alert" *ngIf="datosIncorrectos">
+                <p class="text-center">
+                  Por favor asegurate de ingresar todos los datos requeridos por el formulario adecuadamente.
+                </p>
+              </div>
+
               <!--Publicar-->
               <div class="row justify-content-center mt-5">
 
                 <div class="form-group col-6 col-md-5">
                   <button type="submit" class="btn btn-publicar btn-block font-weight-bold">Públicar</button>
-                </div> 
+                </div>
 
               </div>
 
-            </form>      
+            </form>
 
           </div>
         </div>
 
       </main>
-  
+
       <!--ASIDE(banner publicitario)-->
       <div class="row mt-4">
         <aside class="col text-white text-center">
           <div class="rounded banner-promocional">
             <h5>esto es una publicidad</h5>
-          </div>          
+          </div>
         </aside>
       </div>
-      
-  
+
+
       <!--FOOTER-->
       <div class="row mt-4">
-          <footer class="col" role="">
+        <footer class="col" role="">
           <app-pie-pagina></app-pie-pagina>
-          </footer>
+        </footer>
       </div>
-  
+
     </div>
   </div>
 </div>
-  
+
+<!-- Button trigger modal inicio de sesion-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioSesionModal" [hidden]="'true'"
+  #btnInicioSesionModal>
+  Launch iniciar sesion
+</button>

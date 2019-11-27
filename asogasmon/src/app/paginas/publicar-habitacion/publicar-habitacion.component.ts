@@ -37,7 +37,7 @@ export class PublicarHabitacionComponent implements OnInit {
   padreRutaOferta = "/ofertasHabitacion/1";
 
   geocoder;
-
+ 
   //variables de control
   minDimensionInmueble = 0;
   maxHabitantes = 12;
