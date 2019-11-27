@@ -464,3 +464,13 @@
   #btnInicioSesionModal>
   Launch iniciar sesion
 </button>
+
+<!--modal mensaje de publicacion/error-->
+<app-mensaje-publicacion [mensaje]="padreMsjPublicacion" [publicado]="padrePublicado" [rutaOferta]="padreRutaOferta">
+</app-mensaje-publicacion>
+
+<!-- Button trigger modal  mensaje de publicacion/error-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMensajePublicar" [hidden]="'true'"
+  #btnMensajePublicarModal>
+  Launch
+</button>

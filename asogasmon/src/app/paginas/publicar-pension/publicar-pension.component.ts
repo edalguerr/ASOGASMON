@@ -8,6 +8,7 @@ import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecifi
 import { NormasCasaService } from 'src/app/servicios/nomasCasa/normas-casa.service';
 import { Pension } from 'src/app/interfaces/pension';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { OfertasPensionService } from 'src/app/servicios/ofertasPensiones/ofertas-pension.service';
 
 @Component({
   selector: 'app-publicar-pension',
@@ -31,6 +32,11 @@ export class PublicarPensionComponent implements OnInit {
   textPrecio = false;
 
   geocoder;
+
+  //datos a enviar al componente mensaje publicacion
+  padreMsjPublicacion = "";
+  padrePublicado = false;
+  padreRutaOferta = "/ofertasPension/1";
 
   //Variables de control
   maxHabitantes = 12;
@@ -114,7 +120,8 @@ export class PublicarPensionComponent implements OnInit {
     private ngZone: NgZone,
     private serviciosEspecificos: ServiciosEspecificosService,
     private normasCasaService: NormasCasaService,
-    private usuarioService:UsuarioService
+    private usuarioService:UsuarioService,
+    private ofertaPensionService:OfertasPensionService
   ) { }
 
   ngOnInit() {
@@ -615,10 +622,10 @@ export class PublicarPensionComponent implements OnInit {
         if (this.usuarioService.datos != null) {
           this.ofertaNueva.USUARIO_ID = this.usuarioService.datos.ID;
 
-          /*this.ofertaHabitacionService.publicarHabitacion(this.ofertaNueva).subscribe((res: { ofertasHabitacion: { ID } }) => {
+          this.ofertaPensionService.publicarPension(this.ofertaNueva).subscribe((res: { ofertasPension: { ID } }) => {
 
             //Mensaje de felicidades por publicar articulo
-            this.padreRutaOferta = "/ofertasHabitacion/" + res.ofertasHabitacion.ID;
+            this.padreRutaOferta = "/ofertasPension/" + res.ofertasPension.ID;
             this.padreMsjPublicacion = "Felicidades, se ha publicado tu oferta."
             this.padrePublicado = true;
             this.btnMensajePublicarModal.nativeElement.click();
@@ -637,7 +644,7 @@ export class PublicarPensionComponent implements OnInit {
             this.padrePublicado = false;
             this.btnMensajePublicarModal.nativeElement.click();
 
-          });*/
+          });
 
         }//No ha iniciado sesion
         else {
@@ -657,5 +664,27 @@ export class PublicarPensionComponent implements OnInit {
       this.datosIncorrectos = true;
     }
   }
+
+//variables por defecto para publicar articulo nuevo
+resetVariables() {
+  this.ofertaNueva = {
+    PRECIO_MENSUAL: 0,
+    DESCRIPCION_AVISO: "",
+    TITULO_AVISO: "",
+    FOTOS: [],
+    ...this.ofertaNueva
+  }
+
+  this.datosIncorrectos = false;
+  this.imagenPrincipalAgregada = false;
+  this.titulo = "";
+  this.descripcion = "";
+  this.precio = "";
+
+  this.urlImagenPrincipal = '';
+  this.urlImagenes = ["", "", "", "", "", ""];
+
+}
+
 
 }

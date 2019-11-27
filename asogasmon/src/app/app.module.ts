@@ -64,6 +64,7 @@ import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
 import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-habitacion.service';
+import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pension.service';
 
 
 @NgModule({
@@ -128,6 +129,7 @@ import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-
     OfertasArticuloService,
     OfertaCasaAptoService,
     OfertaHabitacionService,
+    OfertasPensionService,
     ServiciosEspecificosService,
     NormasCasaService
   ],
