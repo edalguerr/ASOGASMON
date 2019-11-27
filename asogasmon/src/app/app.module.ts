@@ -63,6 +63,7 @@ import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/m
 import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
+import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-habitacion.service';
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
     UsuarioService,
     OfertasArticuloService,
     OfertaCasaAptoService,
+    OfertaHabitacionService,
     ServiciosEspecificosService,
     NormasCasaService
   ],

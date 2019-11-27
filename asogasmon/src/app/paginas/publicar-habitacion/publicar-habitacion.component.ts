@@ -7,7 +7,8 @@ import { MapaEstaticoComponent } from 'src/app/componentes/mapa-estatico/mapa-es
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from 'src/app/servicios/nomasCasa/normas-casa.service';
 import { Habitacion } from 'src/app/interfaces/habitacion';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { OfertaHabitacionService } from 'src/app/servicios/ofertasHabitaciones/oferta-habitacion.service';
 
 @Component({
   selector: 'app-publicar-habitacion',
@@ -18,6 +19,8 @@ export class PublicarHabitacionComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('mapaEstaticoComponent') mapaEstaticoComponent: MapaEstaticoComponent;
+  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
 
   //ubicacion y configuracion del mapa
   coordPension = { lat: 4.69855158983652, lng: -74.07194335937498 };
@@ -28,6 +31,10 @@ export class PublicarHabitacionComponent implements OnInit {
   iconoPrecio = false;
   textPrecio = false;
 
+  //datos a enviar al componente mensaje publicacion
+  padreMsjPublicacion = "";
+  padrePublicado = false;
+  padreRutaOferta = "/ofertasHabitacion/1";
 
   geocoder;
 
@@ -40,12 +47,13 @@ export class PublicarHabitacionComponent implements OnInit {
   rutaImagenes = "assets/";
   imagenPrincipalAgregada = false;
   direccionAsginada = false;
+  datosIncorrectos = false;
   maxCaracteresTitulo = 70;
   maxCaracteresDescripcion = 300;
   clasesBase = 'fa fa-servicios';
 
 
-  reglasCasa: Array<{ ID: any, NORMA: any }> = [];
+  reglasCasa: Array<{ ID: any, NORMA: any, CHECKED: any  }> = [];
   servicios: Array<{ ICONO: any, SERVICIO: any, ID: any, CHECKED: any }> = [];
 
   //opciones de autocompletado
@@ -112,7 +120,9 @@ export class PublicarHabitacionComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private serviciosEspecificos: ServiciosEspecificosService,
-    private normasCasaService: NormasCasaService
+    private normasCasaService: NormasCasaService,
+    private usuarioService:UsuarioService,
+    private ofertaHabitacionService:OfertaHabitacionService
   ) { }
 
   ngOnInit() {
@@ -178,7 +188,7 @@ export class PublicarHabitacionComponent implements OnInit {
           this.normasCasaService.normasCasa = [];
           res.normasCasa.forEach((element: { ID, NORMA }) => {
 
-            this.reglasCasa.push(element);
+            this.reglasCasa.push({CHECKED:false, ...element});
             this.normasCasaService.normasCasa.push(element);
           });
 
@@ -192,7 +202,7 @@ export class PublicarHabitacionComponent implements OnInit {
     } else {
       this.normasCasaService.normasCasa.forEach(element => {
 
-        this.reglasCasa.push(element);
+        this.reglasCasa.push({CHECKED:false, ...element});
       })
     }
 
@@ -447,8 +457,7 @@ export class PublicarHabitacionComponent implements OnInit {
 
   onChangeGenerosAdmitidos(obj: any) {
 
-    this.radioGeneroAdmitido = obj.children[0].value;
-    console.log(this.radioGeneroAdmitido);
+    this.radioGeneroAdmitido = obj.children[0].value;    
   }
 
   //obtener servicios especificos
@@ -466,7 +475,22 @@ export class PublicarHabitacionComponent implements OnInit {
     return serviciosEspecificosId;
   }
 
+  //obtener normas de la casa 
+  normasCasaSeleccionadas() {
 
+    let normasCasa = this.reglasCasa.filter(element => {
+      return element.CHECKED == 'SI';
+    });
+
+    let normasCasaId = [];
+    normasCasa.forEach(element => {
+      normasCasaId.push(element.ID);
+    });
+
+    return normasCasaId;
+  }
+  
+ 
   guardar() {
 
     //para protegernos de descripciones o titulos mas largas de lo permitido
@@ -489,16 +513,72 @@ export class PublicarHabitacionComponent implements OnInit {
       this.ofertaNueva.TITULO_AVISO = this.titulo;
       this.ofertaNueva.DESCRIPCION = this.descripcion;
       this.ofertaNueva.SERVICIOS_ESPECIFICOS = this.serviciosEspecificosSeleccionados();
-      
-      //this.ofertaNueva.USUARIO_ID =   
+      this.ofertaNueva.NORMAS_CASA = this.normasCasaSeleccionadas();
+
+      //Usuario con sesion activa
+      if (this.usuarioService.datos != null) {
+        this.ofertaNueva.USUARIO_ID = this.usuarioService.datos.ID;
+
+        this.ofertaHabitacionService.publicarHabitacion(this.ofertaNueva).subscribe((res: { ofertasHabitacion: { ID } }) => {
+
+          //Mensaje de felicidades por publicar articulo
+          this.padreRutaOferta = "/ofertasHabitacion/" + res.ofertasHabitacion.ID;
+          this.padreMsjPublicacion = "Felicidades, se ha publicado tu oferta."
+          this.padrePublicado = true;
+          this.btnMensajePublicarModal.nativeElement.click();
+
+          //reseteamos variables
+          this.resetVariables();
+
+        }, err => {
+
+          console.log('error, no se ha publicado tu oferta')
+          console.log(err);
+
+          //Mensaje de error al publicar oferta
+          this.padreMsjPublicacion = "Estamos presentando inconvenientes para publicar tu oferta en este momento, intentalo nuevamente. Si el problema persiste no dudes en contáctarnos";
+
+          this.padrePublicado = false;
+          this.btnMensajePublicarModal.nativeElement.click();
+
+        });
+
+      }//No ha iniciado sesion
+      else {
+        //invitamos a iniciar sesion o registrarse antes de publicar
+        this.btnInicioSesionModal.nativeElement.click();
+      } 
 
       console.log(this.ofertaNueva);
-
+      this.datosIncorrectos = false;
     }
     else {
       console.log('publicar Habitación submit invalido')
+      //Faltan datos requeridos para publicar el articulo
+      this.datosIncorrectos = true;
     }
 
   }
+ 
+  //variables por defecto para publicar articulo nuevo
+  resetVariables() {
+    this.ofertaNueva = {
+      PRECIO_MENSUAL: 0,
+      DESCRIPCION: "",
+      TITULO_AVISO: "",
+      FOTOS: [],
+      ...this.ofertaNueva
+    }
 
+    this.datosIncorrectos = false;
+    this.imagenPrincipalAgregada = false;
+    this.titulo = "";
+    this.descripcion = "";
+    this.precio = "";
+
+    this.urlImagenPrincipal = '';
+    this.urlImagenes = ["", "", "", "", "", ""];
+
+  }
+ 
 }

@@ -300,20 +300,20 @@
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input"
                                                     id="radio{{reglaI.ID}}Si" name="radio{{reglaI.ID}}"
-                                                    value="si">
+                                                    value="SI" [(ngModel)]="reglaI.CHECKED">
                                                 <label class="custom-control-label"
                                                     for="radio{{reglaI.ID}}Si">Si</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" class="custom-control-input"
                                                     id="radio{{reglaI.ID}}No" name="radio{{reglaI.ID}}"
-                                                    value="no">
+                                                    value="NO" [(ngModel)]="reglaI.CHECKED">
                                                 <label class="custom-control-label"
                                                     for="radio{{reglaI.ID}}No">No</label>
                                             </div>
 
                                         </li>
-                                        
+
                                     </ul>
 
                                 </div>
@@ -400,6 +400,13 @@
                                 </div>
                             </div>
 
+                            <!--Mensaje de datos incompletos (faltan las fotos)-->
+                            <div class="alert alert-secondary" role="alert" *ngIf="datosIncorrectos">
+                                <p class="text-center">
+                                    Por favor asegurate de ingresar todos los datos requeridos por el formulario.
+                                </p>
+                            </div>
+
                             <!--Publicar-->
                             <div class="row justify-content-center mt-5">
 
@@ -437,3 +444,18 @@
         </div>
     </div>
 </div>
+
+
+<!-- Button trigger modal inicio de sesion-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioSesionModal" [hidden]="'true'" #btnInicioSesionModal>
+    Launch iniciar sesion
+</button>
+
+<!--modal mensaje de publicacion/error-->
+<app-mensaje-publicacion [mensaje]="padreMsjPublicacion" [publicado]="padrePublicado" [rutaOferta]="padreRutaOferta">
+</app-mensaje-publicacion>
+
+<!-- Button trigger modal  mensaje de publicacion/error-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMensajePublicar" [hidden]="'true'" #btnMensajePublicarModal>
+    Launch
+</button>

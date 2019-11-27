@@ -480,7 +480,7 @@ export class PublicarCasaAptoComponent implements OnInit {
           console.log(err);
 
           //Mensaje de error al publicar oferta
-          this.padreMsjPublicacion = "Estamos presentando inconvenientes para publicar tu oferta en este momento, intentalo nuevamente, si el problema persiste no dudes en contáctarnos";
+          this.padreMsjPublicacion = "Estamos presentando inconvenientes para publicar tu oferta en este momento, intentalo nuevamente. Si el problema persiste no dudes en contáctarnos";
 
           this.padrePublicado = false;
           this.btnMensajePublicarModal.nativeElement.click();
