@@ -30,7 +30,6 @@ export class PublicarCasaAptoComponent implements OnInit {
   iconoPrecio = false;
   textPrecio = false;
 
-  direccionActual = 'San josé de los campanos av. principal calle #66c-34b';
 
   geocoder;
 
@@ -287,52 +286,7 @@ export class PublicarCasaAptoComponent implements OnInit {
           this.ubicacionMapaFiltros.zoom = 16;
           this.ubicacionMapaFiltros.direccion = place.formatted_address;
           this.obtenerDireccion({ coords: { lat: this.coordPension.lat, lng: this.coordPension.lng } })
-          /*
-          //asignamos valores por defecto, cada vez que cambia de ubicacion 
-          //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
-          //tenga menos precision
-          this.resetUbicacion();
-
-          this.ofertaNueva.UBICACION.DIRECCION = place.formatted_address;
-
-          //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
-          let arrayUbicacion = place.formatted_address.split(',');
-          arrayUbicacion = arrayUbicacion.reverse();
-          console.log(arrayUbicacion)
-
-          this.asignarUbicacionArray(arrayUbicacion);
-
-          this.direccionAsginada = true;
-          console.log(place);
-          //cada vez que se busque en caso de ser para publicar se devolvera 
-          //la direccion, si es para buscar actualizara las publicaciones
-
-          //obtenemos el codigo postal de la dirección
-          for (var i = 0; i < place.address_components.length; i++) {
-
-            let type = place.address_components[i].types;
-
-            if (type.indexOf("postal_code") != -1) {
-
-              //si es para publicar almacenamos el codigo postal
-              this.ofertaNueva.UBICACION.CODIGO_POSTAL = place.address_components[i].long_name;
-
-              //si estamos buscando, usamos el codigo postal para hacer una consulta
-              //a la base de datos y actualizar
-
-              //en caso que sea busqueda, se verifica que le codigo postal correspondiente a la nueva ubicacion sea diferente a la actual
-              /*if (this.ubicacionMapaFiltros.codigoPostal
-                != place.address_components[i].long_name) {
-                //lanzamos peticion a la base de datos y actualizamos las ofertas
-                this.ubicacionMapaFiltros.codigoPostal = place.address_components[i].long_name;
-              }*/
-          /*
-        }
-
-      }
-
-      console.log(this.ofertaNueva.UBICACION)*/
-
+        
         });
       });
 

@@ -68,38 +68,28 @@
 
                                 <h3 class="subtitulo-publicar col-10">Habitacion disponible</h3>
 
-                                <!--TO DO: Quitar la proppiedad data-toggle="buttons" en caso que las habitaciones 
-                                compartidas tengan que ser siempre amobladas-->
                                 <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5"
                                     data-toggle="buttons">
-                                    <label class="btn btn-outline-info active" #individualLabel>
-                                        <!--TO DO: (change)="changeStateActive(individualRadio, individualLabel, compartidaRadio, compartidaLabel)" en el input
-                                    en caso que se decida que las habitaciones compartidas tienen que  ser amoblada-->
-                                        <input type="radio" name="optionIndividualCompartida" #individualRadio
-                                            value="individual" checked>Individual
+                                    <label class="btn btn-outline-info active" (click)="onChangeTipoHabitacion($event.target)">                                        
+                                        <input type="radio" name="optionIndividualCompartida" value="INDIVIDUAL" checked>Individual
                                     </label>
-                                    <label class="btn btn-outline-info" #compartidaLabel>
-                                        <!--TO DO: (change)="changeStateActive(compartidaRadio, compartidaLabel, individualRadio, individualLabel)" en el input
-                                     en caso que se decida que las habitaciones compartidas tienen que  ser amoblada-->
-                                        <input type="radio" name="optionIndividualCompartida" #compartidaRadio
-                                            value="compartida">Compartida
+                                    <label class="btn btn-outline-info" (click)="onChangeTipoHabitacion($event.target)">
+                                        <input type="radio" name="optionIndividualCompartida" value="COMPARTIDA" >Compartida
                                     </label>
                                 </div>
 
                             </div>
 
                             <!--Amoblada o sin amoblar-->
-                            <!--*ngIf="individualRadio.checked" to do: analizar si una habitacion
-              compartida puede estar no amoblada-->
                             <div class="row justify-content-center mt-4">
 
                                 <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5"
                                     data-toggle="buttons">
-                                    <label class="btn btn-outline-info active" checked>
-                                        <input type="radio" name="optionsAmoblada" autocomplete="off">Amoblada
+                                    <label class="btn btn-outline-info active" (click)="onChangeAmoblada($event.target)" checked>
+                                        <input type="radio" name="optionsAmoblada" value="AMOBLADA" autocomplete="off">Amoblada
                                     </label>
-                                    <label class="btn btn-outline-info ">
-                                        <input type="radio" name="optionsAmoblada" autocomplete="off">Sin amoblar
+                                    <label class="btn btn-outline-info " (click)="onChangeAmoblada($event.target)">
+                                        <input type="radio" name="optionsAmoblada" value="NOAMOBLADA" autocomplete="off">Sin amoblar
                                     </label>
                                 </div>
 
@@ -111,12 +101,11 @@
                                 <h3 class="subtitulo-publicar col-10">Habitacion con baño interno</h3>
 
                                 <div class="btn-group btn-group-toggle col-6 col-sm-5 col-lg-4" data-toggle="buttons">
-                                    <label class="btn btn-outline-info ">
-                                        <input type="radio" name="optionsBanioInterno" value="si" autocomplete="off">Si
+                                    <label class="btn btn-outline-info " (click)="onChangeBanioInterno($event.target)">
+                                        <input type="radio" name="optionsBanioInterno" value="SI" autocomplete="off">Si
                                     </label>
-                                    <label class="btn btn-outline-info active">
-                                        <input type="radio" name="optionsBanioInterno" value="no" autocomplete="off"
-                                            checked>No
+                                    <label class="btn btn-outline-info active" (click)="onChangeBanioInterno($event.target)">
+                                        <input type="radio" name="optionsBanioInterno" value="NO" autocomplete="off" checked>No
                                     </label>
                                 </div>
 
@@ -128,17 +117,17 @@
                                 <h3 class="subtitulo-publicar col-10">Genero admitido</h3>
 
                                 <div class="btn-group btn-group-toggle col-9 col-md-8 col-lg-6" data-toggle="buttons">
-                                    <label class="btn btn-outline-info">
+                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
                                         <input type="radio" name="optionsGenerosAdmitidos" id="hombres"
-                                            autocomplete="off" value="hombres" required>Hombre
+                                            autocomplete="off" value="HOMBRES" required>Hombre
                                     </label>
-                                    <label class="btn btn-outline-info">
+                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
                                         <input type="radio" name="optionsGenerosAdmitidos" id="mujeres"
-                                            autocomplete="off" value="mujeres" required>Mujer
+                                            autocomplete="off" value="MUJERES" required>Mujer
                                     </label>
-                                    <label class="btn btn-outline-info">
+                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
                                         <input type="radio" name="optionsGenerosAdmitidos" id="todos" autocomplete="off"
-                                            value="todos" required>Todos
+                                            value="TODOS" required>Todos
                                     </label>
                                 </div>
 
@@ -150,11 +139,11 @@
                                 <h3 class="subtitulo-publicar col-10">Alimentacion incluida</h3>
 
                                 <div class="btn-group btn-group-toggle col-6 col-md-5 col-lg-4" data-toggle="buttons">
-                                    <label class="btn btn-outline-info active">
-                                        <input type="radio" name="opitionsAlimentacion" autocomplete="off" checked>Si
+                                    <label class="btn btn-outline-info active" (click)="onChangeAlimentacionIncluida($event.target)">
+                                        <input type="radio" name="opitionsAlimentacion" value="SI" autocomplete="off" checked>Si
                                     </label>
-                                    <label class="btn btn-outline-info">
-                                        <input type="radio" name="opitionsAlimentacion" autocomplete="off">No
+                                    <label class="btn btn-outline-info" (click)="onChangeAlimentacionIncluida($event.target)">
+                                        <input type="radio" name="opitionsAlimentacion" value="NO" autocomplete="off">No
                                     </label>
                                 </div>
 
@@ -169,7 +158,7 @@
 
                                     <input type="number" class="form-control text-center"
                                         [(ngModel)]="dimensionInmueble" (change)="onChangeDimensionInmueble()"
-                                        aria-label="Area del inmueble" [min]="minDimensionInmueble" step="50"
+                                        aria-label="Area del inmueble" [min]="minDimensionInmueble" step="5"
                                         name="dimensionInmueble" max="9999999999" [pattern]="regExp.tamInmueble">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-info">
@@ -187,7 +176,7 @@
                                 <h3 class="subtitulo-publicar col-10">Estancia minima requerida</h3>
 
                                 <div class="col-6 col-sm-5 col-md-4">
-                                    <select class="custom-select mr-2" name="estanciaMinima">
+                                    <select class="custom-select mr-2" name="estanciaMinima" [(ngModel)]="estanciaMinima">
                                         <option value="0" selected>Ninguna</option>
                                         <option value="1">1 Mes</option>
                                         <option value="3">3 Meses</option>
@@ -324,25 +313,7 @@
                                             </div>
 
                                         </li>
-
-                                        <li class="list-group-item text-center">
-                                            <div class="form-row justify-content-center text-center">
-                                                <label class="col-10">Horario de la casa</label>
-
-                                                <div class="col-5 col-sm-4">
-                                                    <label>Apertura</label>
-                                                    <input type="time" class="form-control time-control"
-                                                        [value]="horarioApertura">
-                                                </div>
-
-                                                <div class="col-5 col-sm-4">
-                                                    <label>Cierre</label>
-                                                    <input type="time" class="form-control time-control"
-                                                        [value]="horarioCierre">
-                                                </div>
-                                            </div>
-                                        </li>
-
+                                        
                                     </ul>
 
                                 </div>
@@ -362,7 +333,8 @@
                                     </div>
 
                                     <input type="tel" class="form-control text-center" placeholder="Precio mensual"
-                                        aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" required>
+                                        aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15"
+                                        [(ngModel)]="precio" name="precioMensual" required>
 
                                 </div>
 
@@ -390,7 +362,8 @@
                                     </div>
 
                                     <input type="tel" class="form-control text-center" placeholder="Número celular"
-                                        [pattern]="regExp.celular" maxlength="10" required>
+                                        [pattern]="regExp.celular" maxlength="10" [(ngModel)]="celular" name="numCelular" 
+                                        required>
 
                                 </div>
 

@@ -6,6 +6,8 @@ import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filt
 import { MapaEstaticoComponent } from 'src/app/componentes/mapa-estatico/mapa-estatico.component';
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from 'src/app/servicios/nomasCasa/normas-casa.service';
+import { Habitacion } from 'src/app/interfaces/habitacion';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-publicar-habitacion',
@@ -17,12 +19,6 @@ export class PublicarHabitacionComponent implements OnInit {
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('mapaEstaticoComponent') mapaEstaticoComponent: MapaEstaticoComponent;
 
-
-  horarioApertura = "05:30";
-  horarioCierre = "22:30";
-
-  selectedDate;
-
   //ubicacion y configuracion del mapa
   coordPension = { lat: 4.69855158983652, lng: -74.07194335937498 };
   draggable = true;
@@ -32,22 +28,13 @@ export class PublicarHabitacionComponent implements OnInit {
   iconoPrecio = false;
   textPrecio = false;
 
-  direccionActual = 'San josé de los campanos av. principal calle #66c-34b';
 
   geocoder;
 
-  //Datos de la oferta
-  habitacionesDisponibles: number = 1;
-  habitacionIndividual = 'individual';
-  nroHabitantes = 1;
-  dimensionInmueble = 100;
-  titulo;
-  descripcion;
-
   //variables de control
-  minDimensionInmueble = 50;
+  minDimensionInmueble = 0;
   maxHabitantes = 12;
-  minHabitantes = 1;
+  minHabitantes = 0;
   urlImagenPrincipal = '';
   urlImagenes = ["", "", "", "", "", ""];
   rutaImagenes = "assets/";
@@ -78,6 +65,47 @@ export class PublicarHabitacionComponent implements OnInit {
     descripcion: new RegExp(".{0," + this.maxCaracteresDescripcion + "}")
   }
 
+  //Datos de la oferta
+  nroHabitantes = 1;
+  dimensionInmueble = 20;
+  titulo;
+  descripcion;
+  precio;
+  celular;
+  estanciaMinima = 0;
+
+  radioAmoblada = 'AMOBLADA';
+  radioTipoHabitacion = 'INDIVIDUAL';
+  radioBanioInterno = 'NO';
+  radioAlimentacion = 'SI';
+  radioGeneroAdmitido = 'TODOS';
+
+  ofertaNueva: Habitacion = {
+    AMOBLADA: 0,
+    TIPO_HABITACION: '',
+    BANIO_INTERNO: 0,
+    GENERO_ADMITIDO: '',
+    ALIMENTACION_INCLUIDA: 0,
+    AREA_INMUEBLE: 0,
+    ESTANCIA_MINIMA: 0,
+    NUM_HABITANTES: 0,
+    NUMERO_CELULAR: 0,
+    PRECIO_MENSUAL: 0,
+    TITULO_AVISO: '',
+    DESCRIPCION: '',
+    USUARIO_ID: 0,
+    UBICACION: {
+      PAIS: '',
+      DEPARTAMENTO: '',
+      CIUDAD: '',
+      LOCALIDAD: '',
+      DIRECCION: '',
+      CODIGO_POSTAL: ''
+    },
+    FOTOS: [],
+    SERVICIOS_ESPECIFICOS: [],
+    NORMAS_CASA: []
+  };
 
   constructor(
     public ubicacionMapaFiltros: UbicacioMapaFiltrosService,
@@ -93,8 +121,9 @@ export class PublicarHabitacionComponent implements OnInit {
     this.inicializarAutocompletado();
 
     //recibimos los cambios de direccion del componente mapa
-    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res) => {
-      this.direccionAsginada = res;
+    this.mapaEstaticoComponent.emitEventDragEndHouse.subscribe((res: { dirAsignada, data: any }) => {
+      this.direccionAsginada = res.dirAsignada;
+      this.obtenerDireccion(res.data);
       console.log("Emitido direccion asignada")
     })
 
@@ -113,7 +142,6 @@ export class PublicarHabitacionComponent implements OnInit {
       this.serviciosEspecificos.getServiciosEspecificos().subscribe(
         (res: { serviciosEspecificos: Array<{}> }) => {
 
-          console.log(res);
           this.serviciosEspecificos.serviciosEspecificos = [];
           res.serviciosEspecificos.forEach((element: { ID, ICONO, SERVICIO }) => {
 
@@ -147,7 +175,6 @@ export class PublicarHabitacionComponent implements OnInit {
       this.normasCasaService.getNormasCasa().subscribe(
         (res: { normasCasa: Array<{}> }) => {
 
-          console.log(res);
           this.normasCasaService.normasCasa = [];
           res.normasCasa.forEach((element: { ID, NORMA }) => {
 
@@ -164,7 +191,7 @@ export class PublicarHabitacionComponent implements OnInit {
 
     } else {
       this.normasCasaService.normasCasa.forEach(element => {
-        
+
         this.reglasCasa.push(element);
       })
     }
@@ -172,6 +199,7 @@ export class PublicarHabitacionComponent implements OnInit {
   }
 
 
+  //obtener ubicacion actual
   getLocation() {
 
     if (navigator.geolocation) {
@@ -181,92 +209,102 @@ export class PublicarHabitacionComponent implements OnInit {
         if (position) {
           this.coordPension.lat = position.coords.latitude;
           this.coordPension.lng = position.coords.longitude;
-          this.obtenerDireccion({ coords: { lat: this.coordPension.lat, lng: this.coordPension.lng } });
+          this.obtenerDireccion({
+            coords: {
+              lat: this.coordPension.lat,
+              lng: this.coordPension.lng
+            }
+
+          });
+
         }
 
       },
-
-        (error: PositionError) => console.log(error));
+        (error: PositionError) => console.log(error)
+      );
 
     }
     else {
-      alert("Este buscador no soporta Geolocalización");
+      alert("Este buscador no soporta Geolocalización, considera actualizarlo")
     }
 
   }
 
-  changeStateActive(radio1, label1, radio2, label2) {
-
-    if (radio1.checked) {
-      label1.className = 'btn btn-outline-info active';
-      label2.className = 'btn btn-outline-info ';
-    }
-
-  }
-
-  //para ubicar al momento de publicar la direccion en el mapa, arrastrando
-  //y soltando el marcador, usando latitud y longitud
+  //para ubicar al momento de publicar la direccion en el mapa
+  //Usando latitud y longitud
   obtenerDireccion(data) {
 
     this.coordPension.lat = data.coords.lat;
     this.coordPension.lng = data.coords.lng;
 
-    console.log("lat: " + this.coordPension.lat + " lng: " + this.coordPension.lng)
 
     let geocoder = new google.maps.Geocoder;
 
     geocoder.geocode({
       location: { lat: this.coordPension.lat, lng: this.coordPension.lng }
-    }, (results, status) => {
-      // si la solicitud fue exitosa
-      if (status === google.maps.GeocoderStatus.OK) {
+    },
+      (results, status) => {
+        // si la solicitud fue exitosa
+        if (status === google.maps.GeocoderStatus.OK) {
 
-        // si encontró algún resultado.
-        if (results[1]) {
+          // si encontró algún resultado.
+          if (results[1]) {
+            //asignamos valores por defecto, cada vez que cambia de ubicacion 
+            //para no tener datos de la ubicacion anterior en caso que la nueva ubicacion
+            //tenga menos precision
+            this.resetUbicacion();
 
-          let codigoPostalPublicar;
-          this.direccionAsginada = true;
-          console.log(this.direccionAsginada);
+            this.ubicacionMapaFiltros.direccion = results[1].formatted_address;
+            console.log(results[1])
 
-          console.log(results[1].formatted_address);
-          this.ubicacionMapaFiltros.direccion = results[1].formatted_address;
-          console.log(results[1]);
-          //obtenemos el codigo postal de la pension u apartamento
-          for (var i = 0; i < results[1].address_components.length; i++) {
+            this.ofertaNueva.UBICACION.DIRECCION = results[1].formatted_address;
 
-            let type = results[1].address_components[i].types;
+            //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
+            let arrayUbicacion = results[1].formatted_address.split(',');
+            arrayUbicacion = arrayUbicacion.reverse();
+            console.log(arrayUbicacion)
 
-            if (type.indexOf("postal_code") != -1) {
+            this.asignarUbicacionArray(arrayUbicacion);
 
-              codigoPostalPublicar = results[1].address_components[i].long_name;
+            this.direccionAsginada = true;
 
-              console.log('Codigo Postal 1: ' + codigoPostalPublicar);
+            //obtenemos el codigo postal de la pension u apartamento
+            for (var i = 0; i < results[1].address_components.length; i++) {
+
+              let type = results[1].address_components[i].types;
+
+              if (type.indexOf("postal_code") != -1) {
+
+                this.ofertaNueva.UBICACION.CODIGO_POSTAL = results[1].address_components[i].long_name;
+                //console.log('Codigo Postal: ' + codigoPostalPublicar);
+              }
             }
+
+            console.log(this.ofertaNueva.UBICACION)
+
           }
 
         }
 
-      }
-
-    });
-
+      });
 
   }
 
+
   inicializarAutocompletado() {
 
-    //verificar que se pueda minimo pais+departamento
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.opcionesAutocompletado);
 
       //inicializando el componente cuando cargue el mapa
       this.geocoder = new google.maps.Geocoder;
 
+      //cada que se cambie de ubicación
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-
+          //si no se elige una ubicacion del autocompletado
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
@@ -278,36 +316,9 @@ export class PublicarHabitacionComponent implements OnInit {
           this.coordPension.lng = this.ubicacionMapaFiltros.lng;
 
           this.ubicacionMapaFiltros.zoom = 16;
-          this.ubicacionMapaFiltros.direccion = place.name + ', ' + place.formatted_address;
-
-
-          console.log(place);
-          this.direccionAsginada = true;
-
-          //cada vez que se busque en caso de ser para publicar se devolvera 
-          //la direccion, si es para buscar actualizara las publicaciones
-
-
-          //obtenemos el codigo postal de la dirección
-          for (var i = 0; i < place.address_components.length; i++) {
-
-            let type = place.address_components[i].types;
-
-            if (type.indexOf("postal_code") != -1) {
-
-              //si es para publicar almacenamos el codigo postal
-              //si estamos buscando, usamos el codigo postal para hacer una consulta
-              //a la base de datos y actualizar
-              if (this.ubicacionMapaFiltros.codigoPostal != place.address_components[i].long_name) {
-                //lanzamos peticion a la base de datos y actualizamos las ofertas
-                this.ubicacionMapaFiltros.codigoPostal = place.address_components[i].long_name;
-
-              }
-            }
-
-          }
-
-
+          this.ubicacionMapaFiltros.direccion = place.formatted_address;
+          this.obtenerDireccion({ coords: { lat: this.coordPension.lat, lng: this.coordPension.lng } })
+        
         });
       });
 
@@ -316,40 +327,59 @@ export class PublicarHabitacionComponent implements OnInit {
 
   }
 
+
+  asignarUbicacionArray(arrayUbicacion: Array<any>) {
+
+    //pasando los datos a la variable que contiene los datos de la nueva oferta
+    //teniendo en cuenta la exactitud de la ubicacion proporcionada
+    let exactitud = arrayUbicacion.length;
+    switch (exactitud) {
+      case 1:
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      case 2:
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        break;
+      case 3:
+        this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      case 4:
+        this.ofertaNueva.UBICACION.LOCALIDAD = arrayUbicacion[3].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+        this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        break;
+      default:
+        if (exactitud > 4) {
+          this.ofertaNueva.UBICACION.LOCALIDAD = arrayUbicacion[3].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.CIUDAD = arrayUbicacion[2].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.DEPARTAMENTO = arrayUbicacion[1].trim().toUpperCase();
+          this.ofertaNueva.UBICACION.PAIS = arrayUbicacion[0].trim().toUpperCase();
+        }
+        break;
+    }
+  }
+
+  resetUbicacion() {
+    this.ofertaNueva.UBICACION = {
+      PAIS: "",
+      DEPARTAMENTO: "",
+      CIUDAD: "",
+      LOCALIDAD: "",
+      DIRECCION: "",
+      CODIGO_POSTAL: ""
+    }
+  }
+
+
   onChangeDimensionInmueble() {
     if (this.dimensionInmueble < this.minDimensionInmueble) {
       this.dimensionInmueble = this.minDimensionInmueble;
     }
   }
-
-  funcionTest() {
-    console.log('hola mundo')
-
-  }
-
-
-
-  //funciones para controlar los valores de habitaciones disponibles, 
-  //hanitaciones individuale y compartidas, realizando las respectivas validaciones
-  //para el correcto mantenimiento de cantidades, para que no sobre ni falten valores
-  aumentarHabitaciones() {
-
-    if (this.habitacionesDisponibles < 5) {
-      this.habitacionesDisponibles++;
-    }
-
-
-  }
-
-  disminuirHabitaciones() {
-
-    if (this.habitacionesDisponibles > 1) {
-      this.habitacionesDisponibles--;
-    }
-
-  }
-
-
 
   //controles número de habitantes
   aumentarHabitantes() {
@@ -364,32 +394,76 @@ export class PublicarHabitacionComponent implements OnInit {
     }
   }
 
-  //carga de archivos
-  //esta opcion funciona bien para cargar imagenes
+  //carga de imagen principal
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (evento) => { // called once readAsDataURL is completed
         this.urlImagenPrincipal = reader.result.toString();
+        this.ofertaNueva.FOTOS['imgPrincipal'] = event.target.files[0];
         this.imagenPrincipalAgregada = true;
-
       }
     }
   }
 
+  //carga de imagenes secundarias
   onSelectFileSecond(event, indImage) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (evento) => { // called once readAsDataURL is completed
         this.urlImagenes[indImage] = reader.result.toString();
+        this.ofertaNueva.FOTOS["img" + indImage] = event.target.files[0];
+        this.imagenPrincipalAgregada = true;
       }
     }
+  }
+
+  //almacenando datos de los radio buttons
+  onChangeAmoblada(obj: any) {
+
+    this.radioAmoblada = obj.children[0].value;
+  }
+
+  onChangeTipoHabitacion(obj: any) {
+
+    this.radioTipoHabitacion = obj.children[0].value;
+  }
+
+  onChangeBanioInterno(obj: any) {
+
+    this.radioBanioInterno = obj.children[0].value;
+  }
+
+  onChangeAlimentacionIncluida(obj: any) {
+
+    this.radioAlimentacion = obj.children[0].value;
+  }
+
+  onChangeGenerosAdmitidos(obj: any) {
+
+    this.radioGeneroAdmitido = obj.children[0].value;
+    console.log(this.radioGeneroAdmitido);
+  }
+
+  //obtener servicios especificos
+  serviciosEspecificosSeleccionados() {
+
+    let serviciosEspecificos = this.servicios.filter(element => {
+      return element.CHECKED == true;
+    });
+
+    let serviciosEspecificosId = [];
+    serviciosEspecificos.forEach(element => {
+      serviciosEspecificosId.push(element.ID);
+    });
+
+    return serviciosEspecificosId;
   }
 
 
@@ -400,6 +474,26 @@ export class PublicarHabitacionComponent implements OnInit {
       && this.imagenPrincipalAgregada && this.direccionAsginada) {
 
       console.log('publicar Habitación submit')
+
+      //obteniendo los datos de la oferta
+      this.ofertaNueva.AMOBLADA = ((this.radioAmoblada == 'AMOBLADA') ? 1 : 0);
+      this.ofertaNueva.TIPO_HABITACION = this.radioTipoHabitacion;
+      this.ofertaNueva.BANIO_INTERNO = ((this.radioBanioInterno == 'SI') ? 1 : 0);
+      this.ofertaNueva.GENERO_ADMITIDO = this.radioGeneroAdmitido;
+      this.ofertaNueva.ALIMENTACION_INCLUIDA = ((this.radioAlimentacion == 'SI') ? 1 : 0);
+      this.ofertaNueva.AREA_INMUEBLE = this.dimensionInmueble;
+      this.ofertaNueva.ESTANCIA_MINIMA = this.estanciaMinima;
+      this.ofertaNueva.NUM_HABITANTES = this.nroHabitantes;
+      this.ofertaNueva.PRECIO_MENSUAL = this.precio;
+      this.ofertaNueva.NUMERO_CELULAR = this.celular;
+      this.ofertaNueva.TITULO_AVISO = this.titulo;
+      this.ofertaNueva.DESCRIPCION = this.descripcion;
+      this.ofertaNueva.SERVICIOS_ESPECIFICOS = this.serviciosEspecificosSeleccionados();
+      
+      //this.ofertaNueva.USUARIO_ID =   
+
+      console.log(this.ofertaNueva);
+
     }
     else {
       console.log('publicar Habitación submit invalido')
