@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CasaApto } from 'src/app/interfaces/casa-apto';
+import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,29 @@ export class OfertaCasaAptoService {
     formData.append('cantServicios', x.toString());
 
     return this.httpClient.post(this.API_URL + "ofertaCasaApto", formData);
+  }
+
+  buscarCasasAptos(datosBusqueda: DatosBusquedaInmuebles) {
+    let datos:any = {};
+    
+    datos.cantOfertasPorPagina = datosBusqueda.cantOfertasPorPagina;
+    datos.paginacionActual = datosBusqueda.paginacionActual;
+    datos.precioMaximo = datosBusqueda.precioMaximo;
+    datos.pais = datosBusqueda.ubicacion.pais;
+
+    if (datosBusqueda.ubicacion.departamento.trim() != '')
+      datos.departamento = datosBusqueda.ubicacion.departamento;
+
+    if (datosBusqueda.ubicacion.ciudad.trim() != '')
+      datos.ciudad = datosBusqueda.ubicacion.ciudad;
+
+    //usaremos el codigo postal solo para hacer busquedas en localidades o direcciones exactas
+    if (datosBusqueda.ubicacion.localidad.trim() != '')
+      datos.localidad = datosBusqueda.ubicacion.localidad;
+      
+
+    console.log(datos)
+    return this.httpClient.post(this.API_URL + 'ofertaCasaApto/apartamentos', datos);
   }
 
 }

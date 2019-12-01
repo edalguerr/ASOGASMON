@@ -14,33 +14,28 @@ export class PensionAptoComponent implements OnInit {
   width = window.innerWidth;
   widthMobile = 992;
   mostrarMapaMobile = false;
-  //claseAnchoMapa = "100%";
-  //clasePaddingMapa = "15";
-  //claseAnchoFiltros = "0%";
+  
+  ofertasObtenidas;
 
   constructor() { 
   } 
 
   ngOnInit() {
    
+    //El mapa carga y rapidamente lo ocultamos en dispositivos moviles
     setTimeout(()=>{
-      //console.log('tiempo cumplido')
       this.mostrarMapaMobile = false;
-      //this.claseAnchoMapa="0%";
-      //this.clasePaddingMapa = "0";
-      //this.claseAnchoFiltros="100%";
     },2000)
 
     this.filtrosBusqueda.emitEvent.subscribe(( res )=>{
       this.mostrarMapaMobile = res;
-      //console.log('evento escuchado')
-      //console.log(res) 
-      //this.claseAnchoMapa = ((this.mostrarMapaMobile)?"100%":"0%");
-      //this.clasePaddingMapa = "15";
-      //this.claseAnchoFiltros = ((this.mostrarMapaMobile)?"100%":"0%");
     })
-    //console.log(this.height)
-    //console.log(this.height86)
+
+    this.filtrosBusqueda.emitEventOfertas.subscribe((res)=>{
+      console.log('datos recibidos')
+      console.log(res)
+      this.ofertasObtenidas = res;
+    })
   }
 
 }

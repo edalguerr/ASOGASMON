@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SlideOfertaDetalladaComponent implements OnInit {
 
   @Output() emitEvent:EventEmitter<String> = new EventEmitter<String>();
- 
+  
   ruta = 'assets/';
   imagenes:Array<string> = ['B7111-BL_BATA_UPC_ml.jpg','libro-de-oro-de-matemticas-1-638.jpg',
   'habitacion-arriendo_2.jpg', '1024o.jpg'  

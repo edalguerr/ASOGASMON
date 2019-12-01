@@ -35,7 +35,7 @@
 
   <!--Filtro de precio-->
   <div class="col-6 col-lg-6 custom-slider d-none d-sm-block">
-    <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+    <ng5-slider [(value)]="value" [options]="options" (userChangeEnd)="actualizarPrecioMaximo()"></ng5-slider>
   </div>
 
   <!--Filtro de categoria(pension, apto, habitacion) para mobile-->
