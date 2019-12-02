@@ -34,6 +34,8 @@ export class OfertasPensionService {
 
     //datos de ubicacion
     formData.append('pais', pension.UBICACION.PAIS);
+    formData.append('latitud', pension.UBICACION.LATITUD.toString());
+    formData.append('longitud', pension.UBICACION.LONGITUD.toString());
 
     if (pension.UBICACION.DEPARTAMENTO.trim() != '')
       formData.append('departamento', pension.UBICACION.DEPARTAMENTO);

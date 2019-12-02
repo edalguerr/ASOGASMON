@@ -35,7 +35,9 @@ export class OfertaCasaAptoService {
 
 
     //datos de ubicacion
-    formData.append('pais', casaApto.UBICACION.PAIS);
+    formData.append('pais', casaApto.UBICACION.PAIS);//latitud longitud
+    formData.append('latitud', casaApto.UBICACION.LATITUD.toString());
+    formData.append('longitud', casaApto.UBICACION.LONGITUD.toString());
 
     if (casaApto.UBICACION.DEPARTAMENTO.trim() != '')
       formData.append('departamento', casaApto.UBICACION.DEPARTAMENTO);
@@ -96,7 +98,7 @@ export class OfertaCasaAptoService {
 
     //usaremos el codigo postal solo para hacer busquedas en localidades o direcciones exactas
     if (datosBusqueda.ubicacion.localidad.trim() != '')
-      datos.localidad = datosBusqueda.ubicacion.localidad;
+      datos.codigoPostal = datosBusqueda.ubicacion.codigoPostal;
       
 
     console.log(datos)

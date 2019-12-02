@@ -108,7 +108,9 @@ export class PublicarHabitacionComponent implements OnInit {
       CIUDAD: '',
       LOCALIDAD: '',
       DIRECCION: '',
-      CODIGO_POSTAL: ''
+      CODIGO_POSTAL: '',
+      LATITUD: 0,
+      LONGITUD: 0
     },
     FOTOS: [],
     SERVICIOS_ESPECIFICOS: [],
@@ -268,6 +270,8 @@ export class PublicarHabitacionComponent implements OnInit {
             console.log(results[1])
 
             this.ofertaNueva.UBICACION.DIRECCION = results[1].formatted_address;
+            this.ofertaNueva.UBICACION.LATITUD = data.coords.lat;
+            this.ofertaNueva.UBICACION.LONGITUD = data.coords.lng;
 
             //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
             let arrayUbicacion = results[1].formatted_address.split(',');
@@ -380,7 +384,9 @@ export class PublicarHabitacionComponent implements OnInit {
       CIUDAD: "",
       LOCALIDAD: "",
       DIRECCION: "",
-      CODIGO_POSTAL: ""
+      CODIGO_POSTAL: "",
+      LATITUD: 0,
+      LONGITUD: 0
     }
   }
 

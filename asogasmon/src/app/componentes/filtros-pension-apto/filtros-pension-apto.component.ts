@@ -281,7 +281,7 @@ export class FiltrosPensionAptoComponent implements OnInit {
   }
 
   obtenerOfertasApartamentos() {
-
+    
     this.ofertaCasaAptoService.buscarCasasAptos(this.datosBusqueda).subscribe(
       (res: { ofertas, cantTotal, fotos }) => {
 

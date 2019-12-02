@@ -35,6 +35,8 @@ export class OfertaHabitacionService {
 
     //datos de ubicacion
     formData.append('pais', habitacion.UBICACION.PAIS);
+    formData.append('latitud', habitacion.UBICACION.LATITUD.toString());
+    formData.append('longitud', habitacion.UBICACION.LONGITUD.toString());
 
     if (habitacion.UBICACION.DEPARTAMENTO.trim() != '')
       formData.append('departamento', habitacion.UBICACION.DEPARTAMENTO);

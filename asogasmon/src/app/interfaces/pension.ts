@@ -18,7 +18,9 @@ export interface Pension {
         CIUDAD: string,
         LOCALIDAD: string,
         DIRECCION: string,
-        CODIGO_POSTAL: string
+        CODIGO_POSTAL: string,
+        LATITUD: number,
+        LONGITUD: number
     };
     FOTOS: Array<File>;
     SERVICIOS_ESPECIFICOS: Array<number>;
