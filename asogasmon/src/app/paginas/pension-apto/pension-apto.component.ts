@@ -15,7 +15,6 @@ export class PensionAptoComponent implements OnInit {
   widthMobile = 992;
   mostrarMapaMobile = false;
   
-  ofertasObtenidas;
 
   constructor() { 
   } 
@@ -31,11 +30,6 @@ export class PensionAptoComponent implements OnInit {
       this.mostrarMapaMobile = res;
     })
 
-    this.filtrosBusqueda.emitEventOfertas.subscribe((res)=>{
-      console.log('datos recibidos')
-      console.log(res)
-      this.ofertasObtenidas = res;
-    })
   }
 
 }

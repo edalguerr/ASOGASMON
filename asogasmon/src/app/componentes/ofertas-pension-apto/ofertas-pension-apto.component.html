@@ -1,17 +1,27 @@
 <div class="row justify-content-center">
 
 
-  <div *ngFor="let oferta of ofertasObtenidas.ofertas" class="col-5 col-sm-5 col-lg-6" [class]="clase">
+  <div *ngFor="let oferta of ofertasInmueblesService.ofertas; let x = index" class="col-5 col-sm-5 col-lg-6"
+    [class]="clase">
 
-    <a class="card text-white card-ofertas d-block" [routerLink]="rutaOfertas+oferta.id" target="_blank">
-      <img class="card-img img-fluid imagen-oferta img-thumbnail"
-        [style.background-image]="'url('+ruta+oferta.id+'/'+oferta.imagen+')' ">
+    <a class="card text-white card-ofertas d-block" [routerLink]="rutaOfertas+oferta.ID" target="_blank">
+      
+      <div *ngIf="ofertasInmueblesService.fotosOfertas[x]">
+        <img class="card-img img-fluid imagen-oferta img-thumbnail"
+          [style.background-image]="'url('+ruta+oferta.ID+'/'+ofertasInmueblesService.fotosOfertas[x].FOTO+')' ">
+      </div>
+      
+      <div *ngIf="!ofertasInmueblesService.fotosOfertas[x]">
+        <img class="card-img img-fluid imagen-oferta img-thumbnail"
+          [style.background-image]="">
+      </div>
+
       <div class="card-img-overlay card-texto-imagen">
-        <h5 class="card-title">{{oferta.ciudad}}</h5>
-        <p class="card-text precio">{{oferta.precio | currency:undefined:'symbol':'1.0-0'}}</p>
+        <h5 class="card-title">{{oferta.CIUDAD}}</h5>
+        <p class="card-text precio">{{oferta.PRECIO_MENSUAL | currency:undefined:'symbol':'1.0-0'}}</p>
         <p class="card-text">
           <i class="fa fa-map-marker fa-lg"></i>
-          {{oferta.direccion}}
+          {{oferta.DIRECCION}}
         </p>
       </div>
     </a>

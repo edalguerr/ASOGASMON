@@ -8,7 +8,7 @@ import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmueb
 })
 export class OfertaCasaAptoService {
   API_URL = "http://localhost/asogasmonAPI/public/api/";
-
+  
   constructor(private httpClient: HttpClient) { }
 
   //públicar casaApto

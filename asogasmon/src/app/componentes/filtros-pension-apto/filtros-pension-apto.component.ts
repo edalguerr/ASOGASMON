@@ -9,6 +9,7 @@ import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
 import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
 import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/oferta-casa-apto.service';
+import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofertas-inmuebles.service';
 
 
 @Component({
@@ -20,9 +21,7 @@ export class FiltrosPensionAptoComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
   @Output() emitEvent: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-  @Output() emitEventOfertas: EventEmitter<{ ofertas: Array<{id:number, ciudad: string, precio: number, direccion: string, imagen: string }>, cantOfertas: number }>
-    = new EventEmitter<{ ofertas: Array<{id:number, ciudad: string, precio: number, direccion: string, imagen: string }>, cantOfertas: number }>();
-
+  
   mostrarMapaMobile = false;
 
   //opciones de autocompletado
@@ -90,7 +89,8 @@ export class FiltrosPensionAptoComponent implements OnInit {
     public ubicacioMapaFiltrosService: UbicacioMapaFiltrosService,
     private rutaActiva: ActivatedRoute, private router: Router,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
-    private ofertaCasaAptoService: OfertaCasaAptoService
+    private ofertaCasaAptoService: OfertaCasaAptoService,
+    private ofertasInmuebles:OfertasInmueblesService
   ) { }
 
 
@@ -286,21 +286,9 @@ export class FiltrosPensionAptoComponent implements OnInit {
       (res: { ofertas, cantTotal, fotos }) => {
 
         console.log(res);
-        let ofertasObtenidas: Array<{id:number, ciudad: string, precio: number, direccion: string, imagen: string }> = [];
-        let temp;
-
-        for (let l = 0; l < res.ofertas.length; l++) {
-          temp = res.ofertas[l];
-          ofertasObtenidas.push({
-            id: temp.ID,
-            ciudad: temp.CIUDAD,
-            precio: temp.PRECIO_MENSUAL,
-            direccion: temp.DIRECCION,
-            imagen: res.fotos[l][0].FOTO
-          })
-        }
-
-        this.emitEventOfertas.emit({ofertas: ofertasObtenidas, cantOfertas: res.cantTotal});
+        this.ofertasInmuebles.ofertas = res.ofertas;
+        this.ofertasInmuebles.fotosOfertas = res.fotos;
+        this.ofertasInmuebles.cantTotal = res.cantTotal;
 
       }, err => {
         console.log("Error al obtener las ofertas");
