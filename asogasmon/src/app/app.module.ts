@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Ng5SliderModule } from 'ng5-slider';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import {CurrencyPipe} from '@angular/common'
+import { CurrencyPipe } from '@angular/common'
 
 
 //folder componentes
@@ -115,7 +117,7 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     ResetPasswordComponent,
     MensajePublicacionComponent
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     AppRoutingModule,
     Ng5SliderModule,
@@ -125,7 +127,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
       libraries: ['places']
     }),
     AgmJsMarkerClustererModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbPaginationModule
   ],
   providers: [
     UbicacioMapaFiltrosService,
@@ -142,4 +145,3 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
   bootstrap: [AppComponent]
 })
 export class AppModule { }
- 

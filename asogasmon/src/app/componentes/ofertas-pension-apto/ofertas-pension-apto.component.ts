@@ -10,13 +10,7 @@ import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofer
 })
 export class OfertasPensionAptoComponent implements OnInit {
 
-  ofertasObtenidas = {
-    ofertas: [],
-    fotosOfertas: [],
-    cantOfertas: 0
-  };
-
-
+  
   API_URL = "http://localhost/asogasmonAPI/public/img/";
   ruta: string = "";
   rutaOfertas = '';
@@ -27,7 +21,13 @@ export class OfertasPensionAptoComponent implements OnInit {
   widthMintablet = 576;
   widthMinOrdenador = 992;
 
-  constructor(private rutaActiva: ActivatedRoute, public ofertasInmueblesService: OfertasInmueblesService) {
+  page = 1;
+
+  constructor(
+    private rutaActiva: ActivatedRoute, 
+    public ofertasInmueblesService: OfertasInmueblesService,
+    private ofertaCasaAptoService: OfertaCasaAptoService
+    ) {
 
     if (this.width < 460) {
       this.clase = 'col-8 col-sm-5 col-lg-6';
@@ -38,7 +38,7 @@ export class OfertasPensionAptoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+  
     let categoria = this.rutaActiva.snapshot.url[0].path;
 
     if (categoria == 'apartamentos') {
@@ -46,12 +46,15 @@ export class OfertasPensionAptoComponent implements OnInit {
       this.rutaOfertas = '/ofertasCasaApto/';      
     }
     else if (categoria == 'pensiones') {
-
     }
     else {
-
     }
-    console.log(this.ofertasObtenidas)
+    
   }
+
+  paginacionCambiada(){
+    console.log("Paginacion cambiada: " + this.page);
+  }
+
 
 }
