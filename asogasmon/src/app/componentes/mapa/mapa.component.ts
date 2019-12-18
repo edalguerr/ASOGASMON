@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
+import {CurrencyPipe} from '@angular/common'
 
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
 import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofertas-inmuebles.service';
@@ -18,14 +19,14 @@ export class MapaComponent implements OnInit {
   lat2: number = 4.69855158983652;
   lng2: number = -74.07194335937498;
 
-  labelMarker = {
+  labelMarker: Array<{
     color: 'floralwhite',
     fontFamily: 'Indie Flower',//cursive
     fontSize: '12px',//10px
     fontWeight: 'bold',
     letterSpacing: '0.5px',
-    text: "$5'000.000"
-  }
+    text
+  }> = [];
 
   titleMarker: string = "direccion";
   zoom: number = 10;
@@ -71,11 +72,28 @@ export class MapaComponent implements OnInit {
 
   constructor(
     public ubicacioMapaFiltrosService: UbicacioMapaFiltrosService,
-    public ofertasInmueblesService: OfertasInmueblesService
-  ) { }
+    public ofertasInmueblesService: OfertasInmueblesService,
+    private cp: CurrencyPipe
+  ) {
+
+    this.labelMarker = [];
+    this.ofertasInmueblesService.ofertas.forEach(element => {
+      
+      this.labelMarker.push({
+        color: 'floralwhite',
+        fontFamily: 'Indie Flower',//cursive
+        fontSize: '12px',//10px
+        fontWeight: 'bold',
+        letterSpacing: '0.5px',
+        text: this.cp.transform(element.PRECIO_MENSUAL, '', 'symbol', '1.0-0')
+      });
+
+    });
+
+  }
 
   ngOnInit() {
-    
+
   }
 
   markerIconUrl() {

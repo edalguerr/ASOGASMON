@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { isComponent } from '@angular/core/src/render3/util';
 
 @Component({
   selector: 'app-lista-servicios',

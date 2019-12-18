@@ -11,6 +11,9 @@ import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import {HttpClientModule} from '@angular/common/http';
 
+import {CurrencyPipe} from '@angular/common'
+
+
 //folder componentes
 import { InicioSesionComponent } from './componentes/inicio-sesion/inicio-sesion.component';
 import { RegistrarseComponent } from './componentes/registrarse/registrarse.component';
@@ -133,7 +136,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     OfertasPensionService,
     ServiciosEspecificosService,
     NormasCasaService,
-    OfertasInmueblesService
+    OfertasInmueblesService,
+    CurrencyPipe
   ],
   bootstrap: [AppComponent]
 })

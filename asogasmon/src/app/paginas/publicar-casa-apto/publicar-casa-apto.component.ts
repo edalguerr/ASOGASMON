@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
@@ -14,14 +14,14 @@ import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/ofert
   templateUrl: './publicar-casa-apto.component.html',
   styleUrls: ['./publicar-casa-apto.component.css']
 })
-export class PublicarCasaAptoComponent implements OnInit {
+export class PublicarCasaAptoComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('search') public searchElement: ElementRef;
-  @ViewChild('mapaEstaticoComponent') mapaEstaticoComponent: MapaEstaticoComponent;
-  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
-  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
+  @ViewChild('search', { static: false }) public searchElement: ElementRef;
+  @ViewChild('mapaEstaticoComponent', { static: false }) mapaEstaticoComponent: MapaEstaticoComponent;
+  @ViewChild('btnInicioSesionModal', { static: false }) btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal', { static: false }) btnMensajePublicarModal: ElementRef;
 
-  //Ubicacion y configuraciones del mapa
+  //Ubicacion y configuraciones del mapa 
   coordPension = { lat: 4.69855158983652, lng: -74.07194335937498 };
   draggable = true;
   fullScreenMapa = false;
@@ -122,6 +122,14 @@ export class PublicarCasaAptoComponent implements OnInit {
   ngOnInit() {
 
     this.getLocation();
+
+    //Cargando servicios especificos
+    this.getServiciosEspecificos();
+
+  }
+
+  ngAfterViewInit() {
+
     this.inicializarAutocompletado();
 
     //recibimos los cambios de direccion del componente mapa
@@ -130,10 +138,7 @@ export class PublicarCasaAptoComponent implements OnInit {
       this.obtenerDireccion(res.data);
       console.log("Emitido direccion asignada")
     })
-
-    //Cargando servicios especificos
-    this.getServiciosEspecificos();
-
+    
   }
 
   getServiciosEspecificos() {
@@ -230,7 +235,7 @@ export class PublicarCasaAptoComponent implements OnInit {
             this.ofertaNueva.UBICACION.DIRECCION = results[1].formatted_address;
             this.ofertaNueva.UBICACION.LATITUD = data.coords.lat;
             this.ofertaNueva.UBICACION.LONGITUD = data.coords.lng;
-            
+
             //obtenemos la ubicacion separada en posiciones del array(localidad,ciudad,departamento,pais)
             let arrayUbicacion = results[1].formatted_address.split(',');
             arrayUbicacion = arrayUbicacion.reverse();
@@ -290,7 +295,7 @@ export class PublicarCasaAptoComponent implements OnInit {
           this.ubicacionMapaFiltros.zoom = 16;
           this.ubicacionMapaFiltros.direccion = place.formatted_address;
           this.obtenerDireccion({ coords: { lat: this.coordPension.lat, lng: this.coordPension.lng } })
-        
+
         });
       });
 

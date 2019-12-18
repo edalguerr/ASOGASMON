@@ -1,8 +1,6 @@
-
-<agm-map #map [latitude]="ubicacioMapaFiltrosService.lat" [longitude]="ubicacioMapaFiltrosService.lng"  [zoom]="zoom" [minZoom]="minZoom"  [streetViewControl]="streetView" [style.height.px]="heightMapa">
-  <agm-marker-cluster [styles]="clusterStyles" >
-    <agm-marker *ngFor="let coord of this.ofertasInmueblesService.ofertas " [iconUrl]="markerIconUrl()"  [latitude]="coord.LATITUD" [longitude]="coord.LONGITUD" [title]="titleMarker" [label]="labelMarker" [markerDraggable]="draggable">
-    </agm-marker> 
-  </agm-marker-cluster>
+<agm-map #map [latitude]="ubicacioMapaFiltrosService.lat" [longitude]="ubicacioMapaFiltrosService.lng" [zoom]="zoom" [minZoom]="minZoom" [streetViewControl]="streetView" [style.height.px]="heightMapa">
+    <agm-marker-cluster [styles]="clusterStyles">
+        <agm-marker *ngFor="let coord of this.ofertasInmueblesService.ofertas; index as i " [iconUrl]="markerIconUrl()" [latitude]="coord.LATITUD" [longitude]="coord.LONGITUD" [title]="titleMarker" [label]="labelMarker[i]" [markerDraggable]="draggable">
+        </agm-marker>
+    </agm-marker-cluster>
 </agm-map>
-

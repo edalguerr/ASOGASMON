@@ -16,10 +16,10 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 export class PublicarArticuloComponent implements OnInit {
 
-  @ViewChild('search') public searchElement: ElementRef;
-  @ViewChild('formPublicarArticulo') formPublicarArticulo: ElementRef;
-  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
-  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
+  @ViewChild('search',{static:false}) public searchElement: ElementRef;
+  @ViewChild('formPublicarArticulo',{static:false}) formPublicarArticulo: ElementRef;
+  @ViewChild('btnInicioSesionModal',{static:false}) btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal',{static:false}) btnMensajePublicarModal: ElementRef;
   
   geocoder;
 

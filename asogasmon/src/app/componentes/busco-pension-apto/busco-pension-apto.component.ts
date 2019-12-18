@@ -8,7 +8,7 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class BuscoPensionAptoComponent implements OnInit {
 
-  @ViewChild('searchBuscoPensionApto') public searchElement: ElementRef;
+  @ViewChild('searchBuscoPensionApto',{static:false}) public searchElement: ElementRef;
   @Input() categoriaBuscar:string ='pension';
 
 

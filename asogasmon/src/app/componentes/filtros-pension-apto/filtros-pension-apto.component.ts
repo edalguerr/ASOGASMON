@@ -19,7 +19,7 @@ import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofer
 })
 export class FiltrosPensionAptoComponent implements OnInit {
 
-  @ViewChild('search') public searchElement: ElementRef;
+  @ViewChild('search',{static:false}) public searchElement: ElementRef;
   @Output() emitEvent: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   
   mostrarMapaMobile = false;

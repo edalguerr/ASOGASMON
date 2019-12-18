@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -10,10 +10,10 @@ import { RegistrarseComponent } from '../registrarse/registrarse.component';
   styleUrls: ['./inicio-sesion.component.css']
 })
 
-export class InicioSesionComponent implements OnInit {
+export class InicioSesionComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('formLogin') formLogin: ElementRef;
-  @ViewChild('registrarseComponente') registrarseComponent:RegistrarseComponent;
+  @ViewChild('formLogin',{static:false}) formLogin: ElementRef;
+  @ViewChild('registrarseComponente',{static:false}) registrarseComponent:RegistrarseComponent;
   
   @Output() emitEventLogin: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
@@ -64,13 +64,17 @@ export class InicioSesionComponent implements OnInit {
       });
 
     }
+ 
+      
+  }
+
+  ngAfterViewInit(){
 
     this.registrarseComponent.emitEventRegistro.subscribe((res)=>{
       this.emitEventLogin.emit(res);
       //console.log('recibido el mensaje: '+ res)
     });
     
-      
   }
 
   //inicio de sesion

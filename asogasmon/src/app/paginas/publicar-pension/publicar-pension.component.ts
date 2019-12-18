@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
@@ -15,12 +15,13 @@ import { OfertasPensionService } from 'src/app/servicios/ofertasPensiones/oferta
   templateUrl: './publicar-pension.component.html',
   styleUrls: ['./publicar-pension.component.css']
 })
-export class PublicarPensionComponent implements OnInit {
 
-  @ViewChild('search') public searchElement: ElementRef;
-  @ViewChild('mapaEstaticoComponent') mapaEstaticoComponent: MapaEstaticoComponent;
-  @ViewChild('btnInicioSesionModal') btnInicioSesionModal: ElementRef;
-  @ViewChild('btnMensajePublicarModal') btnMensajePublicarModal: ElementRef;
+export class PublicarPensionComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('search',{static:false}) public searchElement: ElementRef;
+  @ViewChild('mapaEstaticoComponent',{static:false}) mapaEstaticoComponent: MapaEstaticoComponent;
+  @ViewChild('btnInicioSesionModal',{static:false}) btnInicioSesionModal: ElementRef;
+  @ViewChild('btnMensajePublicarModal',{static:false}) btnMensajePublicarModal: ElementRef;
 
   //ubicacion y configuracion del mapa
   coordPension = { lat: 4.69855158983652, lng: -74.07194335937498 };
@@ -129,6 +130,17 @@ export class PublicarPensionComponent implements OnInit {
   ngOnInit() {
 
     this.getLocation();
+    
+    //Cargando servicios especificos
+    this.getServiciosEspecificos();
+
+    //Cargando normas de la casa
+    this.getNormasCasa();
+
+  }
+
+  ngAfterViewInit(){
+
     this.inicializarAutocompletado();
 
     //recibimos los cambios de direccion del componente mapa
@@ -137,13 +149,7 @@ export class PublicarPensionComponent implements OnInit {
       this.obtenerDireccion(res.data);
       console.log("Emitido direccion asignada")
     })
-
-    //Cargando servicios especificos
-    this.getServiciosEspecificos();
-
-    //Cargando normas de la casa
-    this.getNormasCasa();
-
+    
   }
 
   getServiciosEspecificos() {

@@ -23,7 +23,7 @@ export class MapaEstaticoComponent implements OnInit {
   @Input()  iconoPrecio = true;
   @Input()  textPrecio = true;
 
-  @ViewChild(AgmMap) public agmMap: AgmMap
+  @ViewChild(AgmMap,{static:false}) public agmMap: AgmMap
  
   @Output() emitEventDragEndHouse:EventEmitter<{dirAsignada:Boolean, data:any}> = new EventEmitter<{dirAsignada:Boolean, data:any}>();
 

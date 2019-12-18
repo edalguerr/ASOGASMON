@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { SlideOfertaDetalladaComponent } from 'src/app/componentes/slide-oferta-detallada/slide-oferta-detallada.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './oferta-detallada.component.html',
   styleUrls: ['./oferta-detallada.component.css']
 })
-export class OfertaDetalladaComponent implements OnInit {
+export class OfertaDetalladaComponent implements OnInit, AfterViewInit {
   
-  @ViewChild('slideImagenesOferta') slideImagenesOferta:SlideOfertaDetalladaComponent;
+  @ViewChild('slideImagenesOferta',{static:false}) slideImagenesOferta:SlideOfertaDetalladaComponent;
 
   isOrdenador = false;
   widthMobile = 992;
@@ -46,6 +46,10 @@ export class OfertaDetalladaComponent implements OnInit {
   }
 
   ngOnInit() {
+   
+  }
+
+  ngAfterViewInit(){
     this.slideImagenesOferta.emitEvent.subscribe((res)=>{
       this.imagen = res;
     })

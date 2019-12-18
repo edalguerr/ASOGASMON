@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  @ViewChild('formReset') formReset: ElementRef;
+  @ViewChild('formReset',{static:false}) formReset: ElementRef;
 
   regExp = {
     password: ".{6,20}"

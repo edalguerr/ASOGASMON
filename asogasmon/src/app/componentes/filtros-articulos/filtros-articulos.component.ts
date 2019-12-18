@@ -11,7 +11,7 @@ import { ViewChild, ElementRef, NgZone } from '@angular/core';
 })
 export class FiltrosArticulosComponent implements OnInit {
 
-  @ViewChild('search') public searchElement: ElementRef;
+  @ViewChild('search',{static:false}) public searchElement: ElementRef;
 
   categorias:Array<{clase:string, nombre:string}> = [
     {clase:'fa-book', nombre:'Libros'},

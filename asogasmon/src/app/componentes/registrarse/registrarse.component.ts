@@ -10,7 +10,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
 })
 export class RegistrarseComponent implements OnInit {
 
-  @ViewChild('formRegistro') formRegistro: ElementRef;
+  @ViewChild('formRegistro',{static:false}) formRegistro: ElementRef;
   @Output() emitEventRegistro: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   
   regExp = {

@@ -8,7 +8,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class ReestablecerContraseniaComponent implements OnInit {
 
-  @ViewChild('formResetPass') formResetPass: ElementRef;
+  @ViewChild('formResetPass',{static:false}) formResetPass: ElementRef;
   
   regExp = {
     email: "^\\w+@\\w{3,20}(.\\w{2,10}){1,3}$"
