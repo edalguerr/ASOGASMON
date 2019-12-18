@@ -1,4 +1,6 @@
 {
+  "baseUrl": "src"
+,
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
