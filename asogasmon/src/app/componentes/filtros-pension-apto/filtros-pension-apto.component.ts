@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Options, LabelType } from 'ng5-slider';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofer
   templateUrl: './filtros-pension-apto.component.html',
   styleUrls: ['./filtros-pension-apto.component.css']
 })
-export class FiltrosPensionAptoComponent implements OnInit {
+export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
 
   @ViewChild('search',{static:false}) public searchElement: ElementRef;
   @Output() emitEvent: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -75,7 +75,7 @@ export class FiltrosPensionAptoComponent implements OnInit {
   precioBocadilloFiltroMostrar = false;
 
   datosBusqueda: DatosBusquedaInmuebles = {
-    cantOfertasPorPagina: 12,
+    cantOfertasPorPagina: 6,
     paginacionActual: 1,
     precioMaximo: 2000000,
     ubicacion: {
@@ -88,6 +88,7 @@ export class FiltrosPensionAptoComponent implements OnInit {
   };
 
   paginacion$:Observable<number>;
+  paginacionSubscription: Subscription;
 
   constructor(
     public ubicacioMapaFiltrosService: UbicacioMapaFiltrosService,
@@ -116,11 +117,17 @@ export class FiltrosPensionAptoComponent implements OnInit {
     this.inicializarAutocompletado();
 
     this.paginacion$ = this.ofertasInmuebles.getPaginacion();
-    this.paginacion$.subscribe(pagina => {
+    this.paginacionSubscription =  this.paginacion$.subscribe(pagina => {
       this.datosBusqueda.paginacionActual = pagina;
       this.obtenerOfertas();
     });
     
+  }
+
+  ngOnDestroy() {
+    // acciones de destrucción
+    this.paginacionSubscription.unsubscribe();
+    this.ofertasInmuebles.paginacion = 1;
   }
 
   onChange() {
