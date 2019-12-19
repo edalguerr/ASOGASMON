@@ -25,8 +25,7 @@ export class OfertasPensionAptoComponent implements OnInit {
 
   constructor(
     private rutaActiva: ActivatedRoute, 
-    public ofertasInmueblesService: OfertasInmueblesService,
-    private ofertaCasaAptoService: OfertaCasaAptoService
+    public ofertasInmueblesService: OfertasInmueblesService
     ) {
 
     if (this.width < 460) {
@@ -50,10 +49,11 @@ export class OfertasPensionAptoComponent implements OnInit {
     else {
     }
     
+    this.page = this.ofertasInmueblesService.paginacion;
   }
 
   paginacionCambiada(){
-    console.log("Paginacion cambiada: " + this.page);
+    this.ofertasInmueblesService.actualizarPaginacionActual(this.page);
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Options, LabelType } from 'ng5-slider';
+import { Observable } from 'rxjs';
+
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -85,6 +87,8 @@ export class FiltrosPensionAptoComponent implements OnInit {
     }
   };
 
+  paginacion$:Observable<number>;
+
   constructor(
     public ubicacioMapaFiltrosService: UbicacioMapaFiltrosService,
     private rutaActiva: ActivatedRoute, private router: Router,
@@ -111,6 +115,12 @@ export class FiltrosPensionAptoComponent implements OnInit {
     this.obtenerOfertas();
     this.inicializarAutocompletado();
 
+    this.paginacion$ = this.ofertasInmuebles.getPaginacion();
+    this.paginacion$.subscribe(pagina => {
+      this.datosBusqueda.paginacionActual = pagina;
+      this.obtenerOfertas();
+    });
+    
   }
 
   onChange() {
