@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pension } from 'src/app/interfaces/pension';
+import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
 
 @Injectable({
   providedIn: 'root'
@@ -93,6 +94,29 @@ export class OfertasPensionService {
     formData.append('cantNormas', y.toString());
 
     return this.httpClient.post(this.API_URL + "ofertaPension", formData);
+  }
+
+  buscarPension(datosBusqueda: DatosBusquedaInmuebles) {
+    let datos:any = {};
+    
+    datos.cantOfertasPorPagina = datosBusqueda.cantOfertasPorPagina;
+    datos.paginacionActual = datosBusqueda.paginacionActual;
+    datos.precioMaximo = datosBusqueda.precioMaximo;
+    datos.pais = datosBusqueda.ubicacion.pais;
+
+    if (datosBusqueda.ubicacion.departamento.trim() != '')
+      datos.departamento = datosBusqueda.ubicacion.departamento;
+
+    if (datosBusqueda.ubicacion.ciudad.trim() != '')
+      datos.ciudad = datosBusqueda.ubicacion.ciudad;
+
+    //usaremos el codigo postal solo para hacer busquedas en localidades o direcciones exactas
+    if (datosBusqueda.ubicacion.localidad.trim() != '')
+      datos.codigoPostal = datosBusqueda.ubicacion.codigoPostal;
+      
+
+    console.log(datos)
+    return this.httpClient.post(this.API_URL + 'ofertaPension/pensiones', datos);
   }
   
 }

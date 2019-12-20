@@ -45,9 +45,13 @@ export class OfertasPensionAptoComponent implements OnInit {
       this.rutaOfertas = '/ofertasCasaApto/';      
     }
     else if (categoria == 'pensiones') {
+      this.ruta = this.API_URL + 'ofertasPension/';
+      this.rutaOfertas = '/ofertasPension/';   
     }
     else {
-    }
+      this.ruta = this.API_URL + 'ofertasHabitacion/';
+      this.rutaOfertas = '/ofertasHabitacion/';   
+    } 
     
     this.page = this.ofertasInmueblesService.paginacion;
   }

@@ -12,6 +12,8 @@ import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filt
 import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
 import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofertas-inmuebles.service';
+import { OfertaHabitacionService } from 'src/app/servicios/ofertasHabitaciones/oferta-habitacion.service';
+import { OfertasPensionService } from 'src/app/servicios/ofertasPensiones/ofertas-pension.service';
 
 
 @Component({
@@ -75,7 +77,7 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
   precioBocadilloFiltroMostrar = false;
 
   datosBusqueda: DatosBusquedaInmuebles = {
-    cantOfertasPorPagina: 6,
+    cantOfertasPorPagina: 12,
     paginacionActual: 1,
     precioMaximo: 2000000,
     ubicacion: {
@@ -95,6 +97,8 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
     private rutaActiva: ActivatedRoute, private router: Router,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,
     private ofertaCasaAptoService: OfertaCasaAptoService,
+    private ofertaHabitacionService:OfertaHabitacionService,
+    private ofertaPensionService:OfertasPensionService,
     private ofertasInmuebles:OfertasInmueblesService
   ) { }
 
@@ -286,13 +290,13 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
   obtenerOfertas() {
 
     if (this.categoriaBusqueda == this.valPension) {
-
+      this.obtenerOfertasPension();
     }
     else if (this.categoriaBusqueda == this.valApto) {
       this.obtenerOfertasApartamentos();
     }
     else {
-
+      this.obtenerOfertasHabitaciones();
     }
 
   }
@@ -300,6 +304,38 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
   obtenerOfertasApartamentos() {
     
     this.ofertaCasaAptoService.buscarCasasAptos(this.datosBusqueda).subscribe(
+      (res: { ofertas, cantTotal, fotos }) => {
+
+        console.log(res);
+        this.ofertasInmuebles.ofertas = res.ofertas;
+        this.ofertasInmuebles.fotosOfertas = res.fotos;
+        this.ofertasInmuebles.cantTotal = res.cantTotal;
+
+      }, err => {
+        console.log("Error al obtener las ofertas");
+      }
+    )
+  }
+
+  obtenerOfertasHabitaciones() {
+    
+    this.ofertaHabitacionService.buscarHabitacion(this.datosBusqueda).subscribe(
+      (res: { ofertas, cantTotal, fotos }) => {
+
+        console.log(res);
+        this.ofertasInmuebles.ofertas = res.ofertas;
+        this.ofertasInmuebles.fotosOfertas = res.fotos;
+        this.ofertasInmuebles.cantTotal = res.cantTotal;
+
+      }, err => {
+        console.log("Error al obtener las ofertas");
+      }
+    )
+  }
+
+  obtenerOfertasPension() {
+    
+    this.ofertaPensionService.buscarPension(this.datosBusqueda).subscribe(
       (res: { ofertas, cantTotal, fotos }) => {
 
         console.log(res);

@@ -104,5 +104,5 @@ export class OfertaCasaAptoService {
     console.log(datos)
     return this.httpClient.post(this.API_URL + 'ofertaCasaApto/apartamentos', datos);
   }
-
+ 
 }
