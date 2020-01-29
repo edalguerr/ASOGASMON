@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Options, LabelType } from 'ng5-slider';
 import { Observable, Subscription } from 'rxjs';
-
+import { CurrencyPipe } from '@angular/common'
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -99,7 +99,8 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
     private ofertaCasaAptoService: OfertaCasaAptoService,
     private ofertaHabitacionService:OfertaHabitacionService,
     private ofertaPensionService:OfertasPensionService,
-    private ofertasInmuebles:OfertasInmueblesService
+    private ofertasInmuebles:OfertasInmueblesService,
+    private cp: CurrencyPipe
   ) { }
 
 
@@ -310,6 +311,7 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
         this.ofertasInmuebles.ofertas = res.ofertas;
         this.ofertasInmuebles.fotosOfertas = res.fotos;
         this.ofertasInmuebles.cantTotal = res.cantTotal;
+        this.arrayMarcadoresOfertas();
 
       }, err => {
         console.log("Error al obtener las ofertas");
@@ -326,6 +328,7 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
         this.ofertasInmuebles.ofertas = res.ofertas;
         this.ofertasInmuebles.fotosOfertas = res.fotos;
         this.ofertasInmuebles.cantTotal = res.cantTotal;
+        this.arrayMarcadoresOfertas();
 
       }, err => {
         console.log("Error al obtener las ofertas");
@@ -342,6 +345,7 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
         this.ofertasInmuebles.ofertas = res.ofertas;
         this.ofertasInmuebles.fotosOfertas = res.fotos;
         this.ofertasInmuebles.cantTotal = res.cantTotal;
+        this.arrayMarcadoresOfertas();
 
       }, err => {
         console.log("Error al obtener las ofertas");
@@ -349,6 +353,23 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
     )
   }
 
+  arrayMarcadoresOfertas(){
+
+    this.ofertasInmuebles.labelMarker = []; 
+    this.ofertasInmuebles.ofertas.forEach(element => {
+
+      this.ofertasInmuebles.labelMarker.push({
+        color: 'floralwhite',
+        fontFamily: 'Indie Flower',//cursive
+        fontSize: '12px',//10px
+        fontWeight: 'bold',
+        letterSpacing: '0.5px',
+        text: this.cp.transform(element.PRECIO_MENSUAL, '', 'symbol', '1.0-0')
+      });
+
+      
+    });
+  }
 
   //METODOS DE CONTROL PARA EL MAPA Y FILTRO EN DISPOSITIVOS MOVILES
   mostrarMapaEstado() {
