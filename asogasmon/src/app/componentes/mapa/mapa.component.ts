@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { CurrencyPipe } from '@angular/common'
 
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
 import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofertas-inmuebles.service';
