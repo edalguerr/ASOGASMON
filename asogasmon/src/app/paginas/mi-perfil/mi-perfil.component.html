@@ -1,184 +1,128 @@
 <div class="container-fluid contenedor-body">
-  <div class="row">
-    <div class="col ">
+    <div class="row">
+        <div class="col ">
 
-      <!--NAVEGACION Y ENCABEZADO-->
-      <div class="row">
-        <header class="col" role="heading">
-          <!--Barra de navegacion-->
-          <app-barra-navegacion></app-barra-navegacion>
-        </header>
-      </div>
- 
-      <!--MAIN-->
-      <main class="row justify-content-center contenedor-main" role="main">
-
-        <div class="card col-12 col-sm-11 col-lg-10">
-          <div class="card-body">
-
-            <!--Foto, datos basicos, boton mis conversaciones-->
+            <!--NAVEGACION Y ENCABEZADO-->
             <div class="row">
-              <!--Foto de perfil-->
-              <div class="col-4 text-center pr-0 contenedor-card-img-user" *ngIf="this.usuarioService.datos">
-                <div *ngIf="this.usuarioService.datos.FOTO" class="card-img-user ml-auto mr-1" [style.background-image]="'url('+this.usuarioService.datos.FOTO+')' "></div>  
-              </div>
-
-              <!--Correo electronico y boton de mis conversaciones-->
-              <div class="col-8 pl-0">
-                <div class="my-5"> 
-                  <h2 class="col-12 titulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.NOMBRE + " "+usuarioService.datos.APELLIDOS | titlecase}}</h2>
-                  <h3 class="col-12 subtitulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.EMAIL}}</h3>
-                  <div class="col-6 text-center contenedor-btn-mis-mensajes">
-                    <a routerLink="/perfil/usuario/chat" class="btn btn-secondary btn-block btn-sm">Mis mensajes</a>
-                  </div>
-                </div>
-              </div>
+                <header class="col" role="heading">
+                    <!--Barra de navegacion-->
+                    <app-barra-navegacion></app-barra-navegacion>
+                </header>
             </div>
- 
-            <hr class="w-100">
 
-            <!--Bootones para actualizar foto de perfil, modificar contraseña, editar
+            <!--MAIN-->
+            <main class="row justify-content-center contenedor-main" role="main">
+
+                <div class="card col-12 col-sm-11 col-lg-10">
+                    <div class="card-body">
+
+                        <!--Foto, datos basicos, boton mis conversaciones-->
+                        <div class="row">
+                            <!--Foto de perfil-->
+                            <div class="col-4 text-center pr-0 contenedor-card-img-user" *ngIf="this.usuarioService.datos">
+                                <div *ngIf="this.usuarioService.datos.FOTO" class="card-img-user ml-auto mr-1" [style.background-image]="'url('+this.usuarioService.datos.FOTO+')' "></div>
+                            </div>
+
+                            <!--Correo electronico y boton de mis conversaciones-->
+                            <div class="col-8 pl-0">
+                                <div class="my-5">
+                                    <h2 class="col-12 titulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.NOMBRE + " "+usuarioService.datos.APELLIDOS | titlecase}}</h2>
+                                    <h3 class="col-12 subtitulo-user " *ngIf="usuarioService.datos != null">{{usuarioService.datos.EMAIL}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="w-100">
+
+                        <!--Bootones para actualizar foto de perfil, modificar contraseña, editar
               los datos basicos del usuario-->
-            <div class="row my-3 justify-content-center contenedor-btns-opciones">
-              <div class="col-4 text-center">
-                
-                <div class="image-upload">
-                  <label for="file-input" class="btn btn-outline-info btn-block">
+                        <div class="row my-3 justify-content-center contenedor-btns-opciones">
+                            <div class="col-4 text-center">
+
+                                <div class="image-upload">
+                                    <label for="file-input" class="btn btn-outline-info btn-block">
                     Actualizar foto
                   </label>
-                
-                  
-                  <input id="file-input" type="file"  accept="image/*" (change)="onSelectFile($event)"/>
+
+
+                                    <input id="file-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-4 text-center col-modificar-contrasenia">
+                                <a href="#modificarContraseniaModal" class="btn btn-outline-info btn-block" data-toggle="modal">Modificar contraseña</a>
+                            </div>
+
+                            <div class="col-4 text-center col-actualizar-datos">
+                                <a href="#editarDatosBasicosModal" class="btn btn-outline-info btn-block" data-toggle="modal">Editar datos basicos</a>
+                            </div>
+                        </div>
+
+                        <!--Mis anuncios-->
+                        <div class="row justify-content-center mt-5">
+                            <h3 class="col-12 titulo-user text-left">Mis anuncios</h3>
+
+                            <div class="col-12" *ngIf="tenemosAnuncios">
+                                <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna"></app-slide-ofertas-destacadas>
+                            </div>
+
+                            <div class="col-12" *ngIf="!tenemosAnuncios">
+                                <h4 class="subtitulo-user text-left">Aun no ha hecho anuncios</h4>
+                            </div>
+
+                        </div>
+
+                        <!--Ofertas pensiones, en caso que no tengamos anuncios-->
+                        <div class="row justify-content-center mt-5" *ngIf="!tenemosAnuncios">
+                            <h3 class="col-12 titulo-buscando text-left">Pensiones en tu zona</h3>
+                            <h3 class="col-12 subtitulo-user text-left">Encuentra tu pension ideal, conocela en detalle y contacta a el pensionante</h3>
+
+                            <div class="col-12">
+                                <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna" [idCarousel]="'carouselOfertasDestacadasPension'"></app-slide-ofertas-destacadas>
+                            </div>
+                        </div>
+
+                        <!--Banner publicitario-->
+                        <div class="row mt-3">
+                            <div class="rounded banner-promocional">
+                                <h5>esto es una publicidad</h5>
+                            </div>
+                        </div>
+
+                        <!--Banner publicitario-->
+                        <div class="row mt-3">
+                            <div class="rounded banner-promocional">
+                                <h5>esto es una publicidad</h5>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-              </div>
-                           
-              <div class="col-4 text-center col-modificar-contrasenia">
-                <a href="#modificarContraseniaModal" class="btn btn-outline-info btn-block" data-toggle="modal">Modificar contraseña</a>
-              </div>
-              
-              <div class="col-4 text-center col-actualizar-datos">
-                <a href="#editarDatosBasicosModal" class="btn btn-outline-info btn-block" data-toggle="modal">Editar datos basicos</a>
-              </div>
+                <!--Modals de modificar contraseña y editar datos basicos-->
+                <app-modificar-contrasenia></app-modificar-contrasenia>
+                <app-editar-datos-basicos></app-editar-datos-basicos>
+
+            </main>
+
+            <!--ASIDE(banner publicitario grande)-->
+            <div class="row mt-4">
+                <aside class="col text-white text-center">
+                    <div class="rounded banner-promocional-grande">
+                        <h5>esto es una publicidad</h5>
+                    </div>
+                </aside>
             </div>
 
-            <!--Mis anuncios-->
-            <div class="row justify-content-center mt-5">
-              <h3 class="col-12 titulo-user text-left">Mis anuncios</h3>
-
-              <div class="col-12" *ngIf="tenemosAnuncios">
-                <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna"></app-slide-ofertas-destacadas>
-              </div>
- 
-              <div class="col-12" *ngIf="!tenemosAnuncios">
-                <h4 class="subtitulo-user text-left">Aun no ha hecho anuncios</h4>
-              </div>
-
-            </div>
- 
-            <!--Titulo promocional para los que tienen anuncios-->
-            <div class="row justify-content-center mt-5" *ngIf="tenemosAnuncios">
-              <h3 class="col-12 titulo-user text-center">No esperes más y contacta a los usuarios que estan buscando pension, habitacion, apartamento o casa en tu zona</h3>
+            <!--FOOTER-->
+            <div class="row mt-4">
+                <footer class="col" role="">
+                    <app-pie-pagina></app-pie-pagina>
+                </footer>
             </div>
 
-            <!--Personas interesadas en pension en tu zona-->
-            <div class="row justify-content-center mt-5" *ngIf="tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Personas buscando pension en tu zona</h3>              
 
-              <div class="col-12">
-                <app-slide-busco-pension-apto [tipoInmueble]="tipoInmueblePension"></app-slide-busco-pension-apto>
-              </div>
-            </div>
-
-            <!--Ofertas pensiones, en caso que no tengamos anuncios-->
-            <div class="row justify-content-center mt-5" *ngIf="!tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Pensiones en tu zona</h3>
-              <h3 class="col-12 subtitulo-user text-left">Encuentra tu pension ideal, conocela en detalle y contacta a el pensionante</h3>
-
-              <div class="col-12">
-                <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna" [idCarousel]="'carouselOfertasDestacadasPension'"></app-slide-ofertas-destacadas>
-              </div>
-            </div>
-
-            <!--Banner publicitario-->
-            <div class="row mt-3">
-              <div class="rounded banner-promocional">
-                <h5>esto es una publicidad</h5>
-              </div> 
-            </div>
-
-            <!--Personas interesadas en casa o apartamento en tu zona-->
-            <div class="row justify-content-center mt-5" *ngIf="tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Personas buscando apartamento en tu zona</h3>
-
-              <div class="col-12">
-                <app-slide-busco-pension-apto [tipoInmueble]="tipoInmuebleApto"></app-slide-busco-pension-apto>
-              </div>
-            </div>
-
-            <!--Ofertas Apartamentos, en caso que no tengamos anuncios-->
-            <div class="row justify-content-center mt-5" *ngIf="!tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Casas y apartamentos en tu zona</h3>
-              <h3 class="col-12 subtitulo-user text-left">No esperes más, contacta a los propietarios que buscan inquilinos</h3>
-
-              <div class="col-12">
-                <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna" [idCarousel]="'carouselOfertasDestacadasApto'"></app-slide-ofertas-destacadas>
-              </div>
-            </div>
-
-            <!--Banner publicitario-->
-            <div class="row mt-3">
-              <div class="rounded banner-promocional">
-                <h5>esto es una publicidad</h5>
-              </div> 
-            </div>
-
-            <!--Personas interesadas en habitacion en tu zona-->
-            <div class="row justify-content-center mt-5" *ngIf="tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Personas buscando habitacion en tu zona</h3>
-
-              <div class="col-12">
-                <app-slide-busco-pension-apto [tipoInmueble]="tipoInmuebleHabitacion"></app-slide-busco-pension-apto>
-              </div>
-            </div>
-
-            <!--Ofertas Habitaciones, en caso que no tengamos anuncios-->
-            <div class="row justify-content-center mt-5" *ngIf="!tenemosAnuncios">
-              <h3 class="col-12 titulo-buscando text-left">Habitaciones en tu zona</h3>
-              <h3 class="col-12 subtitulo-user text-left">Encuentra la habitacion adecuada a tus necesidades, descubre quien vive alli y organiza una visita</h3>
-
-              <div class="col-12">
-                <app-slide-ofertas-destacadas [idCarousel]="'carouselOfertasDestacadasHabitacion'" [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna"></app-slide-ofertas-destacadas>
-              </div>
-            </div>
-  
-
-          </div>
-        </div> 
-        
-        <!--Modals de modificar contraseña y editar datos basicos-->
-        <app-modificar-contrasenia></app-modificar-contrasenia>
-        <app-editar-datos-basicos></app-editar-datos-basicos>
-        
-      </main>
-
-      <!--ASIDE(banner publicitario grande)-->
-      <div class="row mt-4">
-        <aside class="col text-white text-center">
-          <div class="rounded banner-promocional-grande">
-            <h5>esto es una publicidad</h5>
-          </div>          
-        </aside>
-      </div>
-      
-      <!--FOOTER-->
-      <div class="row mt-4">
-        <footer class="col" role="">
-          <app-pie-pagina></app-pie-pagina>
-        </footer>
-      </div>
-  
-
+        </div>
     </div>
-  </div>
 </div>

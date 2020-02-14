@@ -26,8 +26,6 @@ import { SlideOfertasDestacadasComponent } from './componentes/slide-ofertas-des
 import { OfertasComponent } from './componentes/ofertas/ofertas.component';
 import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
 import { HaztePremiumComponent } from './componentes/hazte-premium/hazte-premium.component';
-import { BuscoPensionAptoComponent } from './componentes/busco-pension-apto/busco-pension-apto.component';
-import { FiltrosArticulosComponent } from './componentes/filtros-articulos/filtros-articulos.component';
 import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas/ofertas-recomendadas.component';
 import { SlideOfertaDetalladaComponent } from './componentes/slide-oferta-detallada/slide-oferta-detallada.component';
 import { InformacionDetalladaComponent } from './componentes/informacion-detallada/informacion-detallada.component';
@@ -45,25 +43,19 @@ import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
-import { PublicarArticuloComponent } from './paginas/publicar-articulo/publicar-articulo.component';
-import { SlideBuscoPensionAptoComponent } from './componentes/slide-busco-pension-apto/slide-busco-pension-apto.component';
 import { ModificarContraseniaComponent } from './componentes/modificar-contrasenia/modificar-contrasenia.component';
 import { EditarDatosBasicosComponent } from './componentes/editar-datos-basicos/editar-datos-basicos.component';
-import { VerInfoBuscoOfertaComponent } from './componentes/ver-info-busco-oferta/ver-info-busco-oferta.component';
-import { MessengerComponent } from './paginas/messenger/messenger.component';
 import { ContactarMobileComponent } from './componentes/contactar-mobile/contactar-mobile.component';
 
 //folder paginas
 import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
 import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
-import { ArticulosComponent } from './paginas/articulos/articulos.component';
 import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
 
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
-import { OfertasArticuloService } from './servicios/ofertasArticulos/ofertas-articulo.service';
 import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
 import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
@@ -87,11 +79,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     OfertasRecomendadasComponent,
     PiePaginaComponent,
     HaztePremiumComponent,
-    BuscoPensionAptoComponent,
-    FiltrosArticulosComponent,
     PensionAptoComponent,
     CategoriasComponent,
-    ArticulosComponent,
     FiltrosPensionAptoComponent,
     OfertasPensionAptoComponent,
     MapaComponent,
@@ -107,12 +96,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     PublicarPensionComponent,
     PublicarCasaAptoComponent,
     PublicarHabitacionComponent,
-    PublicarArticuloComponent,
-    SlideBuscoPensionAptoComponent,
     ModificarContraseniaComponent,
     EditarDatosBasicosComponent,
-    VerInfoBuscoOfertaComponent,
-    MessengerComponent,
     ContactarMobileComponent,
     ResetPasswordComponent,
     MensajePublicacionComponent
@@ -133,7 +118,6 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
   providers: [
     UbicacioMapaFiltrosService,
     UsuarioService,
-    OfertasArticuloService,
     OfertaCasaAptoService,
     OfertaHabitacionService,
     OfertasPensionService,

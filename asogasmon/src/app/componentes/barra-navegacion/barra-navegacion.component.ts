@@ -14,7 +14,6 @@ export class BarraNavegacionComponent implements AfterViewInit {
   @ViewChild('inicioSesionComponente', {static:false}) inicioSesionComponent: InicioSesionComponent;
 
 
-  categoriaBuscoPensionApto: string = 'pension';
   esUsuario = false;
   contador = 1;
 
@@ -55,10 +54,6 @@ export class BarraNavegacionComponent implements AfterViewInit {
     }
 
     
-  }
-
-  categoriaBusco(categoria) {
-    this.categoriaBuscoPensionApto = categoria;
   }
 
   //menú de navegacion mobile
