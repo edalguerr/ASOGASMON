@@ -1,72 +1,56 @@
-<div class="container-fluid contenedor-body">
-  <div class="row">
-    <div class="col ">
-    
-      <!--NAVEGACION Y ENCABEZADO-->
-      <div class="row">
-        <header class="col" role="heading">
-        <!--Barra de navegacion-->
-        <app-barra-navegacion></app-barra-navegacion>
-        </header>
-      </div>
+<main class="row " role="main">
 
-      <main class="row " role="main">
-        
-        <div class="col-12 card contenedor-contenido-principal" [style.height.px]="height">
-            
-          <!--Filtros-->
-          <div class="contenedor-filtros-pension-apto card-header">
+    <div class="col-12 card contenedor-contenido-principal" [style.height.px]="height">
+
+        <!--Filtros-->
+        <div class="contenedor-filtros-pension-apto card-header">
             <app-filtros-pension-apto #filtrosBusqueda></app-filtros-pension-apto>
-          </div> 
-            
-          <div class="card-body contenedor-card-body" >
-          
-            <!--Publicaciones y Mapa-->
-            <div class="row">
-              <!--Publicaciones-->
-              <div  *ngIf="!mostrarMapaMobile" class="col-lg-7 contenedor-publicaciones" [style.height.px]="height86">
-                <app-ofertas-pension-apto></app-ofertas-pension-apto>
-
-                <!--(banner publicitario)--> 
-                <div class="row my-2 pb-4">
-                  <div class="col text-white text-center">
-                    <div class="rounded banner-promocional">
-                      <h5>esto es una publicidad</h5>
-                    </div>          
-                  </div>
-                </div>
-
-              </div>
-  
-              <!--MAPA Ordenador-->
-              <div class="d-none d-lg-block col-lg-5 contenedor-mapa" [style.height.px]="height">
-                <app-mapa></app-mapa>
-                <!--<img src="../../../assets/Screenshot_2019-03-27 Apartamentos en arriendo y Roomies en Medellín - Dada Room.png" alt="" class="img-fluid">-->
-              </div>
-
-              <!--MAPA Tablet Grande   [style.width]="claseAnchoMapa [style.padding-left.px]="clasePaddingMapa" [style.padding-right.px]="clasePaddingMapa""-->
-              <div *ngIf="mostrarMapaMobile" class="d-block d-lg-none col-lg-5 contenedor-mapa"  [style.height.px]="height86" >
-                <app-mapa></app-mapa>
-              </div> 
-
-              <!--(banner publicitario extra para dispositivos moviles, cuando se
-                vea las ofertas en el mapa)-->
-              <div *ngIf="mostrarMapaMobile" class="col-12 my-2">
-                <div class="col text-white text-center">
-                  <div class="rounded banner-promocional-mapa-mobile">
-                    <h5>esto es una publicidad</h5>
-                  </div>          
-                </div>
-              </div>
-              
-            </div>
-
-          </div>
-    
         </div>
 
-      </main>
-        
+        <div class="card-body contenedor-card-body">
+
+            <!--Publicaciones y Mapa-->
+            <div class="row">
+                <!--Publicaciones-->
+                <div *ngIf="!mostrarMapaMobile" class="col-lg-7 contenedor-publicaciones" [style.height.px]="height86">
+                    <app-ofertas-pension-apto></app-ofertas-pension-apto>
+
+                    <!--(banner publicitario)-->
+                    <div class="row my-2 pb-4">
+                        <div class="col text-white text-center">
+                            <div class="rounded banner-promocional">
+                                <h5>esto es una publicidad</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--MAPA Ordenador-->
+                <div class="d-none d-lg-block col-lg-5 contenedor-mapa" [style.height.px]="height">
+                    <app-mapa></app-mapa>
+                    <!--<img src="../../../assets/Screenshot_2019-03-27 Apartamentos en arriendo y Roomies en Medellín - Dada Room.png" alt="" class="img-fluid">-->
+                </div>
+
+                <!--MAPA Tablet Grande   [style.width]="claseAnchoMapa [style.padding-left.px]="clasePaddingMapa" [style.padding-right.px]="clasePaddingMapa""-->
+                <div *ngIf="mostrarMapaMobile" class="d-block d-lg-none col-lg-5 contenedor-mapa" [style.height.px]="height86">
+                    <app-mapa></app-mapa>
+                </div>
+
+                <!--(banner publicitario extra para dispositivos moviles, cuando se
+                vea las ofertas en el mapa)-->
+                <div *ngIf="mostrarMapaMobile" class="col-12 my-2">
+                    <div class="col text-white text-center">
+                        <div class="rounded banner-promocional-mapa-mobile">
+                            <h5>esto es una publicidad</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
-</div>
+
+</main>

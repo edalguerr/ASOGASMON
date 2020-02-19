@@ -1,164 +1,136 @@
-<div class="container-fluid contenedor-body">
-  <div class="row">
-    <div class="col ">
+<!--MAIN-->
+<div class=" row mt-4">
+    <main class="col" role="main">
 
-      <!--NAVEGACION Y ENCABEZADO-->
-      <div class="row">
-        <header class="col" role="heading">
-          <!--Barra de navegacion-->
-          <app-barra-navegacion></app-barra-navegacion>
-        </header>
-      </div>
-
-      <!--MAIN-->
-      <div class=" row mt-4">
-        <main class="col" role="main">
-
-          <!--Contenido principal-->
-          <div class="d-flex justify-content-center">
+        <!--Contenido principal-->
+        <div class="d-flex justify-content-center">
             <div class="card contenedor-contenido-principal col-12">
 
-              <!--el tamaño del elemento de imagen debe coincidir con la 
+                <!--el tamaño del elemento de imagen debe coincidir con la 
                 relacion de aspecto ideal para las imagenes, en este caso
                 1.5, para que la imagenes quepan perfectamente en los contenedores 
                 de ofertas detalladas y ofertas iniciales
-              --> 
-              <div class="card-img-top imagen-oferta-detallada d-none d-md-block"
-              [style.background-image]="'url('+ruta+imagen+')'"></div>
+              -->
+                <div class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+ruta+imagen+')'"></div>
 
-              <!--Full screen componente-->
-              <app-carousel-full-screen></app-carousel-full-screen>
+                <!--Full screen componente-->
+                <app-carousel-full-screen></app-carousel-full-screen>
 
-              <!--Slide de imagenes de la oferta-->
-              <div id="carouselImagenesMobile" class="carousel slide d-block d-md-none" data-ride="carousel">
+                <!--Slide de imagenes de la oferta-->
+                <div id="carouselImagenesMobile" class="carousel slide d-block d-md-none" data-ride="carousel">
 
-                <div class="carousel-inner">
-                  <div class="carousel-item" *ngFor="let img of imagenes;let i=index"
-                    [ngClass]=" (i == 0)?'active':'' ">
-                    <div class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+ruta+img+')'">
+                    <div class="carousel-inner">
+                        <div class="carousel-item" *ngFor="let img of imagenes;let i=index" [ngClass]=" (i == 0)?'active':'' ">
+                            <div class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+ruta+img+')'">
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <a class="carousel-control-prev" href="#carouselImagenesMobile" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left fa-3x"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+
+                    <a class="carousel-control-next" href="#carouselImagenesMobile" role="button" data-slide="next">
+                        <i class="fa fa-angle-right fa-3x"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+
                 </div>
 
-                <a class="carousel-control-prev" href="#carouselImagenesMobile" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left fa-3x"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
+                <!--Ampliar fotos-->
+                <!--boton ampliar imagen a pantalla completa-->
+                <button class="btn btn-secondary btn-fa-expandir" data-toggle="modal" data-target="#fullScreenModal">
+                    <i class="fa fa-image pr-1"></i>
+                    Ver fotos
+                </button>
 
-                <a class="carousel-control-next" href="#carouselImagenesMobile" role="button" data-slide="next">
-                  <i class="fa fa-angle-right fa-3x"></i>
-                  <span class="sr-only">Next</span>
-                </a>
+                <!--Eliminar anuncio-->
+                <!--boton eliminar anuncio-->
+                <button *ngIf="esMyAnuncio" class="btn btn-danger btn-fa-eliminar-anuncio">
+                    <i class="fa fa-times pr-1"></i>
+                    Eliminar anuncio
+                </button>
 
-              </div>
+                <div class="card-body contenedor-card-body">
+                    <div [class]=" (!isOrdenador)?'container-fluid':''">
+                        <div class="row justify-content-around">
 
-              <!--Ampliar fotos-->
-              <!--boton ampliar imagen a pantalla completa-->
-              <button class="btn btn-secondary btn-fa-expandir" data-toggle="modal" data-target="#fullScreenModal">
-                <i class="fa fa-image pr-1"></i>
-                Ver fotos
-              </button>
+                            <!--Contenedor de informacion detallada-->
+                            <div class="col-11 col-md-7 pr-0">
 
-              <!--Eliminar anuncio-->
-              <!--boton eliminar anuncio-->
-              <button *ngIf ="esMyAnuncio" class="btn btn-danger btn-fa-eliminar-anuncio">
-                <i class="fa fa-times pr-1"></i>
-                Eliminar anuncio
-              </button>
-
-              <div class="card-body contenedor-card-body">
-                <div [class]=" (!isOrdenador)?'container-fluid':''">
-                  <div class="row justify-content-around">
-
-                    <!--Contenedor de informacion detallada-->
-                    <div class="col-11 col-md-7 pr-0">
-
-                      <!--Slide de fotos de la oferta-->
-                      <app-slide-oferta-detallada #slideImagenesOferta class="d-none d-md-block">
-                      </app-slide-oferta-detallada>
+                                <!--Slide de fotos de la oferta-->
+                                <app-slide-oferta-detallada #slideImagenesOferta class="d-none d-md-block">
+                                </app-slide-oferta-detallada>
 
 
-                      <!--Informacion detallada de la oferta-->
-                      <app-informacion-detallada></app-informacion-detallada>
+                                <!--Informacion detallada de la oferta-->
+                                <app-informacion-detallada></app-informacion-detallada>
 
-                    </div>
+                            </div>
 
-                    <!--Contenedor de información de contácto-->
-                    <div class="col-5 col-lg-4 d-none d-md-block contenedor-informacion-contacto">
+                            <!--Contenedor de información de contácto-->
+                            <div class="col-5 col-lg-4 d-none d-md-block contenedor-informacion-contacto">
 
-                      <!--Card precio-->
-                      <div class="card mb-2">
-                        <div class="card-body text-center">
+                                <!--Card precio-->
+                                <div class="card mb-2">
+                                    <div class="card-body text-center">
 
-                          <h5 class="card-title precio-detalle">
-                            COP {{precio | currency:undefined:'symbol':'1.0-0'}} <span>/ mensual</span>
-                          </h5>
-                          <span class="factura-detalle">Servicios incluidos</span>
+                                        <h5 class="card-title precio-detalle">
+                                            COP {{precio | currency:undefined:'symbol':'1.0-0'}} <span>/ mensual</span>
+                                        </h5>
+                                        <span class="factura-detalle">Servicios incluidos</span>
+
+                                    </div>
+                                </div>
+
+                                <app-contactar-oferta-detallada></app-contactar-oferta-detallada>
+
+                                <!--banner publicitario vertical-->
+                                <div class="banner-publicitario-vertical-mediano">
+                                    Esto es una publicidad
+                                </div>
+
+                                <!--banner publicitario vertical-->
+                                <div class="banner-publicitario-vertical">
+                                    Esto es una publicidad
+                                </div>
+
+                            </div>
+
+                            <!--Contáctar y llamar para tablet mediana y celulares-->
+                            <div class="row fixed-bottom d-flex d-md-none contenedor-llamar-mensaje">
+
+                                <div class="col-6 pr-0">
+                                    <a href="tel:{{numeroCelularPrueba}}" class="btn btn-primary btn-block btn-lg rounded-0">
+                                        <i class="fa fa-phone"></i> Llamar
+                                    </a>
+                                </div>
+
+                                <div class="col-6 pl-0">
+                                    <button class="btn btn-success btn-block btn-lg rounded-0" data-toggle="modal" data-target="#contactarOfertaMobile">
+                                        <i class="fa fa-envelope"></i>
+                                        Mensaje
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <app-contactar-mobile></app-contactar-mobile>
 
                         </div>
-                      </div>
-
-                      <app-contactar-oferta-detallada></app-contactar-oferta-detallada>
-
-                      <!--banner publicitario vertical-->
-                      <div class="banner-publicitario-vertical-mediano">
-                        Esto es una publicidad
-                      </div>
-
-                      <!--banner publicitario vertical-->
-                      <div class="banner-publicitario-vertical">
-                        Esto es una publicidad
-                      </div>
-
                     </div>
 
-                    <!--Contáctar y llamar para tablet mediana y celulares-->
-                    <div class="row fixed-bottom d-flex d-md-none contenedor-llamar-mensaje">
-
-                      <div class="col-6 pr-0">
-                        <a href="tel:{{numeroCelularPrueba}}" class="btn btn-primary btn-block btn-lg rounded-0">
-                          <i class="fa fa-phone"></i>
-                          Llamar
-                        </a>
-                      </div>
-
-                      <div class="col-6 pl-0">
-                        <button class="btn btn-success btn-block btn-lg rounded-0" data-toggle="modal"
-                          data-target="#contactarOfertaMobile">
-                          <i class="fa fa-envelope"></i>
-                          Mensaje
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <app-contactar-mobile></app-contactar-mobile>
-
-                  </div>
                 </div>
-
-              </div>
 
 
             </div>
-          </div>
+        </div>
 
-          <!--Banner publicitario horizontal-->
-          <div class="banner-publicitario-horizontal">
+        <!--Banner publicitario horizontal-->
+        <div class="banner-publicitario-horizontal">
             Esto es una publicidad
-          </div>
+        </div>
 
-        </main>
-      </div>
-
-
-      <!--FOOTER-->
-      <div class="row mt-4 mb-5 mb-md-0">
-        <footer class="col" role="">
-          <app-pie-pagina></app-pie-pagina>
-        </footer>
-      </div>
-
-    </div>
-  </div>
+    </main>
 </div>

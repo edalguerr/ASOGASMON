@@ -1,0 +1,142 @@
+<!--NAVEGACION Y ENCABEZADO-->
+<div class="row">
+    <header class="col" role="heading">
+
+        <nav class="navbar navbar-expand-md fixed-top barra-navegacion" role="navigation">
+
+            <button class="navbar-toggler" type="button" (click)="barraNavegacionLateral()" id="menu_bar">
+                <span class="navbar-toggler-icon">
+                    <i [class]="claseIconBtnMenu"></i>
+                </span>
+            </button>
+
+            <a class="navbar-brand" routerLink="">
+                <img src="assets/colibri.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                <span class="nombre-logo">Asogasmon</span>
+            </a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item li-item-menu">
+                        <a *ngIf="!esUsuario" class="nav-link" href="" data-toggle="modal" data-target="#registrarseModal">Registrarse</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a *ngIf="!esUsuario" class="nav-link" href="" data-toggle="modal" data-target="#inicioSesionModal">Ingresar</a>
+                        <a *ngIf="esUsuario" class="nav-link" routerLink="/perfil/usuario">
+                            <i class="fa fa-user"></i> Perfil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-publicar px-3 ml-1" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Públicar
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarApto">Apartamento</a>
+                            <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarPension">Pension</a>
+                            <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarHabitacion">Habitación</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="d-inline d-md-none contenedor-boton-publicar">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle btn btn-publicar px-3 ml-1" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Públicar
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarApto">Apartamento</a>
+                        <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarPension">Pension</a>
+                        <a class="dropdown-item item-dropdown-publicar text-body" routerLink="/publicarHabitacion">Habitación</a>
+                    </div>
+                </li>
+            </div>
+
+        </nav>
+
+
+
+        <nav id="nav_responsive" #nav_responsive class="nav-responsive d-md-none">
+
+            <div class="container-fluid" (click)="irPerfil()">
+                <div class="row py-4">
+                    <!--Foto de perfil-->
+                    <div class="col-4 text-center pr-0" *ngIf="esUsuario">
+                        <div class="card-img-user" [style.background-image]="'url('+ruta+imagen+')' "></div>
+                    </div>
+
+                    <div class="col-8 align-self-center pl-0" *ngIf="esUsuario">
+                        <h2 class="titulo-user ">Edwin Alberto</h2>
+                        <h2 class="subtitulo-user ">eguerreroa1@gmail.com</h2>
+                    </div>
+
+                    <!--Cuando no ha iniciado sesion o no es usuario-->
+                    <div class="col-4 text-center pr-0" *ngIf="!esUsuario" data-target="#inicioSesionModal" data-toggle="modal">
+                        <div class="card-img-user" [style.background-image]="'url('+ruta+imagen+')' "></div>
+                    </div>
+
+                    <!--Cuando no ha iniciado sesion o no es usuario-->
+                    <div class="col-8 align-self-center pl-0" *ngIf="!esUsuario" data-target="#inicioSesionModal" data-toggle="modal">
+                        <h2 class="titulo-user">Inicia sesion</h2>
+                        <h2 class="subtitulo-user ">Ingresa o crea tu cuenta</h2>
+                    </div>
+
+                </div>
+            </div>
+
+            <ul class="accordion" id="accordionMenu">
+                <li>
+                    <a routerLink=""><img src="assets/colibri.png" width="24" height="24" class="d-inline-block align-top mr-3" alt="">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="#collapsePublicar" data-toggle="collapse" aria-expanded="false" aria-controls="collapsePublicar">
+                        <i class="fa fa-file fa-lg mr-4"></i> Publicar
+                    </a>
+
+                    <div id="collapsePublicar" class="collapse" data-parent="#accordionMenu">
+                        <a routerLink="/publicarApto" class="ml-4">
+                            <i class="fa fa-building fa-lg mr-2"></i> Apartamento
+                        </a>
+                        <a routerLink="/publicarPension" class="ml-4">
+                            <i class="fa fa-home fa-lg mr-2"></i> Pension
+                        </a>
+                        <a routerLink="/publicarHabitacion" class="ml-4">
+                            <i class="fa fa-bed fa-lg mr-1"></i> Habitación
+                        </a>
+                    </div>
+
+                </li>
+
+                <li>
+                    <a href="#collapseBuscar" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBuscar">
+                        <i class="fa fa-search fa-lg mr-4"></i> Buscar
+                    </a>
+
+                    <div id="collapseBuscar" class="collapse" data-parent="#accordionMenu">
+                        <a routerLink="/apartamentos" class="ml-4">
+                            <i class="fa fa-building fa-lg mr-2"></i> Apartamento
+                        </a>
+                        <a routerLink="/pensiones" class="ml-4">
+                            <i class="fa fa-home fa-lg mr-2"></i> Pension
+                        </a>
+                        <a routerLink="/habitaciones" class="ml-4">
+                            <i class="fa fa-bed fa-lg mr-1"></i> Habitación
+                        </a>
+                    </div>
+
+                </li>
+
+
+                <li *ngIf="esUsuario"><a routerLink="/" (click)="cerrarSesion()"><i
+                            class="fa fa-sign-out fa-lg mr-4"></i>Cerrar
+                        sesión</a></li>
+
+            </ul>
+        </nav>
+
+    </header>
+</div>
+
+<app-inicio-sesion #inicioSesionComponente></app-inicio-sesion>

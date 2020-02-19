@@ -1,448 +1,385 @@
-<div class="container-fluid contenedor-body">
-    <div class="row">
-        <div class="col ">
+<!--MAIN-->
+<main class="row justify-content-center contenedor-main" role="main">
 
-            <!--NAVEGACION Y ENCABEZADO-->
-            <div class="row">
-                <header class="col" role="heading">
-                    <!--Barra de navegacion-->
-                    <app-barra-navegacion></app-barra-navegacion>
-                </header>
-            </div>
+    <div class="col-11 col-lg-10 card card-contenedor-principal">
+        <div class="card-body card-body-contenedor-principal">
 
-            <!--MAIN-->
-            <main class="row justify-content-center contenedor-main" role="main">
+            <!--Encabezado de publicar habitación-->
+            <header class="col-12 mb-4">
+                <h2 class="titulo-publicar text-center">Publica tu habitación</h2>
+                <p class="parrafo-introductorio-publicar">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, iure! Consectetur, eaque eius, maiores nulla ducimus, temporibus sunt ipsam doloremque amet nihil corporis repellendus? Quo ullam dolore ipsa culpa quia.
+                </p>
+            </header>
 
-                <div class="col-11 col-lg-10 card card-contenedor-principal">
-                    <div class="card-body card-body-contenedor-principal">
+            <hr class="w-100">
 
-                        <!--Encabezado de publicar habitación-->
-                        <header class="col-12 mb-4">
-                            <h2 class="titulo-publicar text-center">Publica tu habitación</h2>
-                            <p class="parrafo-introductorio-publicar">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, iure! Consectetur, eaque
-                                eius, maiores nulla ducimus, temporibus sunt ipsam doloremque amet nihil corporis
-                                repellendus? Quo ullam dolore ipsa culpa quia.
-                            </p>
-                        </header>
+            <!--Formulario de publicar pension-->
+            <form action="" class="col-12 mt-4 mb-3" (ngSubmit)="guardar()" ngNativeValidate>
 
-                        <hr class="w-100">
+                <!--Dirección-->
+                <div class="form-row justify-content-center">
 
-                        <!--Formulario de publicar pension-->
-                        <form action="" class="col-12 mt-4 mb-3" (ngSubmit)="guardar()" ngNativeValidate>
+                    <h3 class="subtitulo-publicar col-12 col-sm-10 ">Ingresa la dirección de tu habitación o ubicala en el mapa
+                    </h3>
 
-                            <!--Dirección-->
-                            <div class="form-row justify-content-center">
+                    <div class="input-group form-group col-12 col-sm-11 col-md-10">
+                        <input type="text" class="form-control" placeholder="Ingrese la direccion" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+                        <div class="input-group-append">
+                            <a class="btn btn-primary text-white">
+                                <i class="fa fa-map-marker"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                                <h3 class="subtitulo-publicar col-12 col-sm-10 ">Ingresa la dirección de tu habitación o
-                                    ubicala en el mapa
-                                </h3>
+                    <app-mapa-estatico class="col-12 col-sm-11 col-md-10" [textPrecio]="textPrecio" [iconoPrecio]="iconoPrecio" [minZoom]="minZoom" [streetViewControl]="streetViewControl" [draggable]="draggable" [fullScreenMapa]="fullScreenMapa" [latitud]="coordPension.lat"
+                        [longitud]="coordPension.lng" [latitud2]="coordPension.lat" [longitud2]="coordPension.lng" #mapaEstaticoComponent>
+                    </app-mapa-estatico>
 
-                                <div class="input-group form-group col-12 col-sm-11 col-md-10">
-                                    <input type="text" class="form-control" placeholder="Ingrese la direccion"
-                                        autocorrect="off" autocapitalize="off" spellcheck="off" #search>
-                                    <div class="input-group-append">
-                                        <a class="btn btn-primary text-white">
-                                            <i class="fa fa-map-marker"></i>
-                                        </a>
-                                    </div>
+                    <div class="btn direccion-info">
+                        <strong>Dirección:</strong> {{ubicacionMapaFiltros.direccion}}
+                    </div>
+
+                </div>
+
+
+                <!--Habitacion(es) individual(es) o compartida(s)-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Habitacion disponible</h3>
+
+                    <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5" data-toggle="buttons">
+                        <label class="btn btn-outline-info active" (click)="onChangeTipoHabitacion($event.target)">
+                            <input type="radio" name="optionIndividualCompartida" value="INDIVIDUAL" checked>Individual
+                        </label>
+                        <label class="btn btn-outline-info" (click)="onChangeTipoHabitacion($event.target)">
+                            <input type="radio" name="optionIndividualCompartida" value="COMPARTIDA">Compartida
+                        </label>
+                    </div>
+
+                </div>
+
+                <!--Amoblada o sin amoblar-->
+                <div class="row justify-content-center mt-4">
+
+                    <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5" data-toggle="buttons">
+                        <label class="btn btn-outline-info active" (click)="onChangeAmoblada($event.target)" checked>
+                            <input type="radio" name="optionsAmoblada" value="AMOBLADA" autocomplete="off">Amoblada
+                        </label>
+                        <label class="btn btn-outline-info " (click)="onChangeAmoblada($event.target)">
+                            <input type="radio" name="optionsAmoblada" value="NOAMOBLADA" autocomplete="off">Sin amoblar
+                        </label>
+                    </div>
+
+                </div>
+
+                <!--Habitacion con baño interno-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Habitacion con baño interno</h3>
+
+                    <div class="btn-group btn-group-toggle col-6 col-sm-5 col-lg-4" data-toggle="buttons">
+                        <label class="btn btn-outline-info " (click)="onChangeBanioInterno($event.target)">
+                            <input type="radio" name="optionsBanioInterno" value="SI" autocomplete="off">Si
+                        </label>
+                        <label class="btn btn-outline-info active" (click)="onChangeBanioInterno($event.target)">
+                            <input type="radio" name="optionsBanioInterno" value="NO" autocomplete="off" checked>No
+                        </label>
+                    </div>
+
+                </div>
+
+                <!--Generos admitidos-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Genero admitido</h3>
+
+                    <div class="btn-group btn-group-toggle col-9 col-md-8 col-lg-6" data-toggle="buttons">
+                        <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                            <input type="radio" name="optionsGenerosAdmitidos" id="hombres" autocomplete="off"
+                                value="HOMBRES" required>Hombre
+                        </label>
+                        <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                            <input type="radio" name="optionsGenerosAdmitidos" id="mujeres" autocomplete="off"
+                                value="MUJERES" required>Mujer
+                        </label>
+                        <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
+                            <input type="radio" name="optionsGenerosAdmitidos" id="todos" autocomplete="off"
+                                value="TODOS" required>Todos
+                        </label>
+                    </div>
+
+                </div>
+
+                <!--Alimentacion incluida-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Alimentacion incluida</h3>
+
+                    <div class="btn-group btn-group-toggle col-6 col-md-5 col-lg-4" data-toggle="buttons">
+                        <label class="btn btn-outline-info active" (click)="onChangeAlimentacionIncluida($event.target)">
+                            <input type="radio" name="opitionsAlimentacion" value="SI" autocomplete="off" checked>Si
+                        </label>
+                        <label class="btn btn-outline-info" (click)="onChangeAlimentacionIncluida($event.target)">
+                            <input type="radio" name="opitionsAlimentacion" value="NO" autocomplete="off">No
+                        </label>
+                    </div>
+
+                </div>
+
+                <!--Dimension del inmueble-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Tamaño de la habitacion</h3>
+
+                    <div class="input-group col-6 col-sm-5 col-md-4">
+
+                        <input type="number" class="form-control text-center" [(ngModel)]="dimensionInmueble" (change)="onChangeDimensionInmueble()" aria-label="Area del inmueble" [min]="minDimensionInmueble" step="5" name="dimensionInmueble" max="9999999999" [pattern]="regExp.tamInmueble">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-info">
+                                m<sup>2</sup>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Estancia minima requerida-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10">Estancia minima requerida</h3>
+
+                    <div class="col-6 col-sm-5 col-md-4">
+                        <select class="custom-select mr-2" name="estanciaMinima" [(ngModel)]="estanciaMinima">
+                            <option value="0" selected>Ninguna</option>
+                            <option value="1">1 Mes</option>
+                            <option value="3">3 Meses</option>
+                            <option value="6">6 Meses</option>
+                            <option value="9">9 Meses</option>
+                            <option value="12">12 Meses</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!--Fotos de la habitacion-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10 mb-4">Agregue al menos 1 foto de la habitación</h3>
+
+                    <div class="col-6 col-md-4 img-principal align-self-center">
+
+                        <div class="image-upload">
+                            <label for="file-input">
+                                <div class="img-thumbnail " [style.background-image]="'url('+urlImagenPrincipal+')'">
                                 </div>
+                                <i class="fa fa-folder-plus fa-file-imagen"></i>
+                            </label>
 
-                                <app-mapa-estatico class="col-12 col-sm-11 col-md-10" [textPrecio]="textPrecio"
-                                    [iconoPrecio]="iconoPrecio" [minZoom]="minZoom"
-                                    [streetViewControl]="streetViewControl" [draggable]="draggable"
-                                    [fullScreenMapa]="fullScreenMapa" [latitud]="coordPension.lat"
-                                    [longitud]="coordPension.lng" [latitud2]="coordPension.lat"
-                                    [longitud2]="coordPension.lng" #mapaEstaticoComponent>
-                                </app-mapa-estatico>
 
-                                <div class="btn direccion-info">
-                                    <strong>Dirección:</strong> {{ubicacionMapaFiltros.direccion}}
+                            <input id="file-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-sm-10 col-md-8">
+                        <div class="row">
+
+                            <div class="image-upload col-4" *ngFor="let urlImagen of urlImagenes; let i = index">
+                                <label for="file-input{{i}}">
+                                    <div class="img-thumbnail" [style.background-image]="'url('+urlImagen+')' "></div>
+                                    <i class="fa fa-folder-plus"></i>
+                                </label>
+
+                                <input id="file-input{{i}}" type="file" accept="image/*" (change)="onSelectFileSecond($event, i)" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Nro de personas que viven en el inmueble-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10 mb-4">¿Cuantas personas viven en el inmueble?</h3>
+
+                    <div class="input-group col-6 col-sm-5 col-lg-4">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button" (click)="aumentarHabitantes()">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+
+                        <input type="number" class="form-control text-center" [(ngModel)]="nroHabitantes" aria-label="Numero de habitantes" [min]="minHabitantes" [max]="maxHabitantes" name="nroHabitantes">
+
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" (click)="disminuirHabitantes()">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--Servicios de la habitación-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10 mb-4">
+                        Servicios especificos
+                    </h3>
+
+                    <div class="col-10">
+                        <div class="row">
+
+                            <div class="servicio-item col-4 mb-3 " *ngFor="let servicio of servicios;let i = index">
+
+                                <i [class]="servicio.ICONO"></i><br>
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" name="customControl{{i}}" id="customControl{{i}}" [(ngModel)]="servicio.CHECKED">
+                                    <label class="custom-control-label" for="customControl{{i}}">{{servicio.SERVICIO | titlecase}}</label>
                                 </div>
 
                             </div>
 
+                        </div>
+                    </div>
 
-                            <!--Habitacion(es) individual(es) o compartida(s)-->
-                            <div class="row justify-content-center mt-5">
+                </div>
 
-                                <h3 class="subtitulo-publicar col-10">Habitacion disponible</h3>
+                <!--Reglas de la casa-->
+                <div class="row justify-content-center mt-5">
 
-                                <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5"
-                                    data-toggle="buttons">
-                                    <label class="btn btn-outline-info active" (click)="onChangeTipoHabitacion($event.target)">                                        
-                                        <input type="radio" name="optionIndividualCompartida" value="INDIVIDUAL" checked>Individual
-                                    </label>
-                                    <label class="btn btn-outline-info" (click)="onChangeTipoHabitacion($event.target)">
-                                        <input type="radio" name="optionIndividualCompartida" value="COMPARTIDA" >Compartida
-                                    </label>
+                    <h3 class="subtitulo-publicar col-10 mb-4">Reglas de la casa</h3>
+
+                    <div class="col-10">
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item text-center" *ngFor="let reglaI of reglasCasa">
+
+                                <label class="d-block">{{reglaI.NORMA | lowercase}}</label>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="radio{{reglaI.ID}}Si" name="radio{{reglaI.ID}}" value="SI" [(ngModel)]="reglaI.CHECKED">
+                                    <label class="custom-control-label" for="radio{{reglaI.ID}}Si">Si</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="radio{{reglaI.ID}}No" name="radio{{reglaI.ID}}" value="NO" [(ngModel)]="reglaI.CHECKED">
+                                    <label class="custom-control-label" for="radio{{reglaI.ID}}No">No</label>
                                 </div>
 
-                            </div>
-
-                            <!--Amoblada o sin amoblar-->
-                            <div class="row justify-content-center mt-4">
-
-                                <div class="btn-group btn-group-toggle col-8 col-sm-7 col-md-6 col-lg-5"
-                                    data-toggle="buttons">
-                                    <label class="btn btn-outline-info active" (click)="onChangeAmoblada($event.target)" checked>
-                                        <input type="radio" name="optionsAmoblada" value="AMOBLADA" autocomplete="off">Amoblada
-                                    </label>
-                                    <label class="btn btn-outline-info " (click)="onChangeAmoblada($event.target)">
-                                        <input type="radio" name="optionsAmoblada" value="NOAMOBLADA" autocomplete="off">Sin amoblar
-                                    </label>
-                                </div>
-
-                            </div>
-
-                            <!--Habitacion con baño interno-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10">Habitacion con baño interno</h3>
-
-                                <div class="btn-group btn-group-toggle col-6 col-sm-5 col-lg-4" data-toggle="buttons">
-                                    <label class="btn btn-outline-info " (click)="onChangeBanioInterno($event.target)">
-                                        <input type="radio" name="optionsBanioInterno" value="SI" autocomplete="off">Si
-                                    </label>
-                                    <label class="btn btn-outline-info active" (click)="onChangeBanioInterno($event.target)">
-                                        <input type="radio" name="optionsBanioInterno" value="NO" autocomplete="off" checked>No
-                                    </label>
-                                </div>
-
-                            </div>
+                            </li>
 
-                            <!--Generos admitidos-->
-                            <div class="row justify-content-center mt-5">
+                        </ul>
 
-                                <h3 class="subtitulo-publicar col-10">Genero admitido</h3>
-
-                                <div class="btn-group btn-group-toggle col-9 col-md-8 col-lg-6" data-toggle="buttons">
-                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
-                                        <input type="radio" name="optionsGenerosAdmitidos" id="hombres"
-                                            autocomplete="off" value="HOMBRES" required>Hombre
-                                    </label>
-                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
-                                        <input type="radio" name="optionsGenerosAdmitidos" id="mujeres"
-                                            autocomplete="off" value="MUJERES" required>Mujer
-                                    </label>
-                                    <label class="btn btn-outline-info" (click)="onChangeGenerosAdmitidos($event.target)">
-                                        <input type="radio" name="optionsGenerosAdmitidos" id="todos" autocomplete="off"
-                                            value="TODOS" required>Todos
-                                    </label>
-                                </div>
+                    </div>
 
-                            </div>
+                </div>
 
-                            <!--Alimentacion incluida-->
-                            <div class="row justify-content-center mt-5">
+                <hr class="w-100">
 
-                                <h3 class="subtitulo-publicar col-10">Alimentacion incluida</h3>
+                <!--Precio mensual-->
+                <div class="row justify-content-center mt-5">
 
-                                <div class="btn-group btn-group-toggle col-6 col-md-5 col-lg-4" data-toggle="buttons">
-                                    <label class="btn btn-outline-info active" (click)="onChangeAlimentacionIncluida($event.target)">
-                                        <input type="radio" name="opitionsAlimentacion" value="SI" autocomplete="off" checked>Si
-                                    </label>
-                                    <label class="btn btn-outline-info" (click)="onChangeAlimentacionIncluida($event.target)">
-                                        <input type="radio" name="opitionsAlimentacion" value="NO" autocomplete="off">No
-                                    </label>
-                                </div>
+                    <h3 class="subtitulo-publicar col-10 mb-3">Precio mensual</h3>
 
-                            </div>
-
-                            <!--Dimension del inmueble-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10">Tamaño de la habitacion</h3>
-
-                                <div class="input-group col-6 col-sm-5 col-md-4">
+                    <div class="input-group mb-3 col-7 col-sm-6 col-lg-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
 
-                                    <input type="number" class="form-control text-center"
-                                        [(ngModel)]="dimensionInmueble" (change)="onChangeDimensionInmueble()"
-                                        aria-label="Area del inmueble" [min]="minDimensionInmueble" step="5"
-                                        name="dimensionInmueble" max="9999999999" [pattern]="regExp.tamInmueble">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-info">
-                                            m<sup>2</sup>
-                                        </button>
-                                    </div>
+                        <input type="tel" class="form-control text-center" placeholder="Precio mensual" aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15" [(ngModel)]="precio" name="precioMensual" required>
 
-                                </div>
+                    </div>
 
-                            </div>
+                    <small class="form-text text-muted w-100 text-center">
+                        Ingrese el precio sin puntos ni simbolos.
+                    </small>
 
-                            <!--Estancia minima requerida-->
-                            <div class="row justify-content-center mt-5">
+                </div>
 
-                                <h3 class="subtitulo-publicar col-10">Estancia minima requerida</h3>
+                <!--Nro. Celular-->
+                <div class="row justify-content-center mt-5">
 
-                                <div class="col-6 col-sm-5 col-md-4">
-                                    <select class="custom-select mr-2" name="estanciaMinima" [(ngModel)]="estanciaMinima">
-                                        <option value="0" selected>Ninguna</option>
-                                        <option value="1">1 Mes</option>
-                                        <option value="3">3 Meses</option>
-                                        <option value="6">6 Meses</option>
-                                        <option value="9">9 Meses</option>
-                                        <option value="12">12 Meses</option>
-                                    </select>
-                                </div>
+                    <h3 class="subtitulo-publicar col-10 mb-3">Número celular</h3>
 
-                            </div>
+                    <div class="input-group form-group col-9 col-sm-8 col-md-7 col-lg-5">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                        </div>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                +57
+                            </span>
+                        </div>
 
-                            <!--Fotos de la habitacion-->
-                            <div class="row justify-content-center mt-5">
+                        <input type="tel" class="form-control text-center" placeholder="Número celular" [pattern]="regExp.celular" maxlength="10" [(ngModel)]="celular" name="numCelular" required>
 
-                                <h3 class="subtitulo-publicar col-10 mb-4">Agregue al menos 1 foto de la habitación</h3>
+                    </div>
 
-                                <div class="col-6 col-md-4 img-principal align-self-center">
+                    <small class="form-text text-muted w-100 text-center">
+                        Ingrese su numero celular sin puntos ni espacios.
+                    </small>
 
-                                    <div class="image-upload">
-                                        <label for="file-input">
-                                            <div class="img-thumbnail "
-                                                [style.background-image]="'url('+urlImagenPrincipal+')'"></div>
-                                            <i class="fa fa-folder-plus fa-file-imagen"></i>
-                                        </label>
+                </div>
 
+                <!--Titulo del aviso-->
+                <div class="row justify-content-center mt-5">
 
-                                        <input id="file-input" type="file" accept="image/*"
-                                            (change)="onSelectFile($event)" />
-                                    </div>
+                    <h3 class="subtitulo-publicar col-10 mb-3">Titulo del aviso</h3>
 
-                                </div>
-
-                                <div class="col-12 col-sm-10 col-md-8">
-                                    <div class="row">
-
-                                        <div class="image-upload col-4"
-                                            *ngFor="let urlImagen of urlImagenes; let i = index">
-                                            <label for="file-input{{i}}">
-                                                <div class="img-thumbnail"
-                                                    [style.background-image]="'url('+urlImagen+')' "></div>
-                                                <i class="fa fa-folder-plus"></i>
-                                            </label>
-
-                                            <input id="file-input{{i}}" type="file" accept="image/*"
-                                                (change)="onSelectFileSecond($event, i)" />
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!--Nro de personas que viven en el inmueble-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-4">¿Cuantas personas viven en el inmueble?</h3>
-
-                                <div class="input-group col-6 col-sm-5 col-lg-4">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-secondary" type="button" (click)="aumentarHabitantes()">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-
-                                    <input type="number" class="form-control text-center" [(ngModel)]="nroHabitantes"
-                                        aria-label="Numero de habitantes" [min]="minHabitantes" [max]="maxHabitantes"
-                                        name="nroHabitantes">
-
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" (click)="disminuirHabitantes()">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <!--Servicios de la habitación-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-4">
-                                    Servicios especificos
-                                </h3>
-
-                                <div class="col-10">
-                                    <div class="row">
-
-                                        <div class="servicio-item col-4 mb-3 "
-                                            *ngFor="let servicio of servicios;let i = index">
-
-                                            <i [class]="servicio.ICONO"></i><br>
-                                            <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    name="customControl{{i}}" id="customControl{{i}}"
-                                                    [(ngModel)]="servicio.CHECKED">
-                                                <label class="custom-control-label"
-                                                    for="customControl{{i}}">{{servicio.SERVICIO | titlecase}}</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
- 
-                            <!--Reglas de la casa-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-4">Reglas de la casa</h3>
-
-                                <div class="col-10">
-
-                                    <ul class="list-group list-group-flush">
-
-                                        <li class="list-group-item text-center" *ngFor="let reglaI of reglasCasa">
-
-                                            <label class="d-block">{{reglaI.NORMA | lowercase}}</label>
-
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input"
-                                                    id="radio{{reglaI.ID}}Si" name="radio{{reglaI.ID}}"
-                                                    value="SI" [(ngModel)]="reglaI.CHECKED">
-                                                <label class="custom-control-label"
-                                                    for="radio{{reglaI.ID}}Si">Si</label>
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input"
-                                                    id="radio{{reglaI.ID}}No" name="radio{{reglaI.ID}}"
-                                                    value="NO" [(ngModel)]="reglaI.CHECKED">
-                                                <label class="custom-control-label"
-                                                    for="radio{{reglaI.ID}}No">No</label>
-                                            </div>
-
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
-                            <hr class="w-100">
-
-                            <!--Precio mensual-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-3">Precio mensual</h3>
-
-                                <div class="input-group mb-3 col-7 col-sm-6 col-lg-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-
-                                    <input type="tel" class="form-control text-center" placeholder="Precio mensual"
-                                        aria-label="Precio mensual" [pattern]="regExp.precio" maxlength="15"
-                                        [(ngModel)]="precio" name="precioMensual" required>
-
-                                </div>
-
-                                <small class="form-text text-muted w-100 text-center">
-                                    Ingrese el precio sin puntos ni simbolos.
-                                </small>
-
-                            </div>
-
-                            <!--Nro. Celular-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-3">Número celular</h3>
-
-                                <div class="input-group form-group col-9 col-sm-8 col-md-7 col-lg-5">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-phone"></i>
-                                        </span>
-                                    </div>
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            +57
-                                        </span>
-                                    </div>
-
-                                    <input type="tel" class="form-control text-center" placeholder="Número celular"
-                                        [pattern]="regExp.celular" maxlength="10" [(ngModel)]="celular" name="numCelular" 
-                                        required>
-
-                                </div>
-
-                                <small class="form-text text-muted w-100 text-center">
-                                    Ingrese su numero celular sin puntos ni espacios.
-                                </small>
-
-                            </div>
-
-                            <!--Titulo del aviso-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-3">Titulo del aviso</h3>
-
-                                <div class="form-group col-9 col-sm-8 col-md-7">
-                                    <input type="text" class="w-100 form-control text-center"
-                                        placeholder="En pocas palabras ¿que ofreces?" required [(ngModel)]="titulo"
-                                        name="tituloPH" [maxLength]="maxCaracteresTitulo" [pattern]="regExp.tituloReg">
-                                </div>
-                            </div>
-
-
-                            <!--Descripcion del aviso-->
-                            <div class="row justify-content-center mt-5">
-
-                                <h3 class="subtitulo-publicar col-10 mb-3">Descripcion</h3>
-
-                                <div class="form-group col-9 col-sm-8 col-md-7">
-                                    <textarea class="w-100 form-control descripcionPublicar"
-                                        placeholder="Resume los detalles más relevantes de tu oferta para llamar la atencion de más usuarios..."
-                                        required [(ngModel)]="descripcion" name="descripcionPH"
-                                        [maxLength]="maxCaracteresDescripcion">
-                  </textarea>
-                                </div>
-                            </div>
-
-                            <!--Mensaje de datos incompletos (faltan las fotos)-->
-                            <div class="alert alert-secondary" role="alert" *ngIf="datosIncorrectos">
-                                <p class="text-center">
-                                    Por favor asegurate de ingresar todos los datos requeridos por el formulario.
-                                </p>
-                            </div>
-
-                            <!--Publicar-->
-                            <div class="row justify-content-center mt-5">
-
-                                <div class="form-group col-6 col-md-5">
-                                    <button type="submit"
-                                        class="btn btn-publicar btn-block font-weight-bold">Públicar</button>
-                                </div>
-
-                            </div>
-
-                        </form>
-
+                    <div class="form-group col-9 col-sm-8 col-md-7">
+                        <input type="text" class="w-100 form-control text-center" placeholder="En pocas palabras ¿que ofreces?" required [(ngModel)]="titulo" name="tituloPH" [maxLength]="maxCaracteresTitulo" [pattern]="regExp.tituloReg">
                     </div>
                 </div>
 
-            </main>
 
-            <!--ASIDE(banner publicitario)-->
-            <div class="row mt-4">
-                <aside class="col text-white text-center">
-                    <div class="rounded banner-promocional">
-                        <h5>esto es una publicidad</h5>
+                <!--Descripcion del aviso-->
+                <div class="row justify-content-center mt-5">
+
+                    <h3 class="subtitulo-publicar col-10 mb-3">Descripcion</h3>
+
+                    <div class="form-group col-9 col-sm-8 col-md-7">
+                        <textarea class="w-100 form-control descripcionPublicar" placeholder="Resume los detalles más relevantes de tu oferta para llamar la atencion de más usuarios..." required [(ngModel)]="descripcion" name="descripcionPH" [maxLength]="maxCaracteresDescripcion">
+                  </textarea>
                     </div>
-                </aside>
-            </div>
+                </div>
 
+                <!--Mensaje de datos incompletos (faltan las fotos)-->
+                <div class="alert alert-secondary" role="alert" *ngIf="datosIncorrectos">
+                    <p class="text-center">
+                        Por favor asegurate de ingresar todos los datos requeridos por el formulario.
+                    </p>
+                </div>
 
-            <!--FOOTER-->
-            <div class="row mt-4">
-                <footer class="col" role="">
-                    <app-pie-pagina></app-pie-pagina>
-                </footer>
-            </div>
+                <!--Publicar-->
+                <div class="row justify-content-center mt-5">
+
+                    <div class="form-group col-6 col-md-5">
+                        <button type="submit" class="btn btn-publicar btn-block font-weight-bold">Públicar</button>
+                    </div>
+
+                </div>
+
+            </form>
 
         </div>
     </div>
+
+</main>
+
+<!--ASIDE(banner publicitario)-->
+<div class="row mt-4">
+    <aside class="col text-white text-center">
+        <div class="rounded banner-promocional">
+            <h5>esto es una publicidad</h5>
+        </div>
+    </aside>
 </div>
 
 

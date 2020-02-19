@@ -2,16 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-
 import { HttpClientModule } from '@angular/common/http';
+import { CompartidosModule } from './compartidos/compartidos.module';
 
 import { CurrencyPipe } from '@angular/common'
 
@@ -20,11 +17,9 @@ import { CurrencyPipe } from '@angular/common'
 import { InicioSesionComponent } from './componentes/inicio-sesion/inicio-sesion.component';
 import { RegistrarseComponent } from './componentes/registrarse/registrarse.component';
 import { ReestablecerContraseniaComponent } from './componentes/reestablecer-contrasenia/reestablecer-contrasenia.component';
-import { BarraNavegacionComponent } from './componentes/barra-navegacion/barra-navegacion.component';
 import { SlideImagenesPrincipalComponent } from './componentes/slide-imagenes-principal/slide-imagenes-principal.component';
 import { SlideOfertasDestacadasComponent } from './componentes/slide-ofertas-destacadas/slide-ofertas-destacadas.component';
 import { OfertasComponent } from './componentes/ofertas/ofertas.component';
-import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
 import { HaztePremiumComponent } from './componentes/hazte-premium/hazte-premium.component';
 import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas/ofertas-recomendadas.component';
 import { SlideOfertaDetalladaComponent } from './componentes/slide-oferta-detallada/slide-oferta-detallada.component';
@@ -72,12 +67,10 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     RegistrarseComponent,
     ReestablecerContraseniaComponent,
     PaginaPrincipalComponent,
-    BarraNavegacionComponent,
     SlideImagenesPrincipalComponent,
     SlideOfertasDestacadasComponent,
     OfertasComponent,
     OfertasRecomendadasComponent,
-    PiePaginaComponent,
     HaztePremiumComponent,
     PensionAptoComponent,
     CategoriasComponent,
@@ -113,7 +106,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     }),
     AgmJsMarkerClustererModule,
     HttpClientModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    CompartidosModule
   ],
   providers: [
     UbicacioMapaFiltrosService,
@@ -126,6 +120,9 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     OfertasInmueblesService,
     CurrencyPipe
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    InicioSesionComponent
+  ]
 })
 export class AppModule { }

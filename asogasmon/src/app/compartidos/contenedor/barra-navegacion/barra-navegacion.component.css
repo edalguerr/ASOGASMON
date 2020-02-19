@@ -1,84 +1,98 @@
-.barra-navegacion{
-    background:#00324b; /*slate-blue*/
+.barra-navegacion {
+    background: #00324b;
+    /*slate-blue*/
     /*height: 65px;*/
-    padding-top: 0.875rem; /* 14px;*/
+    padding-top: 0.875rem;
+    /* 14px;*/
 }
 
-.barra-navegacion a{
+.barra-navegacion a {
     color: white;
 }
 
-.barra-navegacion a:hover{
+.barra-navegacion a:hover {
     color: rgb(235, 224, 224);
 }
 
-.barra-navegacion .item-dropdown-publicar{
+.barra-navegacion .item-dropdown-publicar {
     color: #000000;
 }
 
-.barra-navegacion .navbar-toggler-icon i{
+.barra-navegacion .navbar-toggler-icon i {
     color: white;
 }
 
-.btn-publicar{
-    background:#ff9900;
+.btn-publicar {
+    background: #ff9900;
 }
 
-li .btn-publicar:hover{
+li .btn-publicar:hover {
     color: white;
 }
 
-.li-item-menu{
-    border-right: 0.0625rem solid white;/* 1px */
+.li-item-menu {
+    border-right: 0.0625rem solid white;
+    /* 1px */
 }
 
 
 /*#ff9900*/
-.nombre-logo{
+
+.nombre-logo {
     position: relative;
-    right: 0.125rem; /*2px;*/
+    right: 0.125rem;
+    /*2px;*/
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.card-img-user{
+.card-img-user {
     background-size: cover;
     background-repeat: no-repeat;
-    height: 4.285rem;/*60px;/14px*/
-    width: 4.285rem;/*60px;/14px*/
+    height: 4.285rem;
+    /*60px;/14px*/
+    width: 4.285rem;
+    /*60px;/14px*/
     background-position: center;
     background-color: aliceblue;
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
-} 
+}
 
-.titulo-user{
-    font-size: 1.142rem;/*16px;/14px*/
-    font-family:Helvetica;
+.titulo-user {
+    font-size: 1.142rem;
+    /*16px;/14px*/
+    font-family: Helvetica;
     color: white;
     font-weight: 600;
 }
 
-.subtitulo-user{
-    font-size: 0.714rem;/*10px;/14px*/
-    font-family:Helvetica;
+.subtitulo-user {
+    font-size: 0.714rem;
+    /*10px;/14px*/
+    font-family: Helvetica;
     color: white;
     font-weight: 600;
     overflow-x: hidden;
 }
+
+
 /****************************************************************************/
+
+
 /***************** Adaptacion para tablets **********************/
+
+
 /****************************************************************************/
+
 @media screen and (max-width: 767px) {
-    
-    .barra-navegacion{
+    .barra-navegacion {
         justify-content: unset !important;
     }
-
-    .contenedor-boton-publicar{
+    .contenedor-boton-publicar {
         position: absolute;
-        right: 1.071rem;/*15px;/14px*/
-        
+        right: 1.071rem;
+        /*15px;/14px*/
     }
 }
 
@@ -87,97 +101,104 @@ li .btn-publicar:hover{
 *********************Barra navegacion lateral**********************
 ******************************************************************/
 
-
 .nav-responsive ul {
-	overflow:hidden;
-    list-style:none;
+    overflow: hidden;
+    list-style: none;
     padding: 0;
 }
 
-.nav-responsive div.container-fluid{
+.nav-responsive div.container-fluid {
     cursor: pointer;
 }
 
 .nav-responsive ul li a {
-	color:#fff;
-	padding: 1.428rem;/*20px;/14px*/
-	display:block;
-    text-decoration:none;
+    color: #fff;
+    padding: 1.428rem;
+    /*20px;/14px*/
+    display: block;
+    text-decoration: none;
     font-weight: 600;
 }
 
 .nav-responsive ul li span {
-	margin-right: 0.714rem;/*10px;/14px*/
+    margin-right: 0.714rem;
+    /*10px;/14px*/
 }
 
 .nav-responsive ul li a:hover {
-	background:#037E8C;
-} 
-
-@keyframes desplazamiento-lateral{
-    from {left: -100%;}
-    to {left: 0;}
+    background: #037E8C;
 }
 
-.animacion-menu-lateral-mostrar{
+@keyframes desplazamiento-lateral {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+.animacion-menu-lateral-mostrar {
     animation-name: desplazamiento-lateral;
     animation-duration: 2s;
 }
-
 
 
 /******************************************************************
 *********************Barra navegacion lateral tablet**********************
 ******************************************************************/
 
-@media screen and (max-width:767px ) {
-	.nav-responsive {
-		width:50%;
-		height:100%;
-		left:-100%;
-		margin:0;
+@media screen and (max-width:767px) {
+    .nav-responsive {
+        width: 50%;
+        height: 100%;
+        left: -100%;
+        margin: 0;
         position: fixed;
         z-index: 100;
-        background-color: #013a57; /*slate-blue #013a57*/    
-        top: 3.928rem;/*55px;/14px*/
-	}
-
-	.nav-responsive ul li {
-		display:block;
-		float:none;
-		border-bottom:1px solid rgba(255,255,255, .3);
+        background-color: #013a57;
+        /*slate-blue #013a57*/
+        top: 3.928rem;
+        /*55px;/14px*/
     }
-    
-    .nav-responsive .row{
-        background-color: #00324b; 
+    .nav-responsive ul li {
+        display: block;
+        float: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
     }
-
+    .nav-responsive .row {
+        background-color: #00324b;
+    }
     /*Soporte para chrome, para mostrar correctamente el boton publicar*/
-    .btn-publicar{
-        
+    .btn-publicar {
         display: inline-block;
-    } 
+    }
 }
+
 
 /******************************************************************
 *********************Barra navegacion lateral smartphone**********************
 ******************************************************************/
 
-@media screen and (min-width: 360px) and (max-width:575px ) {
-	.nav-responsive {
-        width:65%;
+@media screen and (min-width: 360px) and (max-width:575px) {
+    .nav-responsive {
+        width: 65%;
     }
 }
 
-@media screen and (max-width:359px ) {
-	.nav-responsive {
-        width:80%;
+@media screen and (max-width:359px) {
+    .nav-responsive {
+        width: 80%;
     }
 }
+
 
 /*lista de iconos*/
+
+
 /* Icono servicios */
-.fa-servicios{
+
+.fa-servicios {
     width: 18px;
     height: 19px;
     color: rgb(72, 72, 72) !important;
@@ -186,8 +207,6 @@ li .btn-publicar:hover{
     vertical-align: middle;
 }
 
-
-.fa-times{
-    background-image: url("../../../assets/iconos/times-solid.svg");
+.fa-times {
+    background-image: url("../../../../assets/iconos/times-solid.svg");
 }
-
