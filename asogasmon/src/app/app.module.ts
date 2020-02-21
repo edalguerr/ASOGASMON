@@ -14,9 +14,6 @@ import { CurrencyPipe } from '@angular/common'
 
 
 //folder componentes
-import { InicioSesionComponent } from './componentes/inicio-sesion/inicio-sesion.component';
-import { RegistrarseComponent } from './componentes/registrarse/registrarse.component';
-import { ReestablecerContraseniaComponent } from './componentes/reestablecer-contrasenia/reestablecer-contrasenia.component';
 import { SlideImagenesPrincipalComponent } from './componentes/slide-imagenes-principal/slide-imagenes-principal.component';
 import { SlideOfertasDestacadasComponent } from './componentes/slide-ofertas-destacadas/slide-ofertas-destacadas.component';
 import { OfertasComponent } from './componentes/ofertas/ofertas.component';
@@ -63,9 +60,6 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
 @NgModule({
   declarations: [
     AppComponent,
-    InicioSesionComponent,
-    RegistrarseComponent,
-    ReestablecerContraseniaComponent,
     PaginaPrincipalComponent,
     SlideImagenesPrincipalComponent,
     SlideOfertasDestacadasComponent,
@@ -120,9 +114,6 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     OfertasInmueblesService,
     CurrencyPipe
   ],
-  bootstrap: [AppComponent],
-  exports:[
-    InicioSesionComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

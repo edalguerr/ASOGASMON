@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InicioSesionComponent } from '../../../componentes/inicio-sesion/inicio-sesion.component';
+import { InicioSesionComponent } from './componentes/inicio-sesion/inicio-sesion.component';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
