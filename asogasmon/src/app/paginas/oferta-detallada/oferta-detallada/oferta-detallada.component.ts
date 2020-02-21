@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { SlideOfertaDetalladaComponent } from 'src/app/componentes/slide-oferta-detallada/slide-oferta-detallada.component';
+import { SlideOfertaDetalladaComponent } from './componentes/slide-oferta-detallada/slide-oferta-detallada.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

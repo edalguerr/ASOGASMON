@@ -3,7 +3,7 @@ import { ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
-import { MapaEstaticoComponent } from 'src/app/componentes/mapa-estatico/mapa-estatico.component';
+import { MapaEstaticoComponent } from 'src/app/compartidos/componentes/mapa-estatico/mapa-estatico.component';
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from 'src/app/servicios/nomasCasa/normas-casa.service';
 import { Pension } from 'src/app/interfaces/pension';

@@ -81,7 +81,7 @@ export class MapaComponent implements OnInit {
   }
 
   markerIconUrl() {
-    return require('../../../assets/bocadillo(6).png')
+    return require('../../../../assets/bocadillo(6).png')
   }
 
 

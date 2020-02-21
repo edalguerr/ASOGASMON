@@ -50,9 +50,9 @@ export class MapaEstaticoComponent implements OnInit {
 
   markerIconUrl() {
     if(!this.iconoPrecio){
-      return require('../../../assets/localizacion-de-casa(1).png')
+      return require('../../../../assets/localizacion-de-casa(1).png')
     }
-    return require('../../../assets/bocadillo(6).png')
+    return require('../../../../assets/bocadillo(6).png')
   }
 
   labelMarkerAsign(){

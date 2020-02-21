@@ -1,32 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { MapaComponent } from './componentes/mapa/mapa.component';
+import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico.component';
+import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
-import { ContenedorComponent } from './contenedor/contenedor.component';
-import { ContenidoPrincipalComponent } from './contenedor/contenido-principal/contenido-principal.component';
-import { BarraNavegacionComponent } from './contenedor/barra-navegacion/barra-navegacion.component';
-import { PiePaginaComponent } from './contenedor/pie-pagina/pie-pagina.component';
-import { InicioSesionComponent } from './contenedor/barra-navegacion/componentes/inicio-sesion/inicio-sesion.component';
-import { RegistrarseComponent } from './contenedor/barra-navegacion/componentes/registrarse/registrarse.component';
-import { ReestablecerContraseniaComponent } from './contenedor/barra-navegacion/componentes/reestablecer-contrasenia/reestablecer-contrasenia.component';
+
 
 @NgModule({
   declarations: [
-    ContenedorComponent,
-    ContenidoPrincipalComponent,
-    BarraNavegacionComponent,
-    PiePaginaComponent,
-    InicioSesionComponent,
-    RegistrarseComponent,
-    ReestablecerContraseniaComponent
+    MapaComponent,
+    MapaEstaticoComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAX4J5NJdxvo9Jm5sP_C--t98njBVFP__s',
+      libraries: ['places']
+    }),
+    AgmJsMarkerClustererModule,
   ],
   exports:[
-    ContenedorComponent
+    MapaComponent,
+    MapaEstaticoComponent
   ]
 })
-
 export class CompartidosModule { }

@@ -8,24 +8,16 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { HttpClientModule } from '@angular/common/http';
-import { CompartidosModule } from './compartidos/compartidos.module';
+
+import { CoreModule } from './core/core.module';
 
 import { CurrencyPipe } from '@angular/common'
 
 
 //folder componentes
 import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas/ofertas-recomendadas.component';
-import { SlideOfertaDetalladaComponent } from './componentes/slide-oferta-detallada/slide-oferta-detallada.component';
-import { InformacionDetalladaComponent } from './componentes/informacion-detallada/informacion-detallada.component';
-import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico.component';
-import { ListaServiciosComponent } from './componentes/lista-servicios/lista-servicios.component';
-import { CompartirOfertaComponent } from './componentes/compartir-oferta/compartir-oferta.component';
-import { CarouselFullScreenComponent } from './componentes/carousel-full-screen/carousel-full-screen.component';
-import { ContactarOfertaDetalladaComponent } from './componentes/contactar-oferta-detallada/contactar-oferta-detallada.component';
 import { FiltrosPensionAptoComponent } from './componentes/filtros-pension-apto/filtros-pension-apto.component';
 import { OfertasPensionAptoComponent } from './componentes/ofertas-pension-apto/ofertas-pension-apto.component';
-import { MapaComponent } from './componentes/mapa/mapa.component';
-
 
 import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
@@ -33,11 +25,11 @@ import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
 import { ModificarContraseniaComponent } from './componentes/modificar-contrasenia/modificar-contrasenia.component';
 import { EditarDatosBasicosComponent } from './componentes/editar-datos-basicos/editar-datos-basicos.component';
-import { ContactarMobileComponent } from './componentes/contactar-mobile/contactar-mobile.component';
+
 
 //folder paginas
 import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
-import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
+
 
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
@@ -50,6 +42,7 @@ import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
 import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-habitacion.service';
 import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pension.service';
 import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-inmuebles.service';
+import { CompartidosModule } from './compartidos/compartidos.module';
 
 
 @NgModule({
@@ -58,23 +51,13 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     OfertasRecomendadasComponent,
     PensionAptoComponent,
     FiltrosPensionAptoComponent,
-    OfertasPensionAptoComponent,
-    MapaComponent,
-    OfertaDetalladaComponent,
-    SlideOfertaDetalladaComponent,
-    InformacionDetalladaComponent,
-    MapaEstaticoComponent,
-    ListaServiciosComponent,
-    CompartirOfertaComponent,
-    CarouselFullScreenComponent,
-    ContactarOfertaDetalladaComponent,
+    OfertasPensionAptoComponent,  
     MiPerfilComponent,
     PublicarPensionComponent,
     PublicarCasaAptoComponent,
     PublicarHabitacionComponent,
     ModificarContraseniaComponent,
     EditarDatosBasicosComponent,
-    ContactarMobileComponent,
     ResetPasswordComponent,
     MensajePublicacionComponent
   ],
@@ -90,7 +73,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     AgmJsMarkerClustererModule,
     HttpClientModule,
     NgbPaginationModule,
-    CompartidosModule
+    CoreModule,
+    CompartidosModule//este modulo esta importando temporalmente.
   ],
   providers: [
     UbicacioMapaFiltrosService,

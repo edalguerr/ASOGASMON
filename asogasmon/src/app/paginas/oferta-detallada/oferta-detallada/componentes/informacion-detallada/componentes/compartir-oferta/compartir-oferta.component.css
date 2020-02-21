@@ -1,11 +1,11 @@
-.titulo-compartir-modal{
+.titulo-compartir-modal {
     font-size: 24px;
     font-weight: 600;
     font-family: Helvetica;
     color: rgb(72, 72, 72) !important;
 }
 
-.item-servicio{
+.item-servicio {
     font-weight: 400;
     font-family: Helvetica;
     color: rgb(72, 72, 72) !important;
@@ -13,14 +13,15 @@
     padding-top: 18px;
 }
 
-.texto-compartir{
+.texto-compartir {
     font-family: Helvetica;
     color: rgb(72, 72, 72) !important;
 }
 
 
 /*iconos*/
-.fa-servicios{
+
+.fa-servicios {
     width: 18px;
     height: 19px;
     color: rgb(72, 72, 72) !important;
@@ -29,6 +30,6 @@
     vertical-align: middle;
 }
 
-.fa-facebook-messenger{
-    background-image: url("../../../assets/iconos/facebook-messenger-brands.svg");
+.fa-facebook-messenger {
+    background-image: url("../../../../../../../../assets/iconos/facebook-messenger-brands.svg");
 }
