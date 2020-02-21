@@ -55,24 +55,13 @@
                 <h3 class="col-12 titulo-user text-left">Mis anuncios</h3>
 
                 <div class="col-12" *ngIf="tenemosAnuncios">
-                    <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna"></app-slide-ofertas-destacadas>
+
                 </div>
 
                 <div class="col-12" *ngIf="!tenemosAnuncios">
                     <h4 class="subtitulo-user text-left">Aun no ha hecho anuncios</h4>
                 </div>
 
-            </div>
-
-            <!--Ofertas pensiones, en caso que no tengamos anuncios-->
-            <div class="row justify-content-center mt-5" *ngIf="!tenemosAnuncios">
-                <h3 class="col-12 titulo-buscando text-left">Pensiones en tu zona</h3>
-                <h3 class="col-12 subtitulo-user text-left">Encuentra tu pension ideal, conocela en detalle y contacta a el pensionante</h3>
-
-                <div class="col-12">
-                    <app-slide-ofertas-destacadas [esParaMisAnuncios]="esParaMisAnuncios" [claseTamColumna]="claseTamColumna" [idCarousel]="'carouselOfertasDestacadasPension'">
-                    </app-slide-ofertas-destacadas>
-                </div>
             </div>
 
             <!--Banner publicitario-->

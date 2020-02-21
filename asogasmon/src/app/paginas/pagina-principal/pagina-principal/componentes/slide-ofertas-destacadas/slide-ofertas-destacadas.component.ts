@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-slide-ofertas-destacadas',
@@ -6,11 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./slide-ofertas-destacadas.component.css']
 })
 export class SlideOfertasDestacadasComponent implements OnInit {
-  //si no es para mis anuncios mostramos 4 columnas por fila de tamaño 3,
-  //de lo contrario mostramos 3 de tamaño 4
-  @Input() public esParaMisAnuncios = false;
-  @Input() public claseTamColumna = 'col-3';
-  @Input() public idCarousel = 'carouselOfertasDestacadas'; 
+  
+  claseTamColumna = 'col-3';
+  idCarousel = 'carouselOfertasDestacadas'; 
 
   claseContainer = 'container';
   miniSmartphoneViewport = false;
@@ -20,8 +18,6 @@ export class SlideOfertasDestacadasComponent implements OnInit {
   widthMobile = 992;
   widthMobileMiniSmartphone = 380;//420
   widthMobileSmartphoneContainer = 768;
-
-  widthMobileMiniSmartphoneMisAnuncios = 420;//380 
 
   precioTest = 45000090;
 
@@ -49,23 +45,14 @@ export class SlideOfertasDestacadasComponent implements OnInit {
     if(this.width <= this.widthMobileMiniSmartphone){
       this.miniSmartphoneViewport = true;
       this.claseTamColumna = 'col-6';
-    }
+    } 
 
     
   }
 
   ngOnInit() {
     
-    if(this.esParaMisAnuncios){
-      
-      this.mostrar3Columnas = true;
-
-      if(this.width <= this.widthMobileMiniSmartphoneMisAnuncios){
-        this.miniSmartphoneViewport = true;
-      }
-
-    }
-
+  
   }
 
 }

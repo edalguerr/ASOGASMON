@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
-import { PaginaPrincipalComponent} from './paginas/pagina-principal/pagina-principal.component' ;
+import { PaginaPrincipalComponent} from './paginas/pagina-principal/pagina-principal/pagina-principal.component' ;
 import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
 import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
 import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
@@ -13,7 +13,10 @@ import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/r
  
 
 const routes: Routes = [
-  {path:'', component: PaginaPrincipalComponent},
+  {
+    path:'', 
+    loadChildren: () => import('./paginas/pagina-principal/pagina-principal.module').then( m => m.PaginaPrincipalModule)
+  },
   {path:'pensiones', component: PensionAptoComponent},
   {path:'apartamentos', component: PensionAptoComponent},
   {path:'habitaciones', component: PensionAptoComponent},

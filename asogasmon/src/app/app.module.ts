@@ -14,10 +14,6 @@ import { CurrencyPipe } from '@angular/common'
 
 
 //folder componentes
-import { SlideImagenesPrincipalComponent } from './componentes/slide-imagenes-principal/slide-imagenes-principal.component';
-import { SlideOfertasDestacadasComponent } from './componentes/slide-ofertas-destacadas/slide-ofertas-destacadas.component';
-import { OfertasComponent } from './componentes/ofertas/ofertas.component';
-import { HaztePremiumComponent } from './componentes/hazte-premium/hazte-premium.component';
 import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas/ofertas-recomendadas.component';
 import { SlideOfertaDetalladaComponent } from './componentes/slide-oferta-detallada/slide-oferta-detallada.component';
 import { InformacionDetalladaComponent } from './componentes/informacion-detallada/informacion-detallada.component';
@@ -29,7 +25,7 @@ import { ContactarOfertaDetalladaComponent } from './componentes/contactar-ofert
 import { FiltrosPensionAptoComponent } from './componentes/filtros-pension-apto/filtros-pension-apto.component';
 import { OfertasPensionAptoComponent } from './componentes/ofertas-pension-apto/ofertas-pension-apto.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
-import { CategoriasComponent } from './componentes/categorias/categorias.component';
+
 
 import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
@@ -41,7 +37,6 @@ import { ContactarMobileComponent } from './componentes/contactar-mobile/contact
 
 //folder paginas
 import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
-import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
 import { OfertaDetalladaComponent } from './paginas/oferta-detallada/oferta-detallada.component';
 
 //providers
@@ -60,14 +55,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
 @NgModule({
   declarations: [
     AppComponent,
-    PaginaPrincipalComponent,
-    SlideImagenesPrincipalComponent,
-    SlideOfertasDestacadasComponent,
-    OfertasComponent,
     OfertasRecomendadasComponent,
-    HaztePremiumComponent,
     PensionAptoComponent,
-    CategoriasComponent,
     FiltrosPensionAptoComponent,
     OfertasPensionAptoComponent,
     MapaComponent,
