@@ -38,7 +38,7 @@ export class OfertasPensionAptoComponent implements OnInit {
 
   ngOnInit() {
   
-    let categoria = this.rutaActiva.snapshot.url[0].path;
+    let categoria = this.rutaActiva.parent.snapshot.url[0].path;
 
     if (categoria == 'apartamentos') {
       this.ruta = this.API_URL + 'ofertasCasaApto/';

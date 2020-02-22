@@ -105,8 +105,8 @@ export class FiltrosPensionAptoComponent implements OnInit, OnDestroy  {
 
 
   ngOnInit() {
-
-    let categoria = this.rutaActiva.snapshot.url[0].path;
+    
+    let categoria = this.rutaActiva.parent.snapshot.url[0].path;
 
     if (categoria == 'apartamentos') {
       this.categoriaBusqueda = this.valApto;

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FiltrosPensionAptoComponent } from 'src/app/componentes/filtros-pension-apto/filtros-pension-apto.component';
+import { FiltrosPensionAptoComponent } from 'src/app/paginas/pension-apto/pension-apto/componentes/filtros-pension-apto/filtros-pension-apto.component';
 
 @Component({
   selector: 'app-pension-apto',

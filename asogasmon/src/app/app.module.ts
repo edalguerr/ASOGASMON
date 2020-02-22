@@ -10,22 +10,15 @@ import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from './core/core.module';
-
 import { CurrencyPipe } from '@angular/common'
 
 
 //folder componentes
-import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas/ofertas-recomendadas.component';
-import { FiltrosPensionAptoComponent } from './componentes/filtros-pension-apto/filtros-pension-apto.component';
-import { OfertasPensionAptoComponent } from './componentes/ofertas-pension-apto/ofertas-pension-apto.component';
 
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
 
-
-//folder paginas
-import { PensionAptoComponent } from './paginas/pension-apto/pension-apto.component';
 
 
 //providers
@@ -45,16 +38,13 @@ import { CompartidosModule } from './compartidos/compartidos.module';
 @NgModule({
   declarations: [
     AppComponent,
-    OfertasRecomendadasComponent,
-    PensionAptoComponent,
-    FiltrosPensionAptoComponent,
-    OfertasPensionAptoComponent,  
     
     PublicarPensionComponent,
     PublicarCasaAptoComponent,
     PublicarHabitacionComponent,
     ResetPasswordComponent,
     MensajePublicacionComponent
+
   ],
   imports: [
     BrowserModule,
