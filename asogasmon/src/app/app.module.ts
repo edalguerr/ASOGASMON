@@ -19,12 +19,9 @@ import { OfertasRecomendadasComponent } from './componentes/ofertas-recomendadas
 import { FiltrosPensionAptoComponent } from './componentes/filtros-pension-apto/filtros-pension-apto.component';
 import { OfertasPensionAptoComponent } from './componentes/ofertas-pension-apto/ofertas-pension-apto.component';
 
-import { MiPerfilComponent } from './paginas/mi-perfil/mi-perfil.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
-import { ModificarContraseniaComponent } from './componentes/modificar-contrasenia/modificar-contrasenia.component';
-import { EditarDatosBasicosComponent } from './componentes/editar-datos-basicos/editar-datos-basicos.component';
 
 
 //folder paginas
@@ -52,12 +49,10 @@ import { CompartidosModule } from './compartidos/compartidos.module';
     PensionAptoComponent,
     FiltrosPensionAptoComponent,
     OfertasPensionAptoComponent,  
-    MiPerfilComponent,
+    
     PublicarPensionComponent,
     PublicarCasaAptoComponent,
     PublicarHabitacionComponent,
-    ModificarContraseniaComponent,
-    EditarDatosBasicosComponent,
     ResetPasswordComponent,
     MensajePublicacionComponent
   ],
