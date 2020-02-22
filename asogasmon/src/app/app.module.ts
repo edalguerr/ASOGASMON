@@ -12,10 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { CurrencyPipe } from '@angular/common'
 
+
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
-import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
 import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
@@ -27,10 +27,6 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
 @NgModule({
   declarations: [
     AppComponent,
-    
-    
-    ResetPasswordComponent,
-
   ],
   imports: [
     BrowserModule,

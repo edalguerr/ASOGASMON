@@ -10,6 +10,7 @@ import { MapaComponent } from './componentes/mapa/mapa.component';
 import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico.component';
 import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +30,8 @@ import { RouterModule } from '@angular/router';
       libraries: ['places']
     }),
     AgmJsMarkerClustererModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports:[
     MapaComponent,
