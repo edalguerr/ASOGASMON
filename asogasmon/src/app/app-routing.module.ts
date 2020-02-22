@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
+import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion/publicar-habitacion.component';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
@@ -44,7 +44,10 @@ const routes: Routes = [
     path:'perfil/:usuario', 
     loadChildren: () => import ('./paginas/mi-perfil/mi-perfil.module').then( m => m.MiPerfilModule)
   },
-  {path:'publicarPension', component: PublicarPensionComponent},
+  {
+    path:'publicarPension', 
+    loadChildren: () => import('./paginas/publicar-pension/publicar-pension.module').then(m => m.PublicarPensionModule)
+  },
   {
     path:'publicarApto', 
     loadChildren: () => import('./paginas/publicar-casa-apto/publicar-casa-apto.module').then(m => m.PublicarCasaAptoModule)

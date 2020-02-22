@@ -12,12 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { CurrencyPipe } from '@angular/common'
 
-
-//folder componentes
-
-import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
-
-
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
@@ -29,14 +23,12 @@ import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-
 import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pension.service';
 import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-inmuebles.service';
 
-import { CompartidosModule } from './compartidos/compartidos.module';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     
-    PublicarPensionComponent,
+    
     ResetPasswordComponent,
 
   ],
@@ -52,8 +44,7 @@ import { CompartidosModule } from './compartidos/compartidos.module';
     AgmJsMarkerClustererModule,
     HttpClientModule,
     NgbPaginationModule,
-    CoreModule,
-    CompartidosModule//este modulo esta importando temporalmente.
+    CoreModule
   ],
   providers: [
     UbicacioMapaFiltrosService,
