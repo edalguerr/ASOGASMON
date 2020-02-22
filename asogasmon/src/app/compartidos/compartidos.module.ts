@@ -8,6 +8,9 @@ import { RegistrarseComponent } from '../compartidos/componentes/registrarse/reg
 import { ReestablecerContraseniaComponent } from '../compartidos/componentes/reestablecer-contrasenia/reestablecer-contrasenia.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
 import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico.component';
+import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
@@ -16,7 +19,8 @@ import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico
     MapaEstaticoComponent,
     InicioSesionComponent,
     RegistrarseComponent,
-    ReestablecerContraseniaComponent
+    ReestablecerContraseniaComponent,
+    MensajePublicacionComponent
   ],
   imports: [
     CommonModule,
@@ -25,13 +29,15 @@ import { MapaEstaticoComponent } from './componentes/mapa-estatico/mapa-estatico
       libraries: ['places']
     }),
     AgmJsMarkerClustererModule,
+    RouterModule
   ],
   exports:[
     MapaComponent,
     MapaEstaticoComponent,
     InicioSesionComponent,
     RegistrarseComponent,
-    ReestablecerContraseniaComponent
+    ReestablecerContraseniaComponent,
+    MensajePublicacionComponent
   ]
 })
 export class CompartidosModule { }

@@ -16,22 +16,19 @@ import { CurrencyPipe } from '@angular/common'
 //folder componentes
 
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
-import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
-
-
 
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
 import { UsuarioService } from './servicios/usuario.service';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
-import { MensajePublicacionComponent } from './componentes/mensaje-publicacion/mensaje-publicacion.component';
 import { OfertaCasaAptoService } from './servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { ServiciosEspecificosService } from './servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
 import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-habitacion.service';
 import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pension.service';
 import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-inmuebles.service';
+
 import { CompartidosModule } from './compartidos/compartidos.module';
 
 
@@ -40,10 +37,8 @@ import { CompartidosModule } from './compartidos/compartidos.module';
     AppComponent,
     
     PublicarPensionComponent,
-    PublicarCasaAptoComponent,
     PublicarHabitacionComponent,
     ResetPasswordComponent,
-    MensajePublicacionComponent
 
   ],
   imports: [

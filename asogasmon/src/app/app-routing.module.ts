@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PensionAptoComponent } from './paginas/pension-apto/pension-apto/pension-apto.component';
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
-import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto.component';
+import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto/publicar-casa-apto.component';
 import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
  
@@ -46,7 +45,10 @@ const routes: Routes = [
     loadChildren: () => import ('./paginas/mi-perfil/mi-perfil.module').then( m => m.MiPerfilModule)
   },
   {path:'publicarPension', component: PublicarPensionComponent},
-  {path:'publicarApto', component: PublicarCasaAptoComponent},
+  {
+    path:'publicarApto', 
+    loadChildren: () => import('./paginas/publicar-casa-apto/publicar-casa-apto.module').then(m => m.PublicarCasaAptoModule)
+  },
   {path:'publicarHabitacion', component: PublicarHabitacionComponent },
   {path:'reset/:email/resetPass/:token', component: ResetPasswordComponent },
   {path:'**', redirectTo:'/' }
