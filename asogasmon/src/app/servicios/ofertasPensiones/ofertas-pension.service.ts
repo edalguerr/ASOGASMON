@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Pension } from 'src/app/interfaces/pension';
-import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
+import { Pension } from 'src/app/core/interfaces/pension';
+import { DatosBusquedaInmuebles } from 'src/app/core/interfaces/datos-busqueda-inmuebles';
 
 @Injectable({
   providedIn: 'root'

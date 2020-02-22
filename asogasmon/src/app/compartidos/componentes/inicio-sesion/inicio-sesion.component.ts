@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Md5 } from 'ts-md5/dist/md5';
-import { Usuario } from 'src/app/interfaces/usuario';
+import { Usuario } from 'src/app/core/interfaces/usuario'; 
 import { RegistrarseComponent } from '../registrarse/registrarse.component';
 
 @Component({
@@ -79,15 +79,14 @@ export class InicioSesionComponent implements OnInit, AfterViewInit {
 
   //inicio de sesion
   guardar() {
-    console.log('boton guardar ejecutado')
-    debugger
+        
     this.usuario.email = this.formLogin.nativeElement[1].value;
     this.usuario.contrasenia = this.formLogin.nativeElement[2].value;
     const md5 = new Md5();
     this.usuario.contrasenia = md5.appendStr(this.usuario.contrasenia ).end();
 
     console.log(this.usuario);
-    debugger
+    
     this.usuarioService.getDatos(this.usuario).subscribe((result: { usuario: Usuario }) => {
      
       this.usuarioService.datos = result.usuario;
@@ -106,7 +105,7 @@ export class InicioSesionComponent implements OnInit, AfterViewInit {
         this.sesionIniciada = false;
         this.mostrarMsjDatosIncorrectos = true;
       }
-      debugger
+      
 
     }, err => {
       console.log('Ha ocurrido un error al conectar con el servidor');
@@ -115,7 +114,7 @@ export class InicioSesionComponent implements OnInit, AfterViewInit {
       this.mostrarMsjDatosIncorrectos = true;
     });
 
-    debugger
+    
   }
 
 }

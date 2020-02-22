@@ -1,17 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Ng5SliderModule } from 'ng5-slider';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
-import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { HttpClientModule } from '@angular/common/http';
-
 import { CoreModule } from './core/core.module';
-import { CurrencyPipe } from '@angular/common'
 
+import { CurrencyPipe } from '@angular/common'
+import { AppComponent } from './app.component';
 
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
@@ -31,15 +25,7 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Ng5SliderModule,
-    FormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAX4J5NJdxvo9Jm5sP_C--t98njBVFP__s',
-      libraries: ['places']
-    }),
-    AgmJsMarkerClustererModule,
     HttpClientModule,
-    NgbPaginationModule,
     CoreModule
   ],
   providers: [
@@ -55,4 +41,4 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

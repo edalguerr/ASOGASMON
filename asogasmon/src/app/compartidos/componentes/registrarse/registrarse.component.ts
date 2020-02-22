@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Md5 } from 'ts-md5';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { Usuario } from 'src/app/interfaces/usuario';
+import { Usuario } from 'src/app/core/interfaces/usuario';
 
 @Component({
   selector: 'app-registrarse',

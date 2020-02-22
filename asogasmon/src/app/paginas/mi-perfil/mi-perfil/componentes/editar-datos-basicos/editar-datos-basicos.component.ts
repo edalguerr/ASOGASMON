@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { Usuario } from 'src/app/interfaces/usuario';
+import { Usuario } from 'src/app/core/interfaces/usuario';
 
 @Component({
   selector: 'app-editar-datos-basicos',

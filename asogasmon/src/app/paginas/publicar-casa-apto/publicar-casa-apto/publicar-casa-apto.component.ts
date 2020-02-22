@@ -5,7 +5,7 @@ import { MapsAPILoader } from '@agm/core';
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
 import { MapaEstaticoComponent } from 'src/app/compartidos/componentes/mapa-estatico/mapa-estatico.component';
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
-import { CasaApto } from 'src/app/interfaces/casa-apto';
+import { CasaApto } from 'src/app/core/interfaces/casa-apto';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/oferta-casa-apto.service';
 

@@ -6,7 +6,7 @@ import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filt
 import { MapaEstaticoComponent } from 'src/app/compartidos/componentes/mapa-estatico/mapa-estatico.component';
 import { ServiciosEspecificosService } from 'src/app/servicios/serviciosEspecificos/servicios-especificos.service';
 import { NormasCasaService } from 'src/app/servicios/nomasCasa/normas-casa.service';
-import { Pension } from 'src/app/interfaces/pension';
+import { Pension } from 'src/app/core/interfaces/pension';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { OfertasPensionService } from 'src/app/servicios/ofertasPensiones/ofertas-pension.service';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CasaApto } from 'src/app/interfaces/casa-apto';
-import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
+import { CasaApto } from 'src/app/core/interfaces/casa-apto';
+import { DatosBusquedaInmuebles } from 'src/app/core/interfaces/datos-busqueda-inmuebles';
 
 @Injectable({
   providedIn: 'root'

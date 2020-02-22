@@ -9,7 +9,7 @@ import { MapsAPILoader } from '@agm/core';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 
 import { UbicacioMapaFiltrosService } from 'src/app/servicios/ubicacio-mapa-filtros.service';
-import { DatosBusquedaInmuebles } from 'src/app/interfaces/datos-busqueda-inmuebles';
+import { DatosBusquedaInmuebles } from 'src/app/core/interfaces/datos-busqueda-inmuebles';
 import { OfertaCasaAptoService } from 'src/app/servicios/ofertasCasasAptos/oferta-casa-apto.service';
 import { OfertasInmueblesService } from 'src/app/servicios/ofertasInmuebles/ofertas-inmuebles.service';
 import { OfertaHabitacionService } from 'src/app/servicios/ofertasHabitaciones/oferta-habitacion.service';
