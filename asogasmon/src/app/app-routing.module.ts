@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
 import { PublicarCasaAptoComponent } from './paginas/publicar-casa-apto/publicar-casa-apto/publicar-casa-apto.component';
-import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
+import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion/publicar-habitacion.component';
 import { ResetPasswordComponent } from './paginas/resetPassword/reset-password/reset-password.component';
  
 
@@ -49,7 +49,10 @@ const routes: Routes = [
     path:'publicarApto', 
     loadChildren: () => import('./paginas/publicar-casa-apto/publicar-casa-apto.module').then(m => m.PublicarCasaAptoModule)
   },
-  {path:'publicarHabitacion', component: PublicarHabitacionComponent },
+  {
+    path:'publicarHabitacion', 
+    loadChildren: () => import('./paginas/publicar-habitacion/publicar-habitacion.module').then(m => m.PublicarHabitacionModule) 
+  },
   {path:'reset/:email/resetPass/:token', component: ResetPasswordComponent },
   {path:'**', redirectTo:'/' }
 ];

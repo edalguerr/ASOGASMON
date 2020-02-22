@@ -16,7 +16,7 @@ import { CurrencyPipe } from '@angular/common'
 //folder componentes
 
 import { PublicarPensionComponent } from './paginas/publicar-pension/publicar-pension.component';
-import { PublicarHabitacionComponent } from './paginas/publicar-habitacion/publicar-habitacion.component';
+
 
 //providers
 import { UbicacioMapaFiltrosService } from './servicios/ubicacio-mapa-filtros.service';
@@ -37,7 +37,6 @@ import { CompartidosModule } from './compartidos/compartidos.module';
     AppComponent,
     
     PublicarPensionComponent,
-    PublicarHabitacionComponent,
     ResetPasswordComponent,
 
   ],
