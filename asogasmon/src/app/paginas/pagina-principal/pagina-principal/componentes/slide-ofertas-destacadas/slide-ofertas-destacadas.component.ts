@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OfertasDestacadasService } from 'src/app/servicios/ofertasDestacadas/ofertas-destacadas.service';
+import { DatosBusquedaInmuebles } from 'src/app/core/interfaces/datos-busqueda-inmuebles';
 
 @Component({
   selector: 'app-slide-ofertas-destacadas',
@@ -11,28 +13,64 @@ export class SlideOfertasDestacadasComponent implements OnInit {
   idCarousel = 'carouselOfertasDestacadas'; 
 
   claseContainer = 'container';
-  miniSmartphoneViewport = false;
-  mostrar3Columnas = false;
-
+  
   width = window.innerWidth; // ancho del navegador
   widthMobile = 992;
   widthMobileMiniSmartphone = 380;//420
   widthMobileSmartphoneContainer = 768;
 
-  precioTest = 45000090;
+  
+  datosBusqueda: DatosBusquedaInmuebles = {
+    cantOfertasPorPagina: 8,
+    paginacionActual: 3,
+    precioMaximo: 2000000,
+    ubicacion: {
+      pais: '',
+      departamento: '',
+      ciudad: '',
+      localidad: '',
+      codigoPostal: ''
+    }
+  };
 
-  ruta = 'assets/';
-  imagenes:Array<string> = ['B7111-BL_BATA_UPC_ml.jpg','libro-de-oro-de-matemticas-1-638.jpg',
-  'habitacion-arriendo_2.jpg', '1024o.jpg'  
- ];
+  ofertas1:Array<{
+    ID, 
+    INMUEBLE, 
+    TITULO_AVISO, 
+    PRECIO_MENSUAL, 
+    PAIS, 
+    DEPARTAMENTO, 
+    CIUDAD, 
+    DIRECCION, 
+    ACTUALIZADO_EN
+  }> = [];
 
-  imagenes2:Array<string> = ['3837.jpg','179809-OWKTX6-319.jpg','12324.jpg','342462-PA9Q6O-452.jpg'];
+  fotosOfertas1:Array<{FOTO}> = [];
 
-  constructor() { 
+  ofertas2:Array<{
+    ID, 
+    INMUEBLE, 
+    TITULO_AVISO, 
+    PRECIO_MENSUAL, 
+    PAIS, 
+    DEPARTAMENTO, 
+    CIUDAD, 
+    DIRECCION, 
+    ACTUALIZADO_EN
+  }> = [];
+  
+  fotosOfertas2:Array<{FOTO}> = [];
+
+  API_URL = "http://localhost/asogasmonAPI/public/img/";
+
+  
+  constructor(
+    public ofertasDestacadasService:OfertasDestacadasService
+    ) { 
     
     /*Para tablets grandes */
     if(this.width < this.widthMobile){
-      this.mostrar3Columnas = true;
+      this.datosBusqueda.cantOfertasPorPagina = 6;
       this.claseTamColumna = 'col-4';
     }
 
@@ -43,7 +81,7 @@ export class SlideOfertasDestacadasComponent implements OnInit {
 
     /*Para los celulares mas pequeños(maximo 380 px)*/
     if(this.width <= this.widthMobileMiniSmartphone){
-      this.miniSmartphoneViewport = true;
+      this.datosBusqueda.cantOfertasPorPagina = 4;
       this.claseTamColumna = 'col-6';
     } 
 
@@ -52,7 +90,28 @@ export class SlideOfertasDestacadasComponent implements OnInit {
 
   ngOnInit() {
     
-  
+   this.obtenerOfertas();
+  }
+
+  obtenerOfertas(){
+
+    this.ofertasDestacadasService.obtenerOfertas(this.datosBusqueda).subscribe(
+      (res: { ofertas, cantTotal, fotos }) => {
+
+        console.log(res);
+         
+        let mitad = res.ofertas.length / 2;
+        this.ofertas1 = res.ofertas.slice(0,mitad);
+        this.fotosOfertas1 = res.fotos.slice(0,mitad);
+
+        this.ofertas2 = res.ofertas.slice(-mitad);
+        this.fotosOfertas2 = res.fotos.slice(-mitad);
+
+      }, err => {
+        console.log("Error al obtener las ofertas");
+      }
+    );
+
   }
 
 }

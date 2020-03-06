@@ -16,6 +16,7 @@ import { NormasCasaService } from './servicios/nomasCasa/normas-casa.service';
 import { OfertaHabitacionService } from './servicios/ofertasHabitaciones/oferta-habitacion.service';
 import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pension.service';
 import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-inmuebles.service';
+import { OfertasDestacadasService } from './servicios/ofertasDestacadas/ofertas-destacadas.service';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-in
     ServiciosEspecificosService,
     NormasCasaService,
     OfertasInmueblesService,
-    CurrencyPipe
+    CurrencyPipe,
+    OfertasDestacadasService
   ],
   bootstrap: [AppComponent]
 })

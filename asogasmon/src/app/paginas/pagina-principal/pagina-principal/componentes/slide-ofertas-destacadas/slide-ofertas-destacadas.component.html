@@ -8,94 +8,68 @@
             <div [class]="claseContainer">
                 <div class="row justify-content-center">
 
-                    <div [class]="claseTamColumna">
+                    <div [class]="claseTamColumna" *ngFor="let oferta of ofertas1; let x = index">
                         <div class="card mb-2">
 
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[3]+')' "></div>
+                            <div [ngSwitch]="oferta.INMUEBLE">
+                                <div *ngSwitchCase="'PENSION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasPension/'+oferta.ID+'/'+fotosOfertas1[x].FOTO+')' "></div>
+                                <div *ngSwitchCase="'HABITACION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+oferta.ID+'/'+fotosOfertas1[x].FOTO+')' "></div>
+                                <div *ngSwitchCase="'CASAAPTO'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+oferta.ID+'/'+fotosOfertas1[x].FOTO+')' "></div>
+                            </div>
 
                             <div class="card-body text-left">
-                                <h4 class="titulo-card "> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate quod exercitationem. Pension en arriendo Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</h4>
-                                <div>
+                                <h4 class="titulo-card ">
+                                    {{oferta.TITULO_AVISO}}
+                                </h4>
+
+                                <div *ngIf="oferta.DIRECCION; else ciudadSOD">
+
                                     <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    av. pedro heredia calle#25b
-                  </span>
+                                        <i class="fa fa-map-marker"></i>
+                                        {{oferta.DIRECCION | titlecase }}
+                                    </span>
 
                                 </div>
+                                <ng-template #ciudadSOD>
+
+                                    <ng-container *ngIf="oferta.CIUDAD; else departamentoSOD">
+                                        <span class="ubicacion text-muted">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{oferta.CIUDAD | titlecase }}
+                                        </span>
+                                    </ng-container>
+
+                                </ng-template>
+                                <ng-template #departamentoSOD>
+                                    <ng-container *ngIf="oferta.DEPARTAMENTO; else paisSOD">
+                                        <span class="ubicacion text-muted">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{oferta.DEPARTAMENTO | titlecase }}
+                                        </span>
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #paisSOD>
+
+                                    <span class="ubicacion text-muted">
+                                        <i class="fa fa-map-marker"></i>
+                                        {{oferta.PAIS | titlecase }}
+                                    </span>
+
+                                </ng-template>
 
                             </div>
                             <div class="card-footer ">
-                                <span class="precio text-body">COP {{precioTest | currency:undefined:'symbol':'1.0-0'}}</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
+                                <span class="precio text-body">COP
+                                    {{oferta.PRECIO_MENSUAL | currency:undefined:'symbol':'1.0-0'}}
+                                </span>
 
-                    <div [class]="claseTamColumna">
-                        <div class="card mb-2">
+                                <div [ngSwitch]="oferta.INMUEBLE">
 
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[0]+')' "></div>
-
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Apartamento en arriendo</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    av. camino de enmedio calle #26a
-                  </span>
-
+                                    <a *ngSwitchCase="'PENSION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasPension/'+oferta.ID" data-target="_blank">Ver más</a>
+                                    <a *ngSwitchCase="'HABITACION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasHabitacion/'+oferta.ID" data-target="_blank">Ver más</a>
+                                    <a *ngSwitchCase="'CASAAPTO'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasCasaApto/'+oferta.ID" data-target="_blank">Ver más</a>
                                 </div>
 
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 9.000.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div [class]="claseTamColumna" *ngIf="!miniSmartphoneViewport">
-                        <div class="card mb-2">
-
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[1]+')' "></div>
-
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Libro de matematica en venta</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    Cartagena Bolivar
-                  </span>
-
-                                </div>
-
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 800.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div [class]="claseTamColumna" *ngIf="!mostrar3Columnas">
-                        <div class="card mb-2">
-
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[2]+')' "></div>
-
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Apartamento en venta</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    San josé de los campanos av. principal calle #66c-34b
-                  </span>
-
-                                </div>
-
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 100.000.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -109,90 +83,68 @@
             <div [class]="claseContainer">
                 <div class="row justify-content-center">
 
-                    <div [class]="claseTamColumna">
+                    <div [class]="claseTamColumna" *ngFor="let oferta of ofertas2; let x = index">
                         <div class="card mb-2">
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes2[0]+')' "></div>
+
+                            <div [ngSwitch]="oferta.INMUEBLE">
+                                <div *ngSwitchCase="'PENSION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasPension/'+oferta.ID+'/'+fotosOfertas2[x].FOTO+')' "></div>
+                                <div *ngSwitchCase="'HABITACION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+oferta.ID+'/'+fotosOfertas2[x].FOTO+')' "></div>
+                                <div *ngSwitchCase="'CASAAPTO'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+oferta.ID+'/'+fotosOfertas2[x].FOTO+')' "></div>
+                            </div>
 
                             <div class="card-body text-left">
-                                <h4 class="titulo-card ">Habitacion en arriendo</h4>
-                                <div>
+                                <h4 class="titulo-card ">
+                                    {{oferta.TITULO_AVISO}}
+                                </h4>
+
+                                <div *ngIf="oferta.DIRECCION; else ciudadSOD">
+
                                     <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    Boston sector macarena calle#45-63b
-                  </span>
+                                        <i class="fa fa-map-marker"></i>
+                                        {{oferta.DIRECCION | titlecase }}
+                                    </span>
 
                                 </div>
+                                <ng-template #ciudadSOD>
+
+                                    <ng-container *ngIf="oferta.CIUDAD; else departamentoSOD">
+                                        <span class="ubicacion text-muted">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{oferta.CIUDAD | titlecase }}
+                                        </span>
+                                    </ng-container>
+
+                                </ng-template>
+                                <ng-template #departamentoSOD>
+                                    <ng-container *ngIf="oferta.DEPARTAMENTO; else paisSOD">
+                                        <span class="ubicacion text-muted">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{oferta.DEPARTAMENTO | titlecase }}
+                                        </span>
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #paisSOD>
+
+                                    <span class="ubicacion text-muted">
+                                        <i class="fa fa-map-marker"></i>
+                                        {{oferta.PAIS | titlecase }}
+                                    </span>
+
+                                </ng-template>
 
                             </div>
                             <div class="card-footer ">
-                                <span class="precio text-body">$ 45.000.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
+                                <span class="precio text-body">COP
+                                    {{oferta.PRECIO_MENSUAL | currency:undefined:'symbol':'1.0-0'}}
+                                </span>
 
-                    <div [class]="claseTamColumna">
-                        <div class="card mb-2">
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes2[1]+')' "></div>
+                                <div [ngSwitch]="oferta.INMUEBLE">
 
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Bata de laboratorio de quimica en venta</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    Barranquilla Atlantico
-                  </span>
-
+                                    <a *ngSwitchCase="'PENSION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasPension/'+oferta.ID" data-target="_blank">Ver más</a>
+                                    <a *ngSwitchCase="'HABITACION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasHabitacion/'+oferta.ID" data-target="_blank">Ver más</a>
+                                    <a *ngSwitchCase="'CASAAPTO'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasCasaApto/'+oferta.ID" data-target="_blank">Ver más</a>
                                 </div>
 
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 65.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div [class]="claseTamColumna" *ngIf="!miniSmartphoneViewport">
-                        <div class="card mb-2">
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes2[2]+')' "></div>
-
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Calculadora casio + transportador en venta</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    Cartagena Bolivar
-                  </span>
-
-                                </div>
-
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 60.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block " routerLink="/oferta/1" data-target="_blank">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div [class]="claseTamColumna" *ngIf="!mostrar3Columnas">
-                        <div class="card mb-2">
-                            <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes2[3]+')' "></div>
-
-                            <div class="card-body text-left">
-                                <h4 class="titulo-card ">Voltimetro en venta</h4>
-                                <div>
-                                    <span class="ubicacion text-muted">
-                    <i class="fa fa-map-marker"></i>
-                    Turbaco Bolivar
-                  </span>
-
-                                </div>
-
-                            </div>
-                            <div class="card-footer ">
-                                <span class="precio text-body">$ 35.000 COP</span>
-                                <a class="btn btn-ver-mas btn-sm btn-block" routerLink="/oferta/1" data-target="_blank">Ver más</a>
                             </div>
                         </div>
                     </div>
