@@ -14,356 +14,95 @@
 </div>-->
 
 <div class="row justify-content-center">
-  <div class="col-12 columna-contenedora col-lg-12">
-    <div class="card-columns">
+    <div class="col-12 columna-contenedora col-lg-12">
+        <div class="card-columns">
 
-      <div class="card mb-3">
+            <div class="card mb-3" *ngFor="let oferta of ofertas; let x = index">
 
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[0]+')' "></div>
+                <div [ngSwitch]="oferta.INMUEBLE">
+                    <div *ngSwitchCase="'PENSION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasPension/'+oferta.ID+'/'+fotosOfertas[x].FOTO+')' "></div>
+                    <div *ngSwitchCase="'HABITACION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+oferta.ID+'/'+fotosOfertas[x].FOTO+')' ">
+                    </div>
+                    <div *ngSwitchCase="'CASAAPTO'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+oferta.ID+'/'+fotosOfertas[x].FOTO+')' "></div>
+                </div>
 
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Libro de matematica en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
+                <div class="card-body text-left">
+                    <h4 class="titulo-card ">
+                        {{oferta.TITULO_AVISO}}
+                    </h4>
+
+                    <div *ngIf="oferta.DIRECCION; else ciudadSOD">
+
+                        <span class="ubicacion text-muted">
               <i class="fa fa-map-marker"></i>
-              Cartagena Bolivar
+              {{oferta.DIRECCION | titlecase }}
             </span>
 
-          </div>
+                    </div>
+                    <ng-template #ciudadSOD>
 
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">COP {{precioTest | currency:undefined:'symbol':'1.0-0'}}</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " [routerLink]="rutaOferta + id" >Ver más</a>
-        </div>
-      </div>
+                        <ng-container *ngIf="oferta.CIUDAD; else departamentoSOD">
+                            <span class="ubicacion text-muted">
+                <i class="fa fa-map-marker"></i>
+                {{oferta.CIUDAD | titlecase }}
+              </span>
+                        </ng-container>
 
-      <div class="card mb-3">
+                    </ng-template>
+                    <ng-template #departamentoSOD>
+                        <ng-container *ngIf="oferta.DEPARTAMENTO; else paisSOD">
+                            <span class="ubicacion text-muted">
+                <i class="fa fa-map-marker"></i>
+                {{oferta.DEPARTAMENTO | titlecase }}
+              </span>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #paisSOD>
 
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[1]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Pension en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
+                        <span class="ubicacion text-muted">
               <i class="fa fa-map-marker"></i>
-              av. pedro heredia calle#25b
+              {{oferta.PAIS | titlecase }}
             </span>
 
-          </div>
+                    </ng-template>
+
+                </div>
+                <div class="card-footer ">
+                    <span class="precio text-body">COP 
+            {{oferta.PRECIO_MENSUAL | currency:undefined:'symbol':'1.0-0'}}
+          </span>
+
+                    <div [ngSwitch]="oferta.INMUEBLE">
+                        <a *ngSwitchCase="'PENSION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasPension/'+oferta.ID" data-target="_blank">Ver más</a>
+                        <a *ngSwitchCase="'HABITACION'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasHabitacion/'+oferta.ID" data-target="_blank">Ver más</a>
+                        <a *ngSwitchCase="'CASAAPTO'" class="btn btn-ver-mas btn-sm btn-block " [routerLink]="'/ofertasCasaApto/'+oferta.ID" data-target="_blank">Ver más</a>
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 450.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " [target]="'_blank'"  [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[2]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Libro de matematica en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Cartagena Bolivar
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 800.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-      <div class="card mb-3">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[3]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Apartamento en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              av. camino de enmedio calle #26a
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 9.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[4]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Habitacion disponible en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Barranquilla Atlantico ave. caracas crra 14 #46b
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 800.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[5]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Apartamento en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              San josé de los campanos av. principal calle #66c-34b
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[6]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Pension en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              av.el consulado crra 16 calle #26a
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 9.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[7]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[8]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[9]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[10]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[11]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[12]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Calculadora + juego de escuadra en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Medellin Antioquia
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 100.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[13]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Pension en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              av. pedro heredia calle#25b
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 450.000.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[14]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Libro de matematica en venta</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Cartagena Bolivar
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 800.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-      <div class="card mb-3" *ngIf="!widthMobileMediumOfertas">
-        <div class="card-img-top" [style.background-image]="'url('+ruta+imagenes[15]+')' "></div>
-
-        <div class="card-body text-left">
-          <h4 class="titulo-card ">Habitacion disponible en arriendo</h4>
-          <div>
-            <span class="ubicacion text-muted">
-              <i class="fa fa-map-marker"></i>
-              Barranquilla Atlantico ave. caracas crra 14 #46b
-            </span>
-
-          </div>
-
-        </div>
-        <div class="card-footer ">
-          <span class="precio text-body">$ 800.000 COP</span>
-          <a class="btn btn-ver-mas btn-sm btn-block " target="_blank" [routerLink]="rutaOferta + id">Ver más</a>
-        </div>
-      </div>
-
-
-
     </div>
-  </div>
 </div>
 
 <div class="mt-3">
-  <ul class="pagination  justify-content-center">
-    <li class="page-item disabled"><a href="#" class="page-link" aria-label="Previous">
-        <span aria-hidden="true">«</span>
-      </a></li>
-    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-    <li class="page-item"><a href="#" class="page-link">2</a></li>
-    <li class="page-item "><a href="#" class="page-link">3</a></li>
-    <li class="page-item "><a href="#" class="page-link">4</a></li>
-    <li class="page-item "><a href="#" class="page-link">5</a></li>
-    <li class="page-item "><a href="#" class="page-link">6</a></li>
-    <li class="page-item"><a href="#" class="page-link" aria-label="Next">
-        <span aria-hidden="true">»</span>
-      </a></li>
-  </ul>
+    <ul class="pagination  justify-content-center">
+        <li class="page-item disabled">
+            <a href="#" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+            </a>
+        </li>
+        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+        <li class="page-item"><a href="#" class="page-link">2</a></li>
+        <li class="page-item "><a href="#" class="page-link">3</a></li>
+        <li class="page-item "><a href="#" class="page-link">4</a></li>
+        <li class="page-item "><a href="#" class="page-link">5</a></li>
+        <li class="page-item "><a href="#" class="page-link">6</a></li>
+        <li class="page-item">
+            <a href="#" class="page-link" aria-label="Next">
+                <span aria-hidden="true">»</span>
+            </a>
+        </li>
+    </ul>
 </div>

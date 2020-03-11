@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UltimasOfertasService } from 'src/app/servicios/ultimasOfertas/ultimas-ofertas.service';
+import { DatosBusquedaInmuebles } from 'src/app/core/interfaces/datos-busqueda-inmuebles';
 
 @Component({
   selector: 'app-ofertas',
@@ -24,14 +26,65 @@ export class OfertasComponent implements OnInit {
 
   precioTest = 850500;
 
-  constructor() { 
+  datosBusqueda: DatosBusquedaInmuebles = {
+    cantOfertasPorPagina: 16,
+    paginacionActual: 1,
+    precioMaximo: 2000000,
+    ubicacion: {
+      pais: '',
+      departamento: '',
+      ciudad: '',
+      localidad: '',
+      codigoPostal: ''
+    }
+  };
+
+  ofertas:Array<{
+    ID, 
+    INMUEBLE, 
+    TITULO_AVISO, 
+    PRECIO_MENSUAL, 
+    PAIS, 
+    DEPARTAMENTO, 
+    CIUDAD, 
+    DIRECCION, 
+    ACTUALIZADO_EN
+  }> = [];
+
+  fotosOfertas:Array<{FOTO}> = [];
+
+  API_URL = "http://localhost/asogasmonAPI/public/img/";
+
+  constructor(
+    private ultimasOfertasService:UltimasOfertasService
+  ) { 
 
     if(this.width <= this.widthMobileMedium){
       this.widthMobileMediumOfertas = true;
+      this.datosBusqueda.cantOfertasPorPagina = 8;
     }
   }
 
   ngOnInit() {
+
+    this.obtenerOfertas();
+  }
+
+  obtenerOfertas(){
+
+    this.ultimasOfertasService.obtenerOfertas(this.datosBusqueda).subscribe(
+      (res: { ofertas, cantTotal, fotos }) => {
+
+        console.log(res);
+                
+        this.ofertas = res.ofertas;
+        this.fotosOfertas = res.fotos;
+
+      }, err => {
+        console.log("Error al obtener las ofertas");
+      }
+    );
+
   }
 
 }
