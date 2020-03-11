@@ -44,6 +44,7 @@ export class OfertasComponent implements OnInit {
   API_URL = "http://localhost/asogasmonAPI/public/img/";
 
   page = 1;
+  pageSize = 16;
 
   constructor(
     private ultimasOfertasService:UltimasOfertasService
@@ -51,6 +52,7 @@ export class OfertasComponent implements OnInit {
 
     if(this.width <= this.widthMobileMedium){
       this.datosBusqueda.cantOfertasPorPagina = 8;
+      this.pageSize = this.datosBusqueda.cantOfertasPorPagina;
     }
   }
 
@@ -69,7 +71,7 @@ export class OfertasComponent implements OnInit {
         this.ofertas = res.ofertas;
         this.fotosOfertas = res.fotos;
         this.cantTotal = res.cantTotal;
-
+        
       }, err => {
         console.log("Error al obtener las ofertas");
       }
