@@ -1,28 +1,30 @@
 <!--información contácto-->
 <div class="card mb-2 d-none d-md-block">
-  <div class="card-body contenedor-body-contacto">
-    <h5 class="card-title propietario-detalle">
-      Contácta a Edwin Alberto
-      <!-- <a href="#" class="link-verfil-publicante" title="perfil de usuario"></a>-->
-    </h5>
+    <div class="card-body contenedor-body-contacto">
+        <h5 class="card-title propietario-detalle" *ngIf="ofertaDetalladaActualService.ofertaDetallada != undefined">
+            Contácta a {{ofertaDetalladaActualService.ofertaDetallada.usuario.NOMBRE}}
+            <!-- <a href="#" class="link-verfil-publicante" title="perfil de usuario"></a>-->
+        </h5>
 
-    <!--<a href="#" class="btn btn-success btn-block">Ver telefono</a>-->
-    <div class="mostrar-telefono">
-      <i class="fa fa-phone"></i>
-      <span>
-        +573106******
+        <!--<a href="#" class="btn btn-success btn-block">Ver telefono</a>-->
+        <div class="mostrar-telefono" *ngIf="ofertaDetalladaActualService.ofertaDetallada != undefined">
+            <i class="fa fa-phone"></i>
+            <span>
+        +57 {{ofertaDetalladaActualService.ofertaDetallada.NUMERO_CELULAR}}
       </span>
+            <!--
       <a href="#" class="btn btn-link link-mostrar-telefono">
         Mostrar telefono
-      </a>
-    </div>
+      </a>-->
+        </div>
 
-    <a href="#" class="btn btn-me-interesa btn-block">Me interesa</a>
-  </div>
+        <a href="#" class="btn btn-me-interesa btn-block">Me interesa</a>
+    </div>
 </div>
 
 <!--TO DO: verificar porque no funciona la validacion required-->
 <!--Formulario contáctar-->
+<!--
 <form action="" class="need-validate d-none d-md-block" role="form" ngNativeValidate>
 
   <div class="card mb-2">
@@ -46,5 +48,4 @@
   </div>
 
 </form>
-
-
+-->

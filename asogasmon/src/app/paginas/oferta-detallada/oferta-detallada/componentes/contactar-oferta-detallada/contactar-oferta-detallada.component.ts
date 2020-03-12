@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OfertaDetalladaActualService } from 'src/app/servicios/ofertaDetalladaActual/oferta-detallada-actual.service';
 
 @Component({
   selector: 'app-contactar-oferta-detallada',
@@ -13,9 +14,12 @@ export class ContactarOfertaDetalladaComponent implements OnInit {
 
   maxCaracteresMensaje = 800;
 
-  constructor() { }
+  constructor(
+    public ofertaDetalladaActualService:OfertaDetalladaActualService
+  ) { }
 
   ngOnInit() {
+    
   }
 
 }
