@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OfertaDetalladaActualService } from 'src/app/servicios/ofertaDetalladaActual/oferta-detallada-actual.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-informacion-detallada',
@@ -30,7 +32,14 @@ export class InformacionDetalladaComponent implements OnInit {
   widthSmartphone = 575;
   width = window.innerWidth; // ancho del navegador
   
-  constructor() {
+  API_URL = "http://localhost/asogasmonAPI/public/img/";
+
+  ruta = "ofertasCasaApto";
+
+  constructor(
+    private activateRoute:ActivatedRoute,
+    public ofertaDetalladaActualService:OfertaDetalladaActualService
+  ) {
 
     /*Para celulares*/
     if(this.width < this.widthSmartphone){
@@ -43,17 +52,51 @@ export class InformacionDetalladaComponent implements OnInit {
       this.sizeMapaAncho = 420;
     }
     
+    
+    this.lat = this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD;
+    this.lng = this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD;
+
+    this.coordOferta.lat = this.lat;
+    this.coordOferta.lng = this.lng;
 
     this.dirMapa = "https://maps.googleapis.com/maps/api/staticmap?center="+
-    this.lat+","+this.lng+"&zoom="+this.zoomMapa+"&size="+this.sizeMapaAncho+"x400&maptype=roadmap"+
+    this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD+","+
+    this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD+"&zoom="+this.zoomMapa+"&size="+this.sizeMapaAncho+"x400&maptype=roadmap"+
     "&markers=color:green%7Clabel:A%7C"+
-    this.lat+","+this.lng+
+    this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD+","+
+    this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD+
     "&key="+this.key;
-
+    
   }
 
   ngOnInit() {
     
+    let categoria = this.activateRoute.parent.snapshot.url[0].path;
+        
+    if (categoria == 'ofertasCasaApto') {
+      
+      this.ruta = 'ofertasCasaApto';
+      this.casaApto = true;
+      this.pension = false;
+      this.habitacion = false;
+    }
+    else if (categoria == 'ofertasHabitacion') {
+
+      this.ruta = 'ofertasHabitacion';
+      this.tipoInmueble = "Habitación";
+      this.casaApto = false;
+      this.pension = false;
+      this.habitacion = true;
+    }
+    else {
+
+      this.ruta = 'ofertasPension'
+      this.tipoInmueble = "Pension";
+      this.casaApto = false;
+      this.pension = true;
+      this.habitacion = false;
+    }
+
   }
 
   mostrarMapa(){

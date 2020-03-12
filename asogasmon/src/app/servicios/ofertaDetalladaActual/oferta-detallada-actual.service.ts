@@ -46,7 +46,9 @@ export class OfertaDetalladaActualService {
       CIUDAD: "",
       LOCALIDAD: "",
       DIRECCION: "",
-      CODIGO_POSTAL: 0
+      CODIGO_POSTAL: 0,
+      LATITUD: 0,
+      LONGITUD: 0
     },
     servicios_especificos: [],
     fotos: [],

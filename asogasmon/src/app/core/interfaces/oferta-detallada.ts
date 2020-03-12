@@ -39,7 +39,9 @@ export interface OfertaDetallada {
       CIUDAD,
       LOCALIDAD,
       DIRECCION,
-      CODIGO_POSTAL
+      CODIGO_POSTAL,
+      LATITUD,
+      LONGITUD
     };
     servicios_especificos: Array<{
       ID, 

@@ -106,6 +106,8 @@ export class OfertaDetalladaComponent implements OnInit {
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LOCALIDAD =  res.ofertasCasaApto.ubicacion.LOCALIDAD;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.DIRECCION =  res.ofertasCasaApto.ubicacion.DIRECCION;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.CODIGO_POSTAL =  res.ofertasCasaApto.ubicacion.CODIGO_POSTAL;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD = res.ofertasCasaApto.ubicacion.LATITUD;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD = res.ofertasCasaApto.ubicacion.LONGITUD;;
         this.ofertaDetalladaActualService.ofertaDetallada.servicios_especificos = res.ofertasCasaApto.servicios_especificos;
         this.ofertaDetalladaActualService.ofertaDetallada.fotos = res.ofertasCasaApto.fotos;
         
@@ -140,6 +142,7 @@ export class OfertaDetalladaComponent implements OnInit {
         this.ofertaDetalladaActualService.ofertaDetallada.PRECIO_MENSUAL = res.ofertasHabitacion.PRECIO_MENSUAL;
         this.ofertaDetalladaActualService.ofertaDetallada.TITULO_AVISO = res.ofertasHabitacion.TITULO_AVISO;
         this.ofertaDetalladaActualService.ofertaDetallada.DESCRIPCION = res.ofertasHabitacion.DESCRIPCION;
+        this.ofertaDetalladaActualService.ofertaDetallada.TIPO_HABITACION = res.ofertasHabitacion.TIPO_HABITACION;
         this.ofertaDetalladaActualService.ofertaDetallada.USUARIO_ID = res.ofertasHabitacion.USUARIO_ID;
         
         this.ofertaDetalladaActualService.ofertaDetallada.usuario.NOMBRE = res.ofertasHabitacion.usuario.NOMBRE;
@@ -152,6 +155,8 @@ export class OfertaDetalladaComponent implements OnInit {
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LOCALIDAD =  res.ofertasHabitacion.ubicacion.LOCALIDAD;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.DIRECCION =  res.ofertasHabitacion.ubicacion.DIRECCION;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.CODIGO_POSTAL =  res.ofertasHabitacion.ubicacion.CODIGO_POSTAL;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD = res.ofertasHabitacion.ubicacion.LATITUD;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD = res.ofertasHabitacion.ubicacion.LONGITUD;  
         this.ofertaDetalladaActualService.ofertaDetallada.servicios_especificos = res.ofertasHabitacion.servicios_especificos;
         this.ofertaDetalladaActualService.ofertaDetallada.fotos = res.ofertasHabitacion.fotos;
         this.ofertaDetalladaActualService.ofertaDetallada.normasCasa = res.ofertasHabitacion.normas_casa;
@@ -199,6 +204,8 @@ export class OfertaDetalladaComponent implements OnInit {
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LOCALIDAD =  res.ofertasPension.ubicacion.LOCALIDAD;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.DIRECCION =  res.ofertasPension.ubicacion.DIRECCION;
         this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.CODIGO_POSTAL =  res.ofertasPension.ubicacion.CODIGO_POSTAL;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LATITUD = res.ofertasPension.ubicacion.LATITUD;
+        this.ofertaDetalladaActualService.ofertaDetallada.ubicacion.LONGITUD = res.ofertasPension.ubicacion.LONGITUD;
         this.ofertaDetalladaActualService.ofertaDetallada.servicios_especificos = res.ofertasPension.servicios_especificos;
         this.ofertaDetalladaActualService.ofertaDetallada.fotos = res.ofertasPension.fotos;
         this.ofertaDetalladaActualService.ofertaDetallada.normasCasa = res.ofertasPension.normas_casa;
@@ -257,7 +264,9 @@ export class OfertaDetalladaComponent implements OnInit {
         CIUDAD: "",
         LOCALIDAD: "",
         DIRECCION: "",
-        CODIGO_POSTAL: 0
+        CODIGO_POSTAL: 0,
+        LATITUD: 0,
+        LONGITUD: 0
       },
       servicios_especificos: [],
       fotos: [],
