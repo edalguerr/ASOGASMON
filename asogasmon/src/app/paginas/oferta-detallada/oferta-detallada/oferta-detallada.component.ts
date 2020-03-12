@@ -31,6 +31,8 @@ export class OfertaDetalladaComponent implements OnInit, AfterViewInit {
   precio = 2000000;
   idOferta = 1;
 
+  API_URL = "http://localhost/asogasmonAPI/public/img/";
+
   constructor(
     private activateRoute:ActivatedRoute, 
     private router:Router,

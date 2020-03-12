@@ -11,7 +11,12 @@
                 1.5, para que la imagenes quepan perfectamente en los contenedores 
                 de ofertas detalladas y ofertas iniciales
               -->
-                <div class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+ruta+imagen+')'"></div>
+
+                <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
+                    <div *ngSwitchCase="'PENSION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
+                    <div *ngSwitchCase="'HABITACION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
+                    <div *ngSwitchCase="'CASAAPTO'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
+                </div>
 
                 <!--Full screen componente-->
                 <app-carousel-full-screen></app-carousel-full-screen>
@@ -20,8 +25,11 @@
                 <div id="carouselImagenesMobile" class="carousel slide d-block d-md-none" data-ride="carousel">
 
                     <div class="carousel-inner">
-                        <div class="carousel-item" *ngFor="let img of imagenes;let i=index" [ngClass]=" (i == 0)?'active':'' ">
-                            <div class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+ruta+img+')'">
+                        <div class="carousel-item" *ngFor="let img of ofertaDetalladaActualService.ofertaDetallada.fotos;let i=index" [ngClass]=" (i == 0)?'active':'' ">
+                            <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
+                                <div *ngSwitchCase="'PENSION'" class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+img.FOTO+')' "></div>
+                                <div *ngSwitchCase="'HABITACION'" class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+img.FOTO+')' "></div>
+                                <div *ngSwitchCase="'CASAAPTO'" class="card-img-top imagen-oferta-detallada" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+img.FOTO+')' "></div>
                             </div>
                         </div>
                     </div>
@@ -77,9 +85,13 @@
                                     <div class="card-body text-center">
 
                                         <h5 class="card-title precio-detalle">
-                                            COP {{precio | currency:undefined:'symbol':'1.0-0'}} <span>/ mensual</span>
+                                            COP {{ofertaDetalladaActualService.ofertaDetallada.PRECIO_MENSUAL | currency:undefined:'symbol':'1.0-0'}} <span>/ mensual</span>
                                         </h5>
-                                        <span class="factura-detalle">Servicios incluidos</span>
+                                        <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
+                                            <div *ngSwitchCase="'CASAAPTO'">
+                                                <span *ngIf="ofertaDetalladaActualService.ofertaDetallada.SERVICIOS_PRINCIPALES == 1" class="factura-detalle">Servicios incluidos</span>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -102,7 +114,7 @@
                             <div class="row fixed-bottom d-flex d-md-none contenedor-llamar-mensaje">
 
                                 <div class="col-6 pr-0">
-                                    <a href="tel:{{numeroCelularPrueba}}" class="btn btn-primary btn-block btn-lg rounded-0">
+                                    <a href="tel:{{ofertaDetalladaActualService.ofertaDetallada.NUMERO_CELULAR}}" class="btn btn-primary btn-block btn-lg rounded-0">
                                         <i class="fa fa-phone"></i> Llamar
                                     </a>
                                 </div>
