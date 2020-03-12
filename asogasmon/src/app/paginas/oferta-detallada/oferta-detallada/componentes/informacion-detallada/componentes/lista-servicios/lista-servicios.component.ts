@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OfertaDetalladaActualService } from 'src/app/servicios/ofertaDetalladaActual/oferta-detallada-actual.service';
 
 @Component({
   selector: 'app-lista-servicios',
@@ -17,9 +18,12 @@ export class ListaServiciosComponent implements OnInit {
     {icono:'fa fa-utensils fa-servicios', nombre:'Alimentacion'}
   ];
 
-  constructor() { }
+  constructor(
+    public ofertaDetalladaActualService:OfertaDetalladaActualService
+  ) { }
 
   ngOnInit() {
+    //this.ofertaDetalladaActualService.ofertaDetallada.servicios_especificos[0].
   }
 
 }
