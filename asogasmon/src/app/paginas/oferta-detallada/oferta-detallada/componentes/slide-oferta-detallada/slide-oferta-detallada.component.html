@@ -1,54 +1,63 @@
 <!--Ofertas destacadas-->
 <div id="carouselOfertaDetallada" class="carousel slide my-2" data-ride="carousel">
-  
-  <div class="carousel-inner" role="listbox">
-  
-    <div class="carousel-item active">
-      <div class="container">
-        <div class="row">
 
-          <div class="col-3" *ngFor="let imagen of imagenes">
-            <div class="card mb-2" >
+    <div class="carousel-inner" role="listbox">
 
-              <div class="card-img-top" [style.background-image]="'url('+ruta+imagen+')'" (click)="actualizarImagen(imagen)"></div>  
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row">
 
+                    <div class="col-3" *ngFor="let imagen of ofertaDetalladaActualService.fotosOfertas1">
+                        <div class="card mb-2">
+
+                            <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
+                                <div *ngSwitchCase="'PENSION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                                <div *ngSwitchCase="'HABITACION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                                <div *ngSwitchCase="'CASAAPTO'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                            </div>
+                            <!--<div class="card-img-top" [style.background-image]="'url('+ruta+imagen+')'" (click)="actualizarImagen(imagen)"></div>  -->
+
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-          </div>
-          
 
         </div>
-      </div>
-      
-    </div>
-    
-    <div class="carousel-item">
-        <div class="container">
-          <div class="row">
-  
-            <div class="col-3" *ngFor="let imagen of imagenes2">
-              <div class="card mb-2" >
-  
-                <div class="card-img-top " [style.background-image]="'url('+ruta+imagen+')'" (click)="actualizarImagen(imagen)"></div>  
-  
-              </div>
+
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-3" *ngFor="let imagen of ofertaDetalladaActualService.fotosOfertas2">
+                        <div class="card mb-2">
+
+                            <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
+                                <div *ngSwitchCase="'PENSION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                                <div *ngSwitchCase="'HABITACION'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                                <div *ngSwitchCase="'CASAAPTO'" class="card-img-top" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+imagen.FOTO+')' " (click)="actualizarImagen(imagen)"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-            
-  
-          </div>
+
         </div>
-        
+
     </div>
-    
-  </div>
 
-  <a class="carousel-control-prev carrusel-control" href="#carouselOfertaDetallada" role="button" data-slide="prev">
-    <i class="fa fa-angle-left fa-2x"></i>
-    <span class="sr-only">Previous</span>
-  </a>
+    <a class="carousel-control-prev carrusel-control" href="#carouselOfertaDetallada" role="button" data-slide="prev">
+        <i class="fa fa-angle-left fa-2x"></i>
+        <span class="sr-only">Previous</span>
+    </a>
 
-  <a class="carousel-control-next carrusel-control" href="#carouselOfertaDetallada" role="button" data-slide="next">
-    <i class="fa fa-angle-right fa-2x"></i>
-    <span class="sr-only">Next</span>
-  </a>
+    <a class="carousel-control-next carrusel-control" href="#carouselOfertaDetallada" role="button" data-slide="next">
+        <i class="fa fa-angle-right fa-2x"></i>
+        <span class="sr-only">Next</span>
+    </a>
 
 </div>

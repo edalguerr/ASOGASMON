@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OfertaDetalladaActualService } from 'src/app/servicios/ofertaDetalladaActual/oferta-detallada-actual.service';
 
 @Component({
   selector: 'app-slide-oferta-detallada',
@@ -6,25 +7,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./slide-oferta-detallada.component.css']
 })
 export class SlideOfertaDetalladaComponent implements OnInit {
-
-  @Output() emitEvent:EventEmitter<String> = new EventEmitter<String>();
-  
-  ruta = 'assets/';
-  imagenes:Array<string> = ['B7111-BL_BATA_UPC_ml.jpg','libro-de-oro-de-matemticas-1-638.jpg',
-  'habitacion-arriendo_2.jpg', '1024o.jpg'  
- ];
-
- imagenes2:Array<string> = ['3837.jpg','179809-OWKTX6-319.jpg','12324.jpg','342462-PA9Q6O-452.jpg'];
  
-  constructor() { }
+ API_URL = "http://localhost/asogasmonAPI/public/img/";
+
+  constructor(
+    public ofertaDetalladaActualService:OfertaDetalladaActualService,
+  ) { }
 
   ngOnInit() {
-    window.scroll(0, 0);
+    window.scroll(0, 0);   
   }
 
   
   actualizarImagen(imagen){
-    this.emitEvent.emit(imagen);
+    this.ofertaDetalladaActualService.imgPrincipalActual = imagen.FOTO;
   }
 
 }

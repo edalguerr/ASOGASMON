@@ -13,9 +13,9 @@
               -->
 
                 <div [ngSwitch]="ofertaDetalladaActualService.ofertaDetallada.INMUEBLE">
-                    <div *ngSwitchCase="'PENSION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
-                    <div *ngSwitchCase="'HABITACION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
-                    <div *ngSwitchCase="'CASAAPTO'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.ofertaDetallada.fotos[0].FOTO+')' "></div>
+                    <div *ngSwitchCase="'PENSION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasPension/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.imgPrincipalActual+')' "></div>
+                    <div *ngSwitchCase="'HABITACION'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasHabitacion/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.imgPrincipalActual+')' "></div>
+                    <div *ngSwitchCase="'CASAAPTO'" class="card-img-top imagen-oferta-detallada d-none d-md-block" [style.background-image]="'url('+API_URL+'ofertasCasaApto/'+ofertaDetalladaActualService.ofertaDetallada.ID+'/'+ofertaDetalladaActualService.imgPrincipalActual+')' "></div>
                 </div>
 
                 <!--Full screen componente-->

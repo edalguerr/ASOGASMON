@@ -53,5 +53,10 @@ export class OfertaDetalladaActualService {
     normasCasa: []
   }
 
+  fotosOfertas1:Array<{FOTO}> = [];
+  fotosOfertas2:Array<{FOTO}> = [];
+
+  imgPrincipalActual = "";
+
   constructor() { }
 }
