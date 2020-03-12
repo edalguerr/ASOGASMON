@@ -18,6 +18,7 @@ import { OfertasPensionService } from './servicios/ofertasPensiones/ofertas-pens
 import { OfertasInmueblesService } from './servicios/ofertasInmuebles/ofertas-inmuebles.service';
 import { OfertasDestacadasService } from './servicios/ofertasDestacadas/ofertas-destacadas.service';
 import { UltimasOfertasService } from './servicios/ultimasOfertas/ultimas-ofertas.service';
+import { OfertaDetalladaActualService } from './servicios/ofertaDetalladaActual/oferta-detallada-actual.service';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { UltimasOfertasService } from './servicios/ultimasOfertas/ultimas-oferta
     OfertasInmueblesService,
     CurrencyPipe,
     OfertasDestacadasService,
-    UltimasOfertasService
+    UltimasOfertasService,
+    OfertaDetalladaActualService
   ],
   bootstrap: [AppComponent]
 })

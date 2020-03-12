@@ -118,5 +118,10 @@ export class OfertasPensionService {
     console.log(datos)
     return this.httpClient.post(this.API_URL + 'ofertaPension/pensiones', datos);
   }
+
+  obtenerPension(id:number){
+    
+    return this.httpClient.get(this.API_URL + 'ofertaPension/'+id);
+  }
   
 }

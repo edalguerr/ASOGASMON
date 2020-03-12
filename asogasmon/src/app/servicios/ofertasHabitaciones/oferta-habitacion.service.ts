@@ -121,4 +121,9 @@ export class OfertaHabitacionService {
     return this.httpClient.post(this.API_URL + 'ofertaHabitacion/habitaciones', datos);
   }
 
+  obtenerHabitacion(id:number){
+    
+    return this.httpClient.get(this.API_URL + 'ofertaHabitacion/'+id);
+  }
+
 }
