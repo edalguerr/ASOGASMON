@@ -26,7 +26,7 @@
         "font-awesome": "^4.7.0",
         "jquery": "^3.4.1",
         "js-marker-clusterer": "^1.0.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "ng5-slider": "^1.1.14",
         "open-iconic": "^1.1.1",
         "popper.js": "^1.15.0",
